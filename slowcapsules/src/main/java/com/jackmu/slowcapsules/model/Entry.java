@@ -11,19 +11,16 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Subscription")
-public class Subscription {
+@Table(name = "Entry")
+public class Entry {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "subscription_id")
-    private Long subscriptionId;
+    @Column(name = "entry_id")
+    private Long entryId;
 
-    @Column(name = "subscriber_email")
-    private Long subscriberEmail;
     @Column(name = "series_id")
     private Long seriesId;
-    @Column(name = "article_num")
-    private Integer articleNum;
 
-
+    @Column(name = "entry_text")
+    private String entryText;
 }

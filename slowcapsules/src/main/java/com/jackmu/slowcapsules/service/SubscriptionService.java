@@ -7,5 +7,5 @@ import java.util.List;
 public interface SubscriptionService {
     Subscription saveSubscription(Subscription subscription);
     void deleteSubscription(Long id);
-    List<Subscription> fetchSubscriptionsByUser(Long subscriberId);
+    List<Subscription> fetchSubscriptions();
 }

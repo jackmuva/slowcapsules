@@ -1,28 +1,27 @@
 package com.jackmu.slowcapsules.model;
 
+
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-  
-// Importing required classes
-
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "Subscriber")
-public class Subscriber {
+@Table(name = "Writer")
+public class Writer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "subscriber_id")
-    private Long subscriberId;
+    @Column(name = "writer_id")
+    private Long writerId;
+
+    @Column(name = "pen_name")
+    private String penName;
+
     @Column(name = "email")
     private String email;
-
-    //may need a property like subscriptions with a one to many
-    //List<Subscriptions> userSubscriptions
 }
