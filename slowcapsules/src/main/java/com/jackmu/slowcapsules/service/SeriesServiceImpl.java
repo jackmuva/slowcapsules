@@ -25,19 +25,16 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByWriter(String penName){
-        return seriesRepository.findByPenName(penName);
+        return seriesRepository.findByPenNameIgnoreCase(penName);
     }
 
     public List<Series> fetchByTag(String tag){
-        return seriesRepository.findAllByTagsIsLike(tag);
+        return seriesRepository.findAllByTagsIsLikeIgnoreCase(tag);
     }
 
-    public List<Series> fetchBySummary(String keyword){
-        return seriesRepository.findAllBySummaryIsLike(keyword);
-    }
-
-    public List<Series> fetchByTitle(String keyword){
-        return seriesRepository.findAllByTitleIsLike(keyword);
+    public List<Series> fetchByKeyword(String keyword){
+        return seriesRepository.findAllByPenNameOrTagsIsLikeIgnoreCaseOrSummaryIsLikeIgnoreCaseOrTitleIsLikeIgnoreCase(keyword,
+                keyword, keyword, keyword);
     }
 
 }

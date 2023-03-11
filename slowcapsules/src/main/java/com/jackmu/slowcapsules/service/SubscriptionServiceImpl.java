@@ -17,8 +17,8 @@ public class SubscriptionServiceImpl implements SubscriptionService{
         return subscriptionRepository.save(subscription);
     }
     @Override
-    public void deleteSubscription(Long id){
-        subscriptionRepository.deleteById(id);
+    public void deleteSubscription(String email, Long seriesId) {
+        subscriptionRepository.deleteBySubscriberEmailAndSeriesId(email, seriesId);
     }
 
     @Override

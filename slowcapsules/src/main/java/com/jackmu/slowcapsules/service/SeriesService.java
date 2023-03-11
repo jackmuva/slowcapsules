@@ -18,7 +18,5 @@ public interface SeriesService {
 
     List<Series> fetchByTag(String tag);
 
-    List<Series> fetchBySummary(String keyword);
-
-    List<Series> fetchByTitle(String keyword);
+    List<Series> fetchByKeyword(String keyword);
 }
