@@ -1,3 +1,5 @@
+-- TODO: Populate all tables with dummy data
+
 DROP TABLE IF EXISTS Subscribers;
 DROP TABLE IF EXISTS Subscriptions;
 

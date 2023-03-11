@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+//TODO: Create CRON job to send emails and delete subscription (May need to implement an entry order to entry)
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService{
     @Autowired
