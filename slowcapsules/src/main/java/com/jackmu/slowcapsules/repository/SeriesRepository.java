@@ -13,12 +13,16 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
     List<Series> findByOrderByDatetimeAsc();
     List<Series> findByPenName(String penName);
 
-    @Query(value = "SELECT * FROM Series s WHERE s.tags LIKE %:tag%", nativeQuery = true)
-    List<Series> findByTag(@Param("tag") String tag);
+//    @Query(value = "SELECT * FROM Series s WHERE s.tags LIKE %:tag%", nativeQuery = true)
+//    List<Series> findByTag(@Param("tag") String tag);
+//
+//    @Query(value = "SELECT * FROM Series s WHERE s.summary LIKE %:keyword%", nativeQuery = true)
+//    List<Series> findBySummary(@Param("keyword") String keyword);
+//
+//    @Query(value = "SELECT * FROM Series s WHERE s.title LIKE %:keyword%", nativeQuery = true)
+//    List<Series> findByTitle(@Param("keyword") String keyword);
 
-    @Query(value = "SELECT * FROM Series s WHERE s.summary LIKE %:keyword%", nativeQuery = true)
-    List<Series> findBySummary(@Param("keyword") String keyword);
-
-    @Query(value = "SELECT * FROM Series s WHERE s.title LIKE %:keyword%", nativeQuery = true)
-    List<Series> findByTitle(@Param("keyword") String keyword);
+    List<Series> findAllByTagsIsLike(String tag);
+    List<Series> findAllBySummaryIsLike(String keyword);
+    List<Series> findAllByTitleIsLike(String keyword);
 }

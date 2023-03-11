@@ -29,15 +29,15 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByTag(String tag){
-        return seriesRepository.findByTag(tag);
+        return seriesRepository.findAllByTagsIsLike(tag);
     }
 
     public List<Series> fetchBySummary(String keyword){
-        return seriesRepository.findBySummary(keyword);
+        return seriesRepository.findAllBySummaryIsLike(keyword);
     }
 
     public List<Series> fetchByTitle(String keyword){
-        return seriesRepository.findByTitle(keyword);
+        return seriesRepository.findAllByTitleIsLike(keyword);
     }
 
 }
