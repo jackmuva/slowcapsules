@@ -3,6 +3,7 @@ package com.jackmu.slowcapsules.service;
 import com.jackmu.slowcapsules.model.Subscription;
 import com.jackmu.slowcapsules.repository.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,23 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     @Override
     public List<Subscription> fetchSubscriptions(){
         return (List<Subscription>) subscriptionRepository.findAll();
+    }
+
+    @Override
+    @Scheduled(cron = "0 6 * * *")
+    public void sendEmails(){
+
+    }
+
+    @Override
+    @Scheduled(cron = "0 9 * * *")
+    public void deleteFinishedSeries(){
+
+    }
+
+    @Override
+    @Scheduled(cron = "0 12 * * *")
+    public void incrementArticleNum(){
+        subscriptionRepository.incrementArticleNum();
     }
 }

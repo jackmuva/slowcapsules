@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -19,11 +22,15 @@ public class Subscription {
     private Long subscriptionId;
 
     @Column(name = "subscriber_email")
-    private Long subscriberEmail;
-    @Column(name = "series_id")
-    private Long seriesId;
+    private String subscriberEmail;
+
     @Column(name = "article_num")
     private Integer articleNum;
 
+    @Column(name = "send_date")
+    private LocalDate sendDate;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "series_id")
+    private Series series;
 }

@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -24,4 +26,7 @@ public class Writer {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "writer")
+    private List<Series> series;
 }

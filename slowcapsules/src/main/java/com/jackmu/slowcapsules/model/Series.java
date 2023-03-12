@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -27,9 +28,6 @@ public class Series {
     @Column(name = "num_entries")
     private Integer numEntries;
 
-    @Column(name = "pen_name")
-    private String penName;
-
     @Column(name = "title")
     private String title;
 
@@ -38,4 +36,17 @@ public class Series {
 
     @Column(name = "tags")
     private String tags;
+
+    @Column(name = "cadence")
+    private Integer cadence;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
+    private List<Entry> entries;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
+    private List<Subscription> subscriptions;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id")
+    private Writer writer;
 }

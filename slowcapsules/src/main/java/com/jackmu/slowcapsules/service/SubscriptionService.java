@@ -8,4 +8,7 @@ public interface SubscriptionService {
     Subscription saveSubscription(Subscription subscription);
     void deleteSubscription(String email, Long seriesId);
     List<Subscription> fetchSubscriptions();
+    void sendEmails();
+    void deleteFinishedSeries();
+    void incrementArticleNum();
 }

@@ -18,8 +18,9 @@ public class Entry {
     @Column(name = "entry_id")
     private Long entryId;
 
-    @Column(name = "series_id")
-    private Long seriesId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "series_id")
+    private Series series;
 
     @Column(name = "entry_text")
     private String entryText;
