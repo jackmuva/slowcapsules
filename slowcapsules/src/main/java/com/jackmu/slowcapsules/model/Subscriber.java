@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "Subscriber")
 public class Subscriber {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
