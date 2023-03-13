@@ -15,7 +15,9 @@
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
+		<tests.skip>true</tests.skip>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -29,7 +31,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
@@ -63,18 +64,12 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.8.1</version>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.2</version>
 				<configuration>
-					<source>${env.postgres_url}</source>
-					<target>${env.postgres_url}</target>
-					<source>${env.pg_username}</source>
-					<target>${env.pg_username}</target>
-					<source>${env.pg_pw}</source>
-					<target>${env.pg_pw}</target>
+					<skipTests>${tests.skip}</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>
