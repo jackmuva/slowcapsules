@@ -2,6 +2,7 @@ package com.jackmu.slowcapsules.repository;
 
 import com.jackmu.slowcapsules.model.Series;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

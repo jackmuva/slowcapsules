@@ -40,13 +40,6 @@ public class Series {
     @Column(name = "cadence")
     private Integer cadence;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
-    private List<Entry> entries;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "series")
-    private List<Subscription> subscriptions;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "writer_id")
-    private Writer writer;
+    @Column(name = "pen_name")
+    private String penName;
 }

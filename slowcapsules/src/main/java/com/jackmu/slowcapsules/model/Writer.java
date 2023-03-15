@@ -26,7 +26,4 @@ public class Writer {
 
     @Column(name = "email")
     private String email;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "writer")
-    private List<Series> series;
 }

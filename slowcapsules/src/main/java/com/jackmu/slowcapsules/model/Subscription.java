@@ -30,7 +30,6 @@ public class Subscription {
     @Column(name = "send_date")
     private LocalDate sendDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "series_id")
-    private Series series;
+    private String seriesId;
 }
