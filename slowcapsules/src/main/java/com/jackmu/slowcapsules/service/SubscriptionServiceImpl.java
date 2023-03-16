@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 
@@ -26,19 +27,21 @@ public class SubscriptionServiceImpl implements SubscriptionService{
 
     @Override
     public List<Subscription> fetchSubscriptions(){
-        return (List<Subscription>) subscriptionRepository.findAll();
+        return subscriptionRepository.findAll();
     }
 
     @Override
     @Scheduled(cron = "0 6 * * *")
     public void sendEmails(){
-
+        subscriptionRepository.findAllBySendDate(LocalDate.now());
+        //entityRepo needs to get the right email texts
+        subscriptionRepository.updateSendDate();
     }
 
     @Override
     @Scheduled(cron = "0 9 * * *")
     public void deleteFinishedSeries(){
-
+        subscriptionRepository.deleteFinishedSubscriptions();
     }
 
     @Override

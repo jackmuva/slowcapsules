@@ -23,4 +23,7 @@ public class Entry {
 
     @Column(name = "entry_text")
     private String entryText;
+
+    @Column(name = "order_num")
+    private Integer orderNum;
 }
