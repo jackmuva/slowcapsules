@@ -21,7 +21,9 @@ public class Entry {
     @Column(name = "series_id")
     private String seriesId;
 
-    @Column(name = "entry_text")
+    //TODO: Look into using LOB for a blob or clob
+    //https://www.baeldung.com/jpa-annotation-postgresql-text-type
+    @Column(name = "entry_text", columnDefinition="TEXT")
     private String entryText;
 
     @Column(name = "order_num")

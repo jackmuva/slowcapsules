@@ -1,5 +1,5 @@
 
-DELETE TABLE subscription, writer, entry, series;
+TRUNCATE TABLE subscription, writer, entry, series;
 
 INSERT INTO subscription(subscription_id, article_num, series_id, subscriber_email, send_date)
 VALUES (1, 1, 1, 'email_1', '2022-01-01');
