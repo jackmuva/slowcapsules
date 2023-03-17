@@ -2,9 +2,9 @@
 TRUNCATE TABLE subscription, writer, entry, series;
 
 INSERT INTO subscription(subscription_id, article_num, series_id, subscriber_email, send_date)
-VALUES (1, 1, 1, 'email_1', '2022-01-01');
+VALUES (1, 1, 1, 'email_1', CURRENT_DATE);
 INSERT INTO subscription(subscription_id, article_num, series_id, subscriber_email, send_date)
-VALUES (2, 5, 2, 'email_2', '2022-02-01');
+VALUES (2, 5, 2, 'email_2', CURRENT_DATE);
 INSERT INTO subscription(subscription_id, article_num, series_id, subscriber_email, send_date)
 VALUES (3, 2, 3, 'email_3', '2022-01-01');
 

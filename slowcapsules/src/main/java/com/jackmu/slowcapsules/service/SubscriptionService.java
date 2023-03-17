@@ -9,6 +9,7 @@ public interface SubscriptionService {
     void deleteSubscription(String email, Long seriesId);
     List<Subscription> fetchSubscriptions();
     void sendEmails();
+     void updateSendDate();
     void deleteFinishedSeries();
     void incrementArticleNum();
 }

@@ -13,6 +13,7 @@ public class SubscriptionController {
     @Autowired
     private SubscriptionService subscriptionService;
 
+    //This works!
     @GetMapping("/getAll")
     public List<Subscription> getSubscriptions(){
         return subscriptionService.fetchSubscriptions();
@@ -26,5 +27,32 @@ public class SubscriptionController {
     @DeleteMapping("/cancelSubscription/{email}/{seriesId}")
     public void deleteSubscription(@PathVariable String email, @PathVariable Long seriesId){
         subscriptionService.deleteSubscription(email, seriesId);
+    }
+
+    //TODO: Trouble converting to DTO
+    @GetMapping("/testEmails")
+    public List<Subscription> getEmails(){
+        subscriptionService.sendEmails();
+        return subscriptionService.fetchSubscriptions();
+    }
+
+    //validated
+    @PutMapping("/updateDate")
+    public List<Subscription> updateDate(){
+        subscriptionService.updateSendDate();
+        return subscriptionService.fetchSubscriptions();
+    }
+
+    //validated
+    @PutMapping("/increment")
+    public List<Subscription> increment(){
+        subscriptionService.incrementArticleNum();
+        return subscriptionService.fetchSubscriptions();
+    }
+    //validated
+    @DeleteMapping("/finished")
+    public List<Subscription> deleteFinished(){
+        subscriptionService.deleteFinishedSeries();
+        return subscriptionService.fetchSubscriptions();
     }
 }

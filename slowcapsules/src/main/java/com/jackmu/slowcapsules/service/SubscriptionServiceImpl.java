@@ -40,17 +40,22 @@ public class SubscriptionServiceImpl implements SubscriptionService{
         List<EntryEmailDTO> readyEmails = subscriptionRepository.findEmailsBySendDate(LocalDate.now());
         emailService.setLocalMode(true);
         emailService.sendEmails(readyEmails);
+    }
+
+    @Override
+    @Scheduled(cron = "0 10 * * *")
+    public void updateSendDate(){
         subscriptionRepository.updateSendDate();
     }
 
     @Override
-    @Scheduled(cron = "0 9 * * *")
+    @Scheduled(cron = "0 11 * * *")
     public void deleteFinishedSeries(){
         subscriptionRepository.deleteFinishedSubscriptions();
     }
 
     @Override
-    @Scheduled(cron = "0 12 * * *")
+    @Scheduled(cron = "0 13 * * *")
     public void incrementArticleNum(){
         subscriptionRepository.incrementArticleNum();
     }
