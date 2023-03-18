@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -29,12 +28,12 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
             "AND article_num >= series.num_entries", nativeQuery = true)
     void deleteFinishedSubscriptions();
 
-    @Query(value = "SELECT entry.entry_text, subscription.subscriber_email, series.title FROM subscription " +
-            "LEFT JOIN entry ON CAST(subscription.series_id AS BIGINT) = CAST(entry.series_id AS BIGINT) " +
-            "AND subscription.article_num = entry.order_num " +
-            "LEFT JOIN series ON CAST(series.series_id AS BIGINT) = CAST(subscription.series_id AS BIGINT) " +
-            "WHERE subscription.send_date = CURRENT_DATE", nativeQuery = true)
-    List<EntryEmailDTO> findEmailsBySendDate(LocalDate date);
+    @Query("SELECT Entry.entryText AS entryText, Subscription.subscriberEmail AS subscriberEmail " +
+            "FROM Subscription " +
+            "LEFT JOIN Entry ON Subscription.seriesId = Entry.seriesId AND Subscription.articleNum = Entry.orderNum " +
+            "LEFT JOIN Series ON Series.seriesId = Subscription.seriesId " +
+            "WHERE Subscription.sendDate = CURRENT_DATE")
+    List<EntryEmailDTO> findEmailsBySendDate();
 
     @Modifying
     @Transactional

@@ -19,7 +19,7 @@ public class Entry {
     private Long entryId;
 
     @Column(name = "series_id")
-    private String seriesId;
+    private Long seriesId;
 
     //TODO: Look into using LOB for a blob or clob
     //https://www.baeldung.com/jpa-annotation-postgresql-text-type

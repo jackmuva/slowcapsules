@@ -37,7 +37,7 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     @Override
     @Scheduled(cron = "0 6 * * *")
     public void sendEmails(){
-        List<EntryEmailDTO> readyEmails = subscriptionRepository.findEmailsBySendDate(LocalDate.now());
+        List<EntryEmailDTO> readyEmails = subscriptionRepository.findEmailsBySendDate();
         emailService.setLocalMode(true);
         emailService.sendEmails(readyEmails);
     }

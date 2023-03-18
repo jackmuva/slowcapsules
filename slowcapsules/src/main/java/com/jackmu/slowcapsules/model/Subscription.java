@@ -30,6 +30,6 @@ public class Subscription {
     @Column(name = "send_date")
     private LocalDate sendDate;
 
-    @JoinColumn(name = "series_id")
-    private String seriesId;
+    @Column(name = "series_id")
+    private Long seriesId;
 }
