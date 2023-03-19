@@ -8,10 +8,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.logging.Logger;
 
-
-//TODO: Create CRON job to send emails and delete subscription (May need to implement an entry order to entry)
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService{
     @Autowired

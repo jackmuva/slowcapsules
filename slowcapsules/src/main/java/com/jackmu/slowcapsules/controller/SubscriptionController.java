@@ -19,11 +19,14 @@ public class SubscriptionController {
         return subscriptionService.fetchSubscriptions();
     }
 
-    @PostMapping("/new")
+    //Validated
+    @PostMapping(value = "/new")
     public Subscription putSubscription(@RequestBody Subscription subscription){
         return subscriptionService.saveSubscription(subscription);
     }
 
+    //Validated
+    //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/cancelSubscription/email_1/1 -Method DELETE
     @DeleteMapping("/cancelSubscription/{email}/{seriesId}")
     public void deleteSubscription(@PathVariable String email, @PathVariable Long seriesId){
         subscriptionService.deleteSubscription(email, seriesId);
