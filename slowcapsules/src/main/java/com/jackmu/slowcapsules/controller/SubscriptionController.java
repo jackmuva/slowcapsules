@@ -20,6 +20,8 @@ public class SubscriptionController {
     }
 
     //Validated
+    //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/new -Method POST
+    // -Body (@{"articleNum"="3";"sendDate"="2023-03-19";"seriesId"="4";"subscriberEmail"="email_4"}|ConvertTo-Json) -ContentType "application/json"
     @PostMapping(value = "/new")
     public Subscription putSubscription(@RequestBody Subscription subscription){
         return subscriptionService.saveSubscription(subscription);
