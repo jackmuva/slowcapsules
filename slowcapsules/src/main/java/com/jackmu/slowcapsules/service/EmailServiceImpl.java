@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 @Service
 public class EmailServiceImpl implements EmailService{
-    Boolean localMode = false;
+    private Boolean localMode = false;
     private static final Logger LOGGER = Logger.getLogger(EmailServiceImpl.class.getName());
 
     @Override

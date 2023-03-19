@@ -13,7 +13,7 @@ public class SubscriptionController {
     @Autowired
     private SubscriptionService subscriptionService;
 
-    //This works!
+    //Validated
     @GetMapping("/getAll")
     public List<Subscription> getSubscriptions(){
         return subscriptionService.fetchSubscriptions();
@@ -29,7 +29,7 @@ public class SubscriptionController {
         subscriptionService.deleteSubscription(email, seriesId);
     }
 
-    //TODO: Trouble converting to DTO
+    //Validated
     @GetMapping("/testEmails")
     public List<Subscription> getEmails(){
         subscriptionService.sendEmails();
@@ -37,6 +37,7 @@ public class SubscriptionController {
     }
 
     //validated
+    //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/updateDate -Method PUT
     @PutMapping("/updateDate")
     public List<Subscription> updateDate(){
         subscriptionService.updateSendDate();
@@ -44,12 +45,14 @@ public class SubscriptionController {
     }
 
     //validated
+    //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/increment -Method PUT
     @PutMapping("/increment")
     public List<Subscription> increment(){
         subscriptionService.incrementArticleNum();
         return subscriptionService.fetchSubscriptions();
     }
     //validated
+    //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/finished -Method DELETE
     @DeleteMapping("/finished")
     public List<Subscription> deleteFinished(){
         subscriptionService.deleteFinishedSeries();
