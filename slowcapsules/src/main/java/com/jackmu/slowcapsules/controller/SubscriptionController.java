@@ -19,6 +19,8 @@ public class SubscriptionController {
         return subscriptionService.fetchSubscriptions();
     }
 
+    //TODO: Add endpoint to check if a user is already subscribed to a series
+
     //Validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/new -Method POST
     // -Body (@{"articleNum"="3";"sendDate"="2023-03-19";"seriesId"="4";"subscriberEmail"="email_4"}|ConvertTo-Json) -ContentType "application/json"
