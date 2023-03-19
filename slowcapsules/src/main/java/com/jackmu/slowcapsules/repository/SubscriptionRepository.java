@@ -24,15 +24,10 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM subscription USING series " +
-            "WHERE CAST(subscription.series_id AS BIGINT) = CAST(series.series_id AS BIGINT) " +
+            "WHERE subscription.series_id = series.series_id " +
             "AND article_num >= series.num_entries", nativeQuery = true)
     void deleteFinishedSubscriptions();
 
-    //    @Query("SELECT Entry.entryText AS entryText, Subscription.subscriberEmail AS subscriberEmail, Series.title AS title " +
-//            "FROM Subscription " +
-//            "LEFT JOIN Entry ON Subscription.seriesId = Entry.seriesId AND Subscription.articleNum = Entry.orderNum " +
-//            "LEFT JOIN Series ON Series.seriesId = Subscription.seriesId " +
-//            "WHERE Subscription.sendDate = CURRENT_DATE")
     @Query(value = "select Entry.entry_Text AS entryText, Subscription.subscriber_Email AS subscriberEmail, Series.title AS title " +
             "FROM Subscription LEFT JOIN Entry ON Entry.series_Id = Subscription.series_Id AND Subscription.article_num = entry.order_num " +
             "LEFT join Series ON Series.series_Id = Subscription.series_Id " +
@@ -42,6 +37,6 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
     @Modifying
     @Transactional
     @Query(value = "UPDATE Subscription SET send_date = (send_date + (Series.cadence * INTERVAL '1 day')) FROM Series " +
-            "WHERE CAST(Subscription.series_id AS BIGINT) = CAST(Series.series_id AS BIGINT) AND Subscription.send_date = CURRENT_DATE", nativeQuery = true)
+            "WHERE Subscription.series_id = Series.series_id AND Subscription.send_date = CURRENT_DATE", nativeQuery = true)
     void updateSendDate();
 }
