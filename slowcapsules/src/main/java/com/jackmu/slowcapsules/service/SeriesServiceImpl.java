@@ -21,7 +21,7 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchNewest(){
-        return seriesRepository.findByOrderByDatetimeAsc();
+        return seriesRepository.findByOrderByDatetimeDesc();
     }
 
     public List<Series> fetchByWriter(String penName){
@@ -33,7 +33,7 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByKeyword(String keyword){
-        return seriesRepository.findAllByPenNameOrTagsIsLikeIgnoreCaseOrSummaryIsLikeIgnoreCaseOrTitleIsLikeIgnoreCase(keyword,
+        return seriesRepository.findAllByPenNameIsLikeIgnoreCaseOrTagsIsLikeIgnoreCaseOrSummaryIsLikeIgnoreCaseOrTitleIsLikeIgnoreCase(keyword,
                 keyword, keyword, keyword);
     }
 
