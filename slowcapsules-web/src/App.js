@@ -1,6 +1,8 @@
 import './App.css';
 import Header from "./main-page/header";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SeriesCard from "./main-page/series-card";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -14,9 +16,16 @@ function App() {
     }, []);
 
   return (
-    <div className="container">
-      <Header subtitle = "Write and Subscribe to Email Series"/>
-    </div>
+      <Router>
+        <div className="container">
+          <Header subtitle = "Write and Subscribe to Email Series"/>
+            <Switch>
+                <Route path = "/">
+                    <SeriesCard series = {allSeries[0]}></SeriesCard>
+                </Route>
+            </Switch>
+        </div>
+      </Router>
   );
 }
 
