@@ -3,13 +3,15 @@ import Header from "./main-page/header";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SeriesCard from "./main-page/series-card";
+import SeriesApi from "./api/SeriesApi";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
     useEffect(() => {
         const fetchSeries = async () => {
-            const rsp = await fetch("/sample-series.json");
-            const series = await rsp.json();
+            const rsp = SeriesApi.getNewestSeries();
+            console.log(SeriesApi.getNewestSeries());
+            const series = await rsp
             setAllSeries(series);
         };
         fetchSeries();
