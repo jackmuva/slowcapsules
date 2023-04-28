@@ -1,4 +1,6 @@
+const apiUrl = "http://localhost:8090";
 export default class StandardApi {
+
     json(response){
         return response.json().then(data => ({
             data: data,
@@ -7,15 +9,15 @@ export default class StandardApi {
     }
 
     get(url){
-        return fetch(url);
+        return fetch(apiUrl.concat(url));
     }
 
     delete(url){
-        return fetch(url, {method: 'DELETE'});
+        return fetch(apiUrl.concat(url), {method: 'DELETE'});
     }
 
     post(url, payload){
-        return fetch(url, {
+        return fetch(apiUrl.concat(url), {
             method: 'POST',
             headers:{
                 Accept: 'application/json',
@@ -26,7 +28,7 @@ export default class StandardApi {
     }
 
     put(url, payload){
-        return fetch(url, {
+        return fetch(apiUrl.concat(url), {
             method: 'PUT',
             headers:{
                 Accept: 'application/json',
