@@ -11,5 +11,6 @@ class SubscriptionApi extends StandardApi{
     deleteSubscription(email, seriesId){
         return this.delete(`/api/subscription/cancelSubscription/${email}/${seriesId}`)
     }
+
 }
 export default new SubscriptionApi();

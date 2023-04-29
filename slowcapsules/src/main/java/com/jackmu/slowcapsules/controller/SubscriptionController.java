@@ -36,6 +36,8 @@ public class SubscriptionController {
         subscriptionService.deleteSubscription(email, seriesId);
     }
 
+    // The following API endpoints will NOT be accessible to the front end
+
     //Validated
     @GetMapping("/testEmails")
     public List<Subscription> getEmails(){
