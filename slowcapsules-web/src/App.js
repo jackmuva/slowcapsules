@@ -1,9 +1,10 @@
 import './App.css';
-import Header from "./main-page/header";
+import Header from "./components/Header/header";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SeriesCard from "./main-page/series-card";
+import SeriesCard from "./components/main-page/series-card";
 import SeriesApi from "./api/SeriesApi";
+import Navbar from "./components/Navbar"
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -21,6 +22,7 @@ function App() {
       <Router>
         <div className="container">
           <Header subtitle = "Write and Subscribe to Email Series"/>
+            <Navbar />
             <Switch>
                 <Route path = "/">
                     <SeriesCard series = {allSeries[0]}></SeriesCard>
