@@ -2,7 +2,7 @@ import './App.css';
 import Header from "./components/Header/header";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SeriesCard from "./components/main-page/series-card";
+import SeriesPage from "./components/main-page/series-page";
 import SeriesApi from "./api/SeriesApi";
 import Navbar from "./components/Navbar"
 
@@ -11,9 +11,10 @@ function App() {
     useEffect(() => {
         const fetchSeries = async () => {
             const rsp = SeriesApi.getNewestSeries();
-            console.log(SeriesApi.getNewestSeries());
             const series = await rsp
             setAllSeries(series);
+            console.log(series);
+
         };
         fetchSeries();
     }, []);
@@ -25,7 +26,7 @@ function App() {
             <Navbar />
             <Switch>
                 <Route path = "/">
-                    <SeriesCard series = {allSeries[0]}></SeriesCard>
+                    <SeriesPage allSeries = {allSeries}></SeriesPage>
                 </Route>
             </Switch>
         </div>
