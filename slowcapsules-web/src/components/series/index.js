@@ -2,18 +2,18 @@ import "./series.css";
 
 const Series = ({ series }) => {
     return (
-        <div>
+        <div className = "seriesCard">
             <div className = "row mt-2">
-                <h5 className = "col-md-12"> {series.title}</h5>
+                <h2 className = "col-md-12"> {series.title}</h2>
             </div>
             <div className = "row">
-                <h3 className = "col-md-12">{series.pen_name}</h3>
+                <h5 className = "col-md-12"> Written By: {series.penName}</h5>
             </div>
             <div className = "col-md-5">
-                <p>{series.summary}</p>
-                <p> {series.num_entries} </p>
-                <p className = "cadence"> {series.cadence} </p>
-                <p> {series.tags} </p>
+                <p> Summary: {series.summary}</p>
+                <p> Total Entries: {series.numEntries} </p>
+                <p> Cadence: Every {series.cadence} days</p>
+                <p> Tags: {series.tags} </p>
             </div>
         </div>
     )
