@@ -18,7 +18,7 @@ class SeriesApi extends StandardApi{
         return this.get(`/api/series/tag/${tag}`).then(this.json);
     }
     getSeriesByKeyword(keyword){
-        return this.get(`api/series/search/${keyword}`).then(this.json);
+        return this.get(`/api/series/search/${keyword}`).then(this.json);
     }
 }
 export default new SeriesApi();
