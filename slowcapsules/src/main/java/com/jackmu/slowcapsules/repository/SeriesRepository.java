@@ -13,8 +13,8 @@ import java.util.List;
 public interface SeriesRepository extends JpaRepository<Series, Long> {
     List<Series> findByOrderByDatetimeDesc();
     List<Series> findByPenNameIgnoreCase(String penName);
-    List<Series> findAllByTagsIsLikeIgnoreCase(String tag);
-    List<Series> findAllByPenNameIsLikeIgnoreCaseOrTagsIsLikeIgnoreCaseOrSummaryIsLikeIgnoreCaseOrTitleIsLikeIgnoreCase(String penName,
+    List<Series> findAllByTagsIsContainingIgnoreCase(String tag);
+    List<Series> findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCase(String penName,
                                                                                                         String tag,
                                                                                                         String summary,
                                                                                                         String title);

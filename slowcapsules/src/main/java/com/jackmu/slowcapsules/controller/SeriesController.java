@@ -46,7 +46,6 @@ public class SeriesController {
     }
 
     //validated
-    //TODO: Consider making regex to look at substrings; does the job tho
     @GetMapping("/search/{keyword}")
     public List<Series> searchSeries(@PathVariable String keyword){
         return seriesService.fetchByKeyword(keyword);

@@ -29,11 +29,11 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByTag(String tag){
-        return seriesRepository.findAllByTagsIsLikeIgnoreCase(tag);
+        return seriesRepository.findAllByTagsIsContainingIgnoreCase(tag);
     }
 
     public List<Series> fetchByKeyword(String keyword){
-        return seriesRepository.findAllByPenNameIsLikeIgnoreCaseOrTagsIsLikeIgnoreCaseOrSummaryIsLikeIgnoreCaseOrTitleIsLikeIgnoreCase(keyword,
+        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCase(keyword,
                 keyword, keyword, keyword);
     }
 
