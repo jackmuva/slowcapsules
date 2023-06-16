@@ -9,39 +9,28 @@ import SeriesFilter from "./components/main-page/series-filer";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
-    const [keyword, setKeyword] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
         const fetchSeries = async () => {
             const rsp = SeriesApi.getNewestSeries();
             const series = await rsp;
             setAllSeries(series);
+            setSearchResults(series);
+            console.log("effect called");
         };
         fetchSeries();
     }, []);
-
-    const updateKeyword = (keyword) => {
-        console.log(keyword);
-        const filtered = async () => {
-            console.log("filter called");
-            const rsp = SeriesApi.getSeriesByKeyword(keyword);
-            const series = await rsp;
-            console.log(series);
-            setAllSeries(series);
-        }
-        filtered();
-        setKeyword(keyword);
-    };
 
   return (
       <Router>
         <div className="container">
           <Header subtitle = "Write and Subscribe to Email Series"/>
             <Navbar />
-            <SeriesFilter keyword={keyword} onChange={updateKeyword}/>
+            <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
             <Switch>
                 <Route path = "/">
-                    <SeriesPage allSeries = {allSeries}></SeriesPage>
+                    <SeriesPage allSeries = {searchResults}></SeriesPage>
                 </Route>
             </Switch>
         </div>
