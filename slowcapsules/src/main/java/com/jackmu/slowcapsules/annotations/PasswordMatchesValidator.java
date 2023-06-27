@@ -1,6 +1,6 @@
 package com.jackmu.slowcapsules.annotations;
 
-import com.jackmu.slowcapsules.model.UserDto;
+import com.jackmu.slowcapsules.model.auth.UserDto;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

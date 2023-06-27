@@ -1,11 +1,15 @@
 package com.jackmu.slowcapsules.service;
 
+import com.jackmu.slowcapsules.model.auth.PasswordResetToken;
+import com.jackmu.slowcapsules.model.auth.User;
+import com.jackmu.slowcapsules.model.auth.UserDto;
+import com.jackmu.slowcapsules.model.auth.VerificationToken;
+
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
-public interface IUserService {
-
+public interface UserService {
     User registerNewUserAccount(UserDto accountDto);
 
     User getUser(String verificationToken);
@@ -42,9 +46,9 @@ public interface IUserService {
 
     List<String> getUsersFromSessionRegistry();
 
-    NewLocationToken isNewLoginLocation(String username, String ip);
-
-    String isValidNewLocationToken(String token);
-
-    void addUserLocation(User user, String ip);
+//    NewLocationToken isNewLoginLocation(String username, String ip);
+//
+//    String isValidNewLocationToken(String token);
+//
+//    void addUserLocation(User user, String ip);
 }

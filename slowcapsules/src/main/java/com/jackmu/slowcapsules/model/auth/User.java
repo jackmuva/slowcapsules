@@ -1,8 +1,7 @@
-package com.jackmu.slowcapsules.model;
+package com.jackmu.slowcapsules.model.auth;
 
 import jakarta.persistence.*;
-
-import java.util.Collection;
+import org.jboss.aerogear.security.otp.api.Base32;
 
 @Entity
 @Table(name = "user_account")

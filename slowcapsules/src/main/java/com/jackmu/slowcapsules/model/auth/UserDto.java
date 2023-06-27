@@ -1,4 +1,4 @@
-package com.jackmu.slowcapsules.model;
+package com.jackmu.slowcapsules.model.auth;
 
 import com.jackmu.slowcapsules.annotations.PasswordMatches;
 import com.jackmu.slowcapsules.annotations.ValidEmail;

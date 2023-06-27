@@ -1,13 +1,8 @@
 package com.jackmu.slowcapsules.controller;
 
-import com.jackmu.slowcapsules.model.UserDto;
-import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.request.WebRequest;
 
 @RestController
 public class RegistrationController {
