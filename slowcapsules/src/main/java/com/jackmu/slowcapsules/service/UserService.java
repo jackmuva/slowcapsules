@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserService {
-    User registerNewUserAccount(UserDto accountDto);
+    User registerNewUserAccount(UserDto accountDto) throws Exception;
 
     User getUser(String verificationToken);
 

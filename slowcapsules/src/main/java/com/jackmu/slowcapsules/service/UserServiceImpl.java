@@ -1,11 +1,15 @@
 package com.jackmu.slowcapsules.service;
 
+import com.jackmu.slowcapsules.model.auth.PasswordResetToken;
 import com.jackmu.slowcapsules.model.auth.User;
 import com.jackmu.slowcapsules.model.auth.UserDto;
 import com.jackmu.slowcapsules.model.auth.VerificationToken;
+import com.jackmu.slowcapsules.repository.PasswordResetTokenRepository;
 import com.jackmu.slowcapsules.repository.UserRepository;
+import com.jackmu.slowcapsules.repository.VerificationTokenRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.core.env.Environment;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +22,7 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -60,12 +65,15 @@ public class UserServiceImpl implements UserService {
     public static String QR_PREFIX = "https://chart.googleapis.com/chart?chs=200x200&chld=M%%7C0&cht=qr&chl=";
     public static String APP_NAME = "SpringRegistration";
 
+    private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
     // API
 
     @Override
-    public User registerNewUserAccount(final UserDto accountDto) {
+    public User registerNewUserAccount(final UserDto accountDto) throws Exception {
         if (emailExists(accountDto.getEmail())) {
-            throw new UserAlreadyExistException("There is an account with that email address: " + accountDto.getEmail());
+            LOGGER.info("There is an account with that email address: " + accountDto.getEmail());
+            throw new Exception("There is an account with that email address: " + accountDto.getEmail());
         }
         final User user = new User();
 
@@ -73,7 +81,7 @@ public class UserServiceImpl implements UserService {
         user.setLastName(accountDto.getLastName());
         user.setPassword(passwordEncoder.encode(accountDto.getPassword()));
         user.setEmail(accountDto.getEmail());
-        user.setUsing2FA(accountDto.isUsing2FA());
+//        user.setUsing2FA(accountDto.isUsing2FA());
         return userRepository.save(user);
     }
 
