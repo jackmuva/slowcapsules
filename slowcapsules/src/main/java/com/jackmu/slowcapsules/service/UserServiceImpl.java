@@ -85,6 +85,7 @@ public class UserServiceImpl implements UserService {
         return userRepository.save(user);
     }
 
+
     @Override
     public User getUser(final String verificationToken) {
         final VerificationToken token = tokenRepository.findByToken(verificationToken);
