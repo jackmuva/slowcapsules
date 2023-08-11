@@ -1,7 +1,9 @@
 package com.jackmu.slowcapsules.controller.security;
 
 import com.jackmu.slowcapsules.model.security.LoginDTO;
+import com.jackmu.slowcapsules.model.security.RegisterDTO;
 import com.jackmu.slowcapsules.service.security.AuthService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -22,5 +24,12 @@ public class AuthController {
         String response = authService.login(loginDTO);
 
         return ResponseEntity.ok(response);
+    }
+
+    @PostMapping(value = {"/register", "/signup"})
+    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDTO) throws Exception{
+        String response = authService.register(registerDTO);
+
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 }
