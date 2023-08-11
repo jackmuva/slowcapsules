@@ -35,6 +35,7 @@ public class WriterController {
     }
 
     //Validated
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get/{penName}")
     public List<Writer> getWriter(@PathVariable String penName){
         return writerService.fetchWriterByPenName(penName);

@@ -41,4 +41,15 @@ VALUES(1, 'email_4', 'jack');
 INSERT INTO writer(writer_id, email, pen_name)
 VALUES(2, 'email_5', 'matt');
 INSERT INTO writer(writer_id, email, pen_name)
-VALUES(3, 'email_6', 'john')
+VALUES(3, 'email_6', 'john');
+
+TRUNCATE TABLE users, users_roles, roles;
+
+INSERT INTO users(id, email, password, username)
+VALUES(1, 'jackmu@umich.edu', 'security', 'jackmu');
+
+INSERT INTO  roles(id, name)
+VALUES (1, 'ADMIN');
+
+INSERT INTO users_roles(user_id, role_id)
+VALUES (1, 1);
