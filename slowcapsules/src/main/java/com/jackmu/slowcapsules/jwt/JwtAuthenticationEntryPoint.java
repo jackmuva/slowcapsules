@@ -1,4 +1,4 @@
-package com.jackmu.slowcapsules.service.security;
+package com.jackmu.slowcapsules.jwt;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

@@ -1,6 +1,7 @@
 package com.jackmu.slowcapsules.service.security;
 
 import com.jackmu.slowcapsules.exception.SlowCapsuleAPIException;
+import com.jackmu.slowcapsules.jwt.JwtTokenProvider;
 import com.jackmu.slowcapsules.model.security.LoginDTO;
 import com.jackmu.slowcapsules.model.security.RegisterDTO;
 import com.jackmu.slowcapsules.model.security.Role;
@@ -25,15 +26,18 @@ public class AuthServiceImpl implements AuthService{
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private PasswordEncoder passwordEncoder;
+    private JwtTokenProvider jwtTokenProvider;
 
     public AuthServiceImpl(AuthenticationManager authenticationManager,
                            UserRepository userRepository,
                            RoleRepository roleRepository,
-                           PasswordEncoder passwordEncoder) {
+                           PasswordEncoder passwordEncoder,
+                           JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
@@ -43,7 +47,8 @@ public class AuthServiceImpl implements AuthService{
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return "User logged in";
+        String token = jwtTokenProvider.generateToken(authentication);
+        return token;
     }
 
     @Override

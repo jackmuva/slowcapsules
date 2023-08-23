@@ -1,9 +1,7 @@
-package com.jackmu.slowcapsules.service.security;
+package com.jackmu.slowcapsules.jwt;
 
 import com.jackmu.slowcapsules.exception.SlowCapsuleAPIException;
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.MalformedJwtException;
+import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
@@ -62,7 +60,16 @@ public class JwtTokenProvider {
             return true;
         }
         catch (MalformedJwtException ex){
-            throw new SlowCapsuleAPIException(HttpStatus.BAD_REQUEST, "Invalid JWT Token")
+            throw new SlowCapsuleAPIException(HttpStatus.BAD_REQUEST, "Invalid JWT Token");
+        }
+        catch (ExpiredJwtException ex){
+            throw new SlowCapsuleAPIException(HttpStatus.BAD_REQUEST, "Expired JWT Token");
+        }
+        catch (UnsupportedJwtException ex){
+            throw new SlowCapsuleAPIException(HttpStatus.BAD_REQUEST, "Unsupported JWT Token");
+        }
+        catch (IllegalArgumentException ex){
+            throw new SlowCapsuleAPIException(HttpStatus.BAD_REQUEST, "JWT claims string is empty");
         }
     }
 }

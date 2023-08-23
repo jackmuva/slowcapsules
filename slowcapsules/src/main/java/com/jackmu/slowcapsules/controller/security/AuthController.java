@@ -1,5 +1,6 @@
 package com.jackmu.slowcapsules.controller.security;
 
+import com.jackmu.slowcapsules.model.security.JwtAuthResponse;
 import com.jackmu.slowcapsules.model.security.LoginDTO;
 import com.jackmu.slowcapsules.model.security.RegisterDTO;
 import com.jackmu.slowcapsules.service.security.AuthService;
@@ -20,10 +21,13 @@ public class AuthController {
     }
 
     @PostMapping(value = {"/login", "/signin"})
-    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO){
-        String response = authService.login(loginDTO);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDTO loginDTO){
+        String token = authService.login(loginDTO);
 
-        return ResponseEntity.ok(response);
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return ResponseEntity.ok(jwtAuthResponse);
     }
 
     @PostMapping(value = {"/register", "/signup"})
