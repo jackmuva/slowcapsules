@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 //TODO: Add exception handling to all endpoints
+//TODO: Add preauth / validation checks to make sure user is allowed to access
 @RestController
 @RequestMapping("api/writer")
 public class WriterController {
