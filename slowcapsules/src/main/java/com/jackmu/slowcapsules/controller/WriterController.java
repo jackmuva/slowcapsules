@@ -20,7 +20,7 @@ public class WriterController {
 
     //Validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/writer/new -Method POST -Body (@{"email"="email_7";"penName"="maria"}|ConvertTo-Json) -ContentType "application/json"
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
     public Writer postWriter(@RequestBody Writer writer){
         return writerService.saveWriter(writer);
@@ -28,7 +28,7 @@ public class WriterController {
 
     //Validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/writer/delete/1 -Method DELETE
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteWriter(@PathVariable Long id){
         writerService.deleteWriter(id);
@@ -36,7 +36,6 @@ public class WriterController {
     }
 
     //Validated
-    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/get/{penName}")
     public List<Writer> getWriter(@PathVariable String penName){
         return writerService.fetchWriterByPenName(penName);

@@ -10,20 +10,28 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Component
 public class JwtTokenProvider {
     final Map<String, String> env = System.getenv();
     private String jwtSecret = env.get("jwt-secret");
     @Value("${app-jwt-expiration-milliseconds}")
-    private String jwtExpirationDate;
+    private int jwtExpirationDate;
+
+    private static final Logger LOGGER = Logger.getLogger(JwtTokenProvider.class.getName());
 
     public String generateToken(Authentication authentication){
         String username = authentication.getName();
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
+
+        LOGGER.info("This is the expiration date: " + expireDate.toString());
+
 
         String jwtToken = Jwts.builder()
                 .setSubject(username)
