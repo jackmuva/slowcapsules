@@ -8,4 +8,5 @@ public interface WriterService {
     Writer saveWriter(Writer writer);
     void deleteWriter(Long id);
     List<Writer> fetchWriterByPenName(String penName);
+    List<Writer> fetchWriterByWriterId(Long id);
 }

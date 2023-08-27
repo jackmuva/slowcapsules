@@ -1,14 +1,18 @@
 package com.jackmu.slowcapsules.controller;
 
+import com.jackmu.slowcapsules.jwt.JwtTokenProvider;
 import com.jackmu.slowcapsules.model.Writer;
 import com.jackmu.slowcapsules.service.WriterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 //TODO: Add exception handling to all endpoints
 //TODO: Add preauth / validation checks to make sure user is allowed to access
@@ -17,6 +21,8 @@ import java.util.List;
 public class WriterController {
     @Autowired
     private WriterService writerService;
+
+    private static final Logger LOGGER = Logger.getLogger(WriterController.class.getName());
 
     //Validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/writer/new -Method POST -Body (@{"email"="email_7";"penName"="maria"}|ConvertTo-Json) -ContentType "application/json"
@@ -30,7 +36,17 @@ public class WriterController {
     //Invoke-WebRequest -Uri http://localhost:8090/api/writer/delete/1 -Method DELETE
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteWriter(@PathVariable Long id){
+    public ResponseEntity<String> deleteWriter(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id){
+        LOGGER.info("User username is: " + userDetails.getUsername());
+        if(writerService.fetchWriterByWriterId(id).isEmpty()){
+            LOGGER.info("No writer with that id");
+            return new ResponseEntity<>("No writer with that id", HttpStatus.BAD_REQUEST);
+        }
+        else if(!userDetails.getUsername().equals(writerService.fetchWriterByWriterId(id).get(0).getEmail())){
+            LOGGER.info("Do not have permission to that id");
+            return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        }
+        LOGGER.info("Writer deleted");
         writerService.deleteWriter(id);
         return new ResponseEntity<>("Writer deleted", HttpStatus.OK);
     }

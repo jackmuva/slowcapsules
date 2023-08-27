@@ -14,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -64,7 +65,7 @@ public class AuthServiceImpl implements AuthService{
         User user = new User();
         user.setEmail(registerDTO.getEmail());
         user.setUsername(registerDTO.getUsername());
-        user.setPassword(registerDTO.getPassword());
+        user.setPassword(passwordEncoder.encode(registerDTO.getPassword()));
 
         Set<Role> roles = new HashSet<>();
         Role userRole = roleRepository.findByName("ROLE_USER").get();
