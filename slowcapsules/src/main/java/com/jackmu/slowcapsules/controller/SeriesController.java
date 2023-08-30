@@ -3,6 +3,11 @@ package com.jackmu.slowcapsules.controller;
 import com.jackmu.slowcapsules.model.Series;
 import com.jackmu.slowcapsules.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,9 +20,13 @@ public class SeriesController {
 
     //validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/series/new -Method POST -Body (@{"datetime"="2022-03-01T21:34:55";"numEntries"="4";"title"="ugh";"summary"="fuuuu";"tags"="fthis";"cadence"="7";"penName"="jack"}|ConvertTo-Json) -ContentType "application/json"
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
-    public Series postSeries(@RequestBody Series series){
-        return seriesService.saveSeries(series);
+    public ResponseEntity<String> postSeries(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Series series){
+        if(series.getEmail().equals(userDetails.getUsername())){
+            return new ResponseEntity<>(seriesService.saveSeries(series).toString(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
     //validated

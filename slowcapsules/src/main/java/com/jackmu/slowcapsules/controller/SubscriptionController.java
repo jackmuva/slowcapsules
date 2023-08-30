@@ -3,6 +3,7 @@ package com.jackmu.slowcapsules.controller;
 import com.jackmu.slowcapsules.model.Subscription;
 import com.jackmu.slowcapsules.service.SubscriptionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,8 +38,8 @@ public class SubscriptionController {
     }
 
     // The following API endpoints will NOT be accessible to the front end
-
     //Validated
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/testEmails")
     public List<Subscription> getEmails(){
         subscriptionService.sendEmails();
@@ -47,6 +48,7 @@ public class SubscriptionController {
 
     //validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/updateDate -Method PUT
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/updateDate")
     public List<Subscription> updateDate(){
         subscriptionService.updateSendDate();
@@ -55,6 +57,7 @@ public class SubscriptionController {
 
     //validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/increment -Method PUT
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/increment")
     public List<Subscription> increment(){
         subscriptionService.incrementArticleNum();
@@ -62,6 +65,7 @@ public class SubscriptionController {
     }
     //validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/subscription/finished -Method DELETE
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/finished")
     public List<Subscription> deleteFinished(){
         subscriptionService.deleteFinishedSeries();

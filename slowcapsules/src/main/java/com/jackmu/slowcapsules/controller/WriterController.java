@@ -26,7 +26,6 @@ public class WriterController {
 
     //Validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/writer/new -Method POST -Body (@{"email"="email_7";"penName"="maria"}|ConvertTo-Json) -ContentType "application/json"
-    @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
     public Writer postWriter(@RequestBody Writer writer){
         return writerService.saveWriter(writer);

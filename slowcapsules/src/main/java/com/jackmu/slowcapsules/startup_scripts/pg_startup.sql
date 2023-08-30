@@ -8,12 +8,12 @@ VALUES (2, 5, 2, 'email_2', CURRENT_DATE);
 INSERT INTO subscription(subscription_id, article_num, series_id, subscriber_email, send_date)
 VALUES (3, 2, 3, 'email_3', '2022-01-01');
 
-INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence)
-VALUES (1, '2022-01-01', 3, 'jack', 'summary-1', 'poetry', 'title-1', 1);
-INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence)
-VALUES (2, '2022-02-01', 5, 'matt', 'summary-2', 'data science', 'title-2', 2);
-INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence)
-VALUES (3, '2022-03-01', 2, 'john', 'summary-3', 'sports', 'title-3', 7);
+INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence, email)
+VALUES (1, '2022-01-01', 3, 'jack', 'summary-1', 'poetry', 'title-1', 1, 'email_1');
+INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence, email)
+VALUES (2, '2022-02-01', 5, 'matt', 'summary-2', 'data science', 'title-2', 2, 'email_2');
+INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence, email)
+VALUES (3, '2022-03-01', 2, 'john', 'summary-3', 'sports', 'title-3', 7, 'email_3');
 
 INSERT INTO entry(entry_id, entry_text, series_id, order_num)
 VALUES(1, 'a', 1, 1);

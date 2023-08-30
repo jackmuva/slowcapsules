@@ -42,4 +42,7 @@ public class Series {
 
     @Column(name = "pen_name")
     private String penName;
+
+    @Column(name = "email")
+    private String email;
 }
