@@ -37,4 +37,8 @@ public class SeriesServiceImpl implements SeriesService{
                 keyword, keyword, keyword);
     }
 
+    public List<Series> fetchBySeriesId(Long id){
+        return seriesRepository.findBySeriesId(id);
+    }
+
 }

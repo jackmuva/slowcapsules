@@ -18,4 +18,5 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
                                                                                                         String tag,
                                                                                                         String summary,
                                                                                                         String title);
+    List<Series> findBySeriesId(Long id);
 }

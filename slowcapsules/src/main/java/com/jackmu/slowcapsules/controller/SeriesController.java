@@ -32,8 +32,13 @@ public class SeriesController {
     //validated
     //Invoke-WebRequest -Uri http://localhost:8090/api/series/delete/52 -Method DELETE
     @DeleteMapping("/delete/{seriesId}")
-    public void deleteSeries(@PathVariable Long seriesId){
-        seriesService.deleteSeries(seriesId);
+    @PreAuthorize("hasRole('USER')")
+    public ResponseEntity<String> deleteSeries(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long seriesId){
+        if(seriesService.fetchBySeriesId(seriesId).get(0).getEmail().equals(userDetails.getUsername())){
+            seriesService.deleteSeries(seriesId);
+            return new ResponseEntity<>("Series Deleted", HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
     //validated
