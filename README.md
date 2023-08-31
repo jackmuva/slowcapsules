@@ -9,7 +9,7 @@ For writers, writing up a new email series, day after day, week after week can b
 Your email series could be about anything - from your top 10 underrated NBA players to your favorite recipes to yoga tips. They could be fun, informational, for business, etc.
 
 ## Back End
-This application will have a REST API with a spring boot framework, deployed in EC2 or Docker containers in ECS (more to come)
+This application will have a REST API with a spring boot framework, deployed in ECS
 
 ## Front End
-The front end will have a react framework (still looking into an AWS service to act as a front end server)
+The front end will have a react framework
