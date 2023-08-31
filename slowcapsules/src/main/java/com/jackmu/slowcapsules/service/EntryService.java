@@ -8,4 +8,5 @@ public interface EntryService {
     Entry saveEntry(Entry entry);
     void deleteEntry(Long id);
     List<Entry> fetchEntriesBySeriesId(Long id);
+    List<Entry> fetchEntriesByEntryId(Long id);
 }

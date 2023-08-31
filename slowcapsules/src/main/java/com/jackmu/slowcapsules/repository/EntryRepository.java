@@ -17,9 +17,6 @@ public interface EntryRepository extends JpaRepository<Entry, Long> {
     @Modifying
     @Transactional
     void deleteByEntryId(Long id);
-
-//    @Query(value = "SELECT entries FROM Entry entries LEFT JOIN Series series ON series.series_id = entries.series_id WHERE entries.series_id = ?1",
-//            nativeQuery = true)
     List<Entry> findAllBySeriesId(Long seriesId);
-
+    List<Entry> findByEntryId(Long id);
 }

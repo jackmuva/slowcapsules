@@ -38,7 +38,7 @@ public class SeriesController {
             seriesService.deleteSeries(seriesId);
             return new ResponseEntity<>("Series Deleted", HttpStatus.OK);
         }
-        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Do not have permission to that series", HttpStatus.BAD_REQUEST);
     }
 
     //validated

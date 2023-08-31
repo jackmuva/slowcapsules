@@ -28,4 +28,7 @@ public class Entry {
 
     @Column(name = "order_num")
     private Integer orderNum;
+
+    @Column(name = "email")
+    private String email;
 }

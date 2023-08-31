@@ -23,4 +23,7 @@ public class EntryServiceImpl implements EntryService{
     public List<Entry> fetchEntriesBySeriesId(Long id){
         return entryRepository.findAllBySeriesId(id);
     }
+    public List<Entry> fetchEntriesByEntryId(Long id){
+        return entryRepository.findByEntryId(id);
+    }
 }
