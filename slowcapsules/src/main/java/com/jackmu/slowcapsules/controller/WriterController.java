@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.logging.Logger;
 
-//TODO: Add exception handling to all endpoints
-//TODO: Add preauth / validation checks to make sure user is allowed to access
 @RestController
 @RequestMapping("api/writer")
 public class WriterController {
@@ -24,15 +22,11 @@ public class WriterController {
 
     private static final Logger LOGGER = Logger.getLogger(WriterController.class.getName());
 
-    //Validated
-    //Invoke-WebRequest -Uri http://localhost:8090/api/writer/new -Method POST -Body (@{"email"="email_7";"penName"="maria"}|ConvertTo-Json) -ContentType "application/json"
     @PostMapping("/new")
     public Writer postWriter(@RequestBody Writer writer){
         return writerService.saveWriter(writer);
     }
 
-    //Validated
-    //Invoke-WebRequest -Uri http://localhost:8090/api/writer/delete/1 -Method DELETE
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteWriter(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id){
@@ -50,7 +44,6 @@ public class WriterController {
         return new ResponseEntity<>("Writer deleted", HttpStatus.OK);
     }
 
-    //Validated
     @GetMapping("/get/{penName}")
     public List<Writer> getWriter(@PathVariable String penName){
         return writerService.fetchWriterByPenName(penName);

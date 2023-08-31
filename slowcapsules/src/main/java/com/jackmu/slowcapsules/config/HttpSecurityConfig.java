@@ -48,6 +48,9 @@ public class HttpSecurityConfig {
         http.csrf().disable().authorizeHttpRequests((authorize) ->
                         authorize.requestMatchers(HttpMethod.GET, "/api/**").permitAll()
                                 .requestMatchers("/api/auth/**").permitAll()
+                                .requestMatchers("/api/writer/new").permitAll()
+                                .requestMatchers("/api/subscription/new").permitAll()
+                                .requestMatchers("/api/subscription/cancelSubscription/**").permitAll()
                                 .anyRequest().authenticated()
                 ).exceptionHandling( exception -> exception
                     .authenticationEntryPoint(jwtAuthenticationEntryPoint)

@@ -18,8 +18,6 @@ public class SeriesController {
     @Autowired
     private SeriesService seriesService;
 
-    //validated
-    //Invoke-WebRequest -Uri http://localhost:8090/api/series/new -Method POST -Body (@{"datetime"="2022-03-01T21:34:55";"numEntries"="4";"title"="ugh";"summary"="fuuuu";"tags"="fthis";"cadence"="7";"penName"="jack"}|ConvertTo-Json) -ContentType "application/json"
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
     public ResponseEntity<String> postSeries(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Series series){
@@ -29,8 +27,6 @@ public class SeriesController {
         return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
-    //validated
-    //Invoke-WebRequest -Uri http://localhost:8090/api/series/delete/52 -Method DELETE
     @DeleteMapping("/delete/{seriesId}")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<String> deleteSeries(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long seriesId){
@@ -41,25 +37,21 @@ public class SeriesController {
         return new ResponseEntity<>("Do not have permission to that series", HttpStatus.BAD_REQUEST);
     }
 
-    //validated
     @GetMapping("/getNewest")
     public List<Series> getNewestSeries(){
         return seriesService.fetchNewest();
     }
 
-    //validated
     @GetMapping("/writer/{writer}")
     public List<Series> getSeriesByWriter(@PathVariable String writer){
         return seriesService.fetchByWriter(writer);
     }
 
-    //validated
     @GetMapping("/tag/{tag}")
     public List<Series> getSeriesByTag(@PathVariable String tag){
         return seriesService.fetchByTag(tag);
     }
 
-    //validated
     @GetMapping("/search/{keyword}")
     public List<Series> searchSeries(@PathVariable String keyword){
         return seriesService.fetchByKeyword(keyword);

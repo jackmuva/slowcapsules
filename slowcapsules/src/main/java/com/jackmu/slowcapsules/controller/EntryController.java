@@ -1,5 +1,6 @@
 package com.jackmu.slowcapsules.controller;
 
+import com.jackmu.slowcapsules.jwt.JwtTokenProvider;
 import com.jackmu.slowcapsules.model.Entry;
 import com.jackmu.slowcapsules.service.EntryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("api/entry")
@@ -18,8 +20,6 @@ public class EntryController {
     @Autowired
     private EntryService entryService;
 
-    //Validated
-    //Invoke-WebRequest -Uri http://localhost:8090/api/entry/new -Method POST -Body (@{"entryText"="abc";"orderNum"="1";"seriesId"="4"}|ConvertTo-Json) -ContentType "application/json"
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
     public ResponseEntity<String> postEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
@@ -34,10 +34,10 @@ public class EntryController {
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEntry(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
-        if(entryService.fetchEntriesByEntryId(id).get(0).equals(userDetails.getUsername())){
+        if(entryService.fetchEntriesByEntryId(id).get(0).getEmail().equals(userDetails.getUsername())){
             entryService.deleteEntry(id);
             return new ResponseEntity<>("Series Deleted", HttpStatus.OK);
-        }
+}
         return new ResponseEntity<>("Do not have permission to that entry", HttpStatus.BAD_REQUEST);
     }
 
