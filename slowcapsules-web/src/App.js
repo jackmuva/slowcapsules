@@ -32,6 +32,9 @@ function App() {
                 <Route path = "/">
                     <SeriesPage allSeries = {searchResults}></SeriesPage>
                 </Route>
+                <Route path = "/signup">
+                    <SignUpPage></SignUpPage>
+                </Route>
             </Switch>
         </div>
       </Router>
