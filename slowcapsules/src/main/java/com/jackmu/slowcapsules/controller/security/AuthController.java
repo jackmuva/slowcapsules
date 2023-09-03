@@ -1,5 +1,6 @@
 package com.jackmu.slowcapsules.controller.security;
 
+import com.jackmu.slowcapsules.controller.WriterController;
 import com.jackmu.slowcapsules.model.security.JwtAuthResponse;
 import com.jackmu.slowcapsules.model.security.LoginDTO;
 import com.jackmu.slowcapsules.model.security.RegisterDTO;
@@ -11,10 +12,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.Logger;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
     private AuthService authService;
+    private static final Logger LOGGER = Logger.getLogger(AuthController.class.getName());
 
     public AuthController(AuthService authService) {
         this.authService = authService;
@@ -22,6 +26,9 @@ public class AuthController {
 
     @PostMapping(value = {"/login", "/signin"})
     public ResponseEntity<JwtAuthResponse> login(@RequestBody LoginDTO loginDTO){
+        LOGGER.info("hit");
+        LOGGER.info(loginDTO.getUsernameOrEmail());
+        LOGGER.info(loginDTO.getPassword());
         String token = authService.login(loginDTO);
 
         JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
