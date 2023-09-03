@@ -6,6 +6,7 @@ import SeriesPage from "./components/main-page/series-page";
 import SeriesApi from "./api/SeriesApi";
 import Navbar from "./components/Navbar";
 import SeriesFilter from "./components/main-page/series-filer";
+import SignUpPage from "./components/SignUpPage";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -29,11 +30,11 @@ function App() {
             <Navbar />
             <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
             <Switch>
-                <Route path = "/">
-                    <SeriesPage allSeries = {searchResults}></SeriesPage>
-                </Route>
                 <Route path = "/signup">
                     <SignUpPage></SignUpPage>
+                </Route>
+                <Route path = "/">
+                    <SeriesPage allSeries = {searchResults}></SeriesPage>
                 </Route>
             </Switch>
         </div>

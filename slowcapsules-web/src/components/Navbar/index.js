@@ -10,7 +10,7 @@ const Navbar = () => {
                     <NavLink to='/about' activeStyle>
                         About
                     </NavLink>
-                    <NavLink to='/sign-up' activeStyle>
+                    <NavLink to='/signup' activeStyle>
                         Sign Up
                     </NavLink>
                 </NavMenu>
