@@ -1,4 +1,5 @@
 import "./series.css";
+import SubscribeModal from "../SubscribeModal";
 
 const Series = ({ series }) => {
     return (
@@ -15,6 +16,7 @@ const Series = ({ series }) => {
                 <p> Cadence: Every {series.cadence} days</p>
                 <p> Tags: {series.tags} </p>
             </div>
+            <SubscribeModal series = {series}></SubscribeModal>
         </div>
     )
 }

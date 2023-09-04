@@ -19,7 +19,6 @@ function App() {
             const series = await rsp;
             setAllSeries(series);
             setSearchResults(series);
-            console.log("effect called");
         };
         fetchSeries();
     }, []);

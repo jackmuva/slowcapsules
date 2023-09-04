@@ -30,7 +30,6 @@ function SignUpPage () {
             password: password
         }
         const rsp = AuthorizationApi.postNewUser(user);
-        console.log(rsp);
     };
 
     return(

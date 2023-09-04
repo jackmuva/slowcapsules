@@ -21,11 +21,8 @@ function LoginPage () {
             password: password
         }
         const rsp = AuthorizationApi.postLogin(user).then(function(data) {
-            // console.log(data);
-            // console.log(data.accessToken);
             sessionStorage.setItem("jwt", data.accessToken)
         });
-        console.log(sessionStorage.getItem("jwt"));
 
     };
 

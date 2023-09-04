@@ -1,8 +1,6 @@
 import Series from "../series";
 
 const SeriesPage = ({ allSeries }) => {
-    console.log(allSeries);
-    console.log(typeof allSeries);
     if(allSeries.length === 0) {
         return <div> No series at this time </div>;
     }

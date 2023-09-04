@@ -6,10 +6,8 @@ const SeriesFilter = ({ posts, setSearchResults }) => {
 
     const handleSearchChange = (e) => {
         const filtered = async () => {
-            console.log("filter called");
             const rsp = SeriesApi.getSeriesByKeyword(e.target.value);
             const series = await rsp;
-            console.log(series);
             return setSearchResults(series);
         }
         if(e.target.value){

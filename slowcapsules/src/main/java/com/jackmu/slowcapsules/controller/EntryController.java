@@ -29,8 +29,6 @@ public class EntryController {
         return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
-    //Validated
-    // Invoke-WebRequest -Uri http://localhost:8090/api/entry/delete/1 -Method DELETE
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEntry(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
@@ -41,7 +39,6 @@ public class EntryController {
         return new ResponseEntity<>("Do not have permission to that entry", HttpStatus.BAD_REQUEST);
     }
 
-    //Validated
     @GetMapping("/getBySeries/{id}")
     public List<Entry> getBySeriesId(@PathVariable Long id){
         return entryService.fetchEntriesBySeriesId(id);
