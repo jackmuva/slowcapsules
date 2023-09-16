@@ -37,16 +37,13 @@ function SubscribeModal(props) {
     };
 
     const handleChange = (event) => {
-        console.log('handling change' + event.target.name + event.target.value);
         setSubscription({...subscription,
             [event.target.name]: event.target.value});
     }
 
     // Update car and close modal form
     const handleSave = () => {
-        const rsp = SubscriptionApi.postNewSubscription(subscription).then(function(data) {
-            console.log(data);
-        });
+        SubscriptionApi.postNewSubscription(subscription);
         handleClose();
     }
 

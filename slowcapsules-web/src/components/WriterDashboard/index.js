@@ -20,8 +20,6 @@ function WriterDashboard (){
     }, []);
 
     useEffect(() => {
-        console.log(writer);
-        // console.log(writer[0].penName)
         const fetchSeries = async(name) => {
             const rsp = SeriesApi.getSeriesByWriter(name);
             const wrSeries = await rsp;
@@ -33,7 +31,6 @@ function WriterDashboard (){
         }
     }, [writer])
 
-    console.log(series);
     if(series.length === 0){
         return(
             <div>

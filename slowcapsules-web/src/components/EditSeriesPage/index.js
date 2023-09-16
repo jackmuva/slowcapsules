@@ -16,8 +16,6 @@ function EditSeriesPage(){
         fetchEntries();
     }, []);
 
-    console.log(location)
-    console.log();
 
     if(entries.length === 0){
         return <div> No entries yet </div>

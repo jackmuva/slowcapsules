@@ -3,7 +3,6 @@ import Editor from "../Editor";
 
 function EditEntryPage(){
     const location = useLocation();
-    console.log(location)
     return(
         <div>
             <div> { location.state.entry.entry.entryText } </div>
