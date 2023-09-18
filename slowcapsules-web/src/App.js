@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import SeriesFilter from "./components/main-page/series-filer";
 import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
+import WriterDashboard from "./components/WriterDashboard";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -35,6 +36,9 @@ function App() {
                 </Route>
                 <Route path = "/login">
                     <LoginPage></LoginPage>
+                </Route>
+                <Route path = "/writerDashboard">
+                    <WriterDashboard></WriterDashboard>
                 </Route>
                 <Route path = "/">
                     <SeriesPage allSeries = {searchResults}></SeriesPage>
