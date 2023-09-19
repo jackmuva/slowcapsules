@@ -2,7 +2,6 @@ import EditorJS from "@editorjs/editorjs";
 import React, {useEffect, useRef} from "react";
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
-import Button from "@mui/material/Button";
 import edjsHTML from 'editorjs-html';
 
 const Editor = () => {
@@ -36,15 +35,18 @@ const Editor = () => {
             },
             tools: {
                 header: Header,
-                // image: {
-                //     class: ImageTool,
-                //     config: {
-                //         endpoints: {
-                //             byFile: 'http://localhost:8090/uploadFile', // Your backend file uploader endpoint
-                //             byUrl: 'http://localhost:8090/fetchUrl', // Your endpoint that provides uploading by Url
-                //         }
-                //     }
-                // }
+                image: {
+                    class: ImageTool,
+                    config: {
+                        endpoints: {
+                            byFile: 'http://localhost:8090/api/image/save', // Your backend file uploader endpoint
+                            byUrl: '', // Your endpoint that provides uploading by Url
+                        },
+                        additionalRequestHeaders: {
+                            'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+                        }
+                    }
+                }
             },
         });
     };
