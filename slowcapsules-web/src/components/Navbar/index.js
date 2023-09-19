@@ -1,5 +1,5 @@
 import React from 'react';
-import {Nav, NavLink, Bars, NavMenu, NavBtn, NavBtnLink,} from './NavbarElements';
+import {Nav, NavLink, Bars, NavMenu} from './NavbarElements';
 
 const Navbar = () => {
     return (
@@ -7,16 +7,22 @@ const Navbar = () => {
             <Nav>
                 <Bars />
                 <NavMenu>
-                    <NavLink to='/about' activeStyle>
-                        About
+                    <NavLink to='/' activeStyle>
+                        Home
                     </NavLink>
                     <NavLink to='/signup' activeStyle>
                         Sign Up
                     </NavLink>
+                    <NavLink to='/login' activeStyle>
+                        Login
+                    </NavLink>
+                    <NavLink to='/about' activeStyle>
+                        About
+                    </NavLink>
+                    {sessionStorage.getItem("jwt") != null && <NavLink>
+                        Writer Home
+                    </NavLink>}
                 </NavMenu>
-                <NavBtn>
-                    <NavBtnLink to='/login'>Login</NavBtnLink>
-                </NavBtn>
             </Nav>
         </div>
     );

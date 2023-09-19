@@ -26,4 +26,7 @@ public class WriterServiceImpl implements WriterService{
     public List<Writer> fetchWriterByWriterId(Long id) {
         return writerRepository.findAllByWriterId(id);
     }
+    public List<Writer> fetchWriterByEmail(String email) {
+        return writerRepository.findAllByEmail(email);
+    }
 }

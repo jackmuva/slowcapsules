@@ -48,4 +48,10 @@ public class WriterController {
     public List<Writer> getWriter(@PathVariable String penName){
         return writerService.fetchWriterByPenName(penName);
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/getWriter")
+    public List<Writer> getAuthenticatedWriter(@AuthenticationPrincipal UserDetails userDetails){
+        return writerService.fetchWriterByEmail(userDetails.getUsername());
+    }
 }

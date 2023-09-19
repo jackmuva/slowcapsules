@@ -30,7 +30,7 @@ function LoginPage () {
             else{
                 setErrorMessage("Login Unsuccessful");
             }
-        });
+        }).catch((err) => setErrorMessage("Login Unsuccessful"));
 
     };
 
@@ -52,6 +52,7 @@ function LoginPage () {
                                onChange={(e) => handleInputChange(e)}/>
                     </div>
                 </div>
+                {errorMessage && <div className="error"> {errorMessage} </div>}
                 <div className="footer">
                     <button onClick={() => handleSubmit()} type="submit" className="btn">Login</button>
                 </div>

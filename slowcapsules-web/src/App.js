@@ -29,7 +29,6 @@ function App() {
         <div className="container">
           <Header subtitle = "Write and Subscribe to Email Series"/>
             <Navbar />
-            <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
             <Switch>
                 <Route path = "/signup">
                     <SignUpPage></SignUpPage>
@@ -41,6 +40,7 @@ function App() {
                     <WriterDashboard></WriterDashboard>
                 </Route>
                 <Route path = "/">
+                    <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
                     <SeriesPage allSeries = {searchResults}></SeriesPage>
                 </Route>
             </Switch>

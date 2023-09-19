@@ -12,8 +12,32 @@ export default class StandardApi {
         return fetch(apiUrl.concat(url));
     }
 
-    delete(url){
-        return fetch(apiUrl.concat(url), {method: 'DELETE'});
+    getWithAuth(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'GET',
+            headers:{
+                'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+            }
+        });
+    }
+
+    deleteWithAuth(url){
+        return fetch(apiUrl.concat(url), {
+            method: 'DELETE',
+            'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+        });
+    }
+
+    postWithAuth(url, payload){
+        return fetch(apiUrl.concat(url), {
+            method: 'POST',
+            headers:{
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+            },
+            body: JSON.stringify(payload)
+        });
     }
 
     post(url, payload){
@@ -27,12 +51,13 @@ export default class StandardApi {
         });
     }
 
-    put(url, payload){
+    putWithAuth(url, payload){
         return fetch(apiUrl.concat(url), {
             method: 'PUT',
             headers:{
                 Accept: 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
             },
             body: JSON.stringify(payload)
         });

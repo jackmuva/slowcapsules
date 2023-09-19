@@ -9,4 +9,5 @@ public interface WriterService {
     void deleteWriter(Long id);
     List<Writer> fetchWriterByPenName(String penName);
     List<Writer> fetchWriterByWriterId(Long id);
+    List<Writer> fetchWriterByEmail(String email);
 }
