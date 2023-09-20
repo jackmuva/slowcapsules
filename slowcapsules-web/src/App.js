@@ -13,6 +13,7 @@ import WriterDashboard from "./components/WriterDashboard";
 function App() {
     const [allSeries, setAllSeries] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
         const fetchSeries = async () => {
@@ -28,13 +29,13 @@ function App() {
       <Router>
         <div className="container">
           <Header subtitle = "Write and Subscribe to Email Series"/>
-            <Navbar />
+            <Navbar/>
             <Switch>
                 <Route path = "/signup">
                     <SignUpPage></SignUpPage>
                 </Route>
                 <Route path = "/login">
-                    <LoginPage></LoginPage>
+                    <LoginPage setWriter = {setUser}></LoginPage>
                 </Route>
                 <Route path = "/writerDashboard">
                     <WriterDashboard></WriterDashboard>

@@ -1,8 +1,12 @@
+import WriterApi from "../../api/WriterApi";
 
 
 function WriterDashboard (){
+    WriterApi.getLoggedInWriter().then(function(data){
+        console.log(data);
+    });
     return(
-        <div>Writer Page</div>
+        <div></div>
     );
 }
 export default WriterDashboard;

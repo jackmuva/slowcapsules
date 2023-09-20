@@ -10,16 +10,16 @@ const Navbar = () => {
                     <NavLink to='/' activeStyle>
                         Home
                     </NavLink>
-                    <NavLink to='/signup' activeStyle>
+                    {sessionStorage.getItem("jwt") == null && <NavLink to='/signup' activeStyle>
                         Sign Up
-                    </NavLink>
-                    <NavLink to='/login' activeStyle>
+                    </NavLink>}
+                    {sessionStorage.getItem("jwt") == null && <NavLink to='/login' activeStyle>
                         Login
-                    </NavLink>
+                    </NavLink>}
                     <NavLink to='/about' activeStyle>
                         About
                     </NavLink>
-                    {sessionStorage.getItem("jwt") != null && <NavLink>
+                    {sessionStorage.getItem("jwt") != null && <NavLink to = "/writerDashboard">
                         Writer Home
                     </NavLink>}
                 </NavMenu>

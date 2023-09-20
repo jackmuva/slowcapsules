@@ -1,8 +1,9 @@
 import { useState } from "react";
 import AuthorizationApi from "../../api/AuthorizationApi";
 import {Redirect} from "react-router-dom";
+import WriterApi from "../../api/WriterApi";
 
-function LoginPage () {
+function LoginPage ({setWriter}) {
     const [email, setEmail] = useState(null);
     const [password,setPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
@@ -25,13 +26,16 @@ function LoginPage () {
         AuthorizationApi.postLogin(user).then(function(data) {
             if(data.accessToken){
                 sessionStorage.setItem("jwt", data.accessToken);
+                WriterApi.getLoggedInWriter().then(function(data){
+                    setWriter(data);
+                });
                 setErrorMessage("Login Successful");
+
             }
             else{
                 setErrorMessage("Login Unsuccessful");
             }
         }).catch((err) => setErrorMessage("Login Unsuccessful"));
-
     };
 
     if(errorMessage === "Login Successful"){
