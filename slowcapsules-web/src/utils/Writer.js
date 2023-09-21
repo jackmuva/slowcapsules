@@ -12,9 +12,9 @@ class Writer {
 
     init(){
         return WriterApi.getLoggedInWriter().then(response => {
-            const writerId = response.data.writerId;
-            const penName = response.data.penName;
-            const email = response.data.email;
+            const writerId = response[0].writerId;
+            const penName = response[0].penName;
+            const email = response[0].email;
             this.writer = new Writer(writerId, penName, email);
         });
     }
