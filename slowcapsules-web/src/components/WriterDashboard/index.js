@@ -44,7 +44,7 @@ function WriterDashboard (){
         return(
             <div>
                 <SeriesFilter posts={series} setSearchResults={setSearchResults}/>
-                <SeriesPage allSeries = {searchResults}></SeriesPage>
+                <SeriesPage allSeries = {searchResults} fromWriter = {true}></SeriesPage>
             </div>
         );
     }

@@ -1,7 +1,10 @@
 import "./series.css";
 import SubscribeModal from "../SubscribeModal";
+import {NavLink} from "../Navbar/NavbarElements";
+import React from "react";
 
-const Series = ({ series }) => {
+const Series = ({ series, fromWriterDashboard }) => {
+    const writerBool = fromWriterDashboard
     return (
         <div className = "seriesCard">
             <div className = "row mt-2">
@@ -17,6 +20,13 @@ const Series = ({ series }) => {
                 <p> Tags: {series.tags} </p>
             </div>
             <SubscribeModal series = {series}></SubscribeModal>
+            {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
+                pathname:'/editSeries',
+                state: {series: {series},
+                    title: "hi"}
+            }}>
+                Edit
+            </NavLink>}
         </div>
     )
 }
