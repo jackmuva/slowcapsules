@@ -16,16 +16,24 @@ function WriterDashboard (){
             const wr = await rsp;
             setWriter(wr);
         }
+        fetchWriter();
+    }, []);
+
+    useEffect(() => {
+        console.log(writer);
+        // console.log(writer[0].penName)
         const fetchSeries = async(name) => {
             const rsp = SeriesApi.getSeriesByWriter(name);
             const wrSeries = await rsp;
             setSeries(wrSeries);
+            setSearchResults(wrSeries);
         }
-        fetchWriter();
-        console.log(writer);
-        fetchSeries(writer.penName);
-    }, []);
+        if(writer.length !== 0){
+            fetchSeries(writer[0].penName)
+        }
+    }, [writer])
 
+    console.log(series);
     if(series.length === 0){
         return(
             <div>
