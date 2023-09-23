@@ -20,5 +20,5 @@ public class Image {
 
     @Lob
     @Column(name = "image", columnDefinition="TEXT")
-    private byte[] image;
+    private String imageUrl;
 }

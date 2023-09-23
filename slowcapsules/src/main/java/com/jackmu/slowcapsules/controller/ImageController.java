@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class ImageController {
     private ImageService imageService;
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageController.class);
+    private static final String s3Url = "file:///C://Users/jackm/Documents/slowcapsules/S3/";
 
     public ImageController(ImageService imageService) {
         this.imageService = imageService;
@@ -27,11 +29,15 @@ public class ImageController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping(value = "/save", consumes = { "multipart/form-data" })
     public ResponseEntity<DownloadedImage> postImage(@ModelAttribute UploadedImage image) throws Exception{
+        LOGGER.info(image.toString());
+        LOGGER.info(image.getImage().toString());
+        image.getImage().transferTo(new File("./"));
+
         Image rawImage = new Image();
-        rawImage.setImage(image.getImage().getBytes());
+//        rawImage.setImage(image.getImage().getBytes());
         Image savedImage = imageService.saveImage(rawImage);
         DownloadedImage downloadedImage = new DownloadedImage(1, Collections.singletonMap("url",
-                        "http://localhost:3000/api/image/get/" + savedImage.getImageId()));
+                        savedImage.getImageUrl()));
         return new ResponseEntity<>(downloadedImage, HttpStatus.OK);
     }
 
