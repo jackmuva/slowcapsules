@@ -68,3 +68,19 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Running Locally
+
+1) Open your terminal and type
+
+npm install -g http-server
+
+2) Go to the root folder that you want to serve you files and type:
+
+http-server ./
+
+3) Read the output of the terminal, something kinda http://localhost:8080 will appear.
+
+Everything on there will be allowed to be got. Example:
+
+background: url('http://localhost:8080/waw.png');

@@ -20,7 +20,8 @@ import java.util.List;
 public class ImageController {
     private ImageService imageService;
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageController.class);
-    private static final String s3Url = "file:///C://Users/jackm/Documents/slowcapsules/S3/";
+    private static final String S3UPLOADURL = "C://Users/jackm/Documents/slowcapsules/s3/";
+    private static final String S3DOWNLOADURL = "http://127.0.0.1:8081/";
 
     public ImageController(ImageService imageService) {
         this.imageService = imageService;
@@ -29,15 +30,13 @@ public class ImageController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping(value = "/save", consumes = { "multipart/form-data" })
     public ResponseEntity<DownloadedImage> postImage(@ModelAttribute UploadedImage image) throws Exception{
-        LOGGER.info(image.toString());
-        LOGGER.info(image.getImage().toString());
-        image.getImage().transferTo(new File("./"));
-
+        image.getImage().transferTo(new File(S3UPLOADURL + image.getImage().getOriginalFilename()));
         Image rawImage = new Image();
-//        rawImage.setImage(image.getImage().getBytes());
-        Image savedImage = imageService.saveImage(rawImage);
+        rawImage.setImageUrl(S3UPLOADURL + image.getImage().getOriginalFilename());
+        imageService.saveImage(rawImage);
+
         DownloadedImage downloadedImage = new DownloadedImage(1, Collections.singletonMap("url",
-                        savedImage.getImageUrl()));
+                        S3DOWNLOADURL + image.getImage().getOriginalFilename()));
         return new ResponseEntity<>(downloadedImage, HttpStatus.OK);
     }
 
