@@ -44,7 +44,7 @@ public class EmailServiceImpl implements EmailService{
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(sender));
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(entryEmail.getSubscriberEmail()));
-                message.setSubject(entryEmail.getTitle());
+                message.setSubject(entryEmail.getEntryTitle());
                 message.setContent(entryEmail.getEntryText(),"text/html");
 
                 LOGGER.info(message.getRecipients(Message.RecipientType.TO).toString());
@@ -68,7 +68,7 @@ public class EmailServiceImpl implements EmailService{
                 MimeMessage message = new MimeMessage(session);
                 message.setFrom(new InternetAddress(sender));
                 message.addRecipient(Message.RecipientType.TO, new InternetAddress(entryEmail.getSubscriberEmail()));
-                message.setSubject(entryEmail.getTitle());
+                message.setSubject(entryEmail.getEntryTitle());
                 message.setContent(entryEmail.getEntryText(),"text/html");
 
                 Transport.send(message);

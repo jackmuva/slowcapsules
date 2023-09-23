@@ -28,7 +28,7 @@ public interface SubscriptionRepository extends JpaRepository<Subscription, Long
             "AND article_num >= series.num_entries", nativeQuery = true)
     void deleteFinishedSubscriptions();
 
-    @Query(value = "select Entry.entry_Text AS entryText, Subscription.subscriber_Email AS subscriberEmail, Series.title AS title " +
+    @Query(value = "select Entry.title AS entryTitle, Entry.entry_Text AS entryText, Subscription.subscriber_Email AS subscriberEmail, Series.title AS seriesTitle " +
             "FROM Subscription LEFT JOIN Entry ON Entry.series_Id = Subscription.series_Id AND Subscription.article_num = entry.order_num " +
             "LEFT join Series ON Series.series_Id = Subscription.series_Id " +
             "WHERE Subscription.send_Date = CURRENT_DATE", nativeQuery = true)

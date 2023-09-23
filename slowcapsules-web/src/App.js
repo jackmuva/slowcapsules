@@ -10,6 +10,7 @@ import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import WriterDashboard from "./components/WriterDashboard";
 import EditSeriesPage from "./components/EditSeriesPage";
+import EditEntryPage from "./components/EditEntryPage";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -32,6 +33,9 @@ function App() {
           <Header subtitle = "Write and Subscribe to Email Series"/>
             <Navbar/>
             <Switch>
+                <Route path = "/editEntry">
+                    <EditEntryPage></EditEntryPage>
+                </Route>
                 <Route path = "/editSeries">
                     <EditSeriesPage></EditSeriesPage>
                 </Route>

@@ -3,7 +3,8 @@ package com.jackmu.slowcapsules.model;
 public class EntryEmailDTOImpl implements EntryEmailDTO{
     private String entryText;
     private String subscriberEmail;
-    private String title;
+    private String seriesTitle;
+    private String entryTitle;
 
     @Override
     public String getEntryText() {
@@ -14,7 +15,10 @@ public class EntryEmailDTOImpl implements EntryEmailDTO{
         return subscriberEmail;
     }
     @Override
-    public String getTitle() {
-        return title;
+    public String getEntryTitle() {
+        return entryTitle;
     }
+
+    @Override
+    public String getSeriesTitle(){ return seriesTitle; }
 }

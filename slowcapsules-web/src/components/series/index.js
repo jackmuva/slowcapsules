@@ -22,8 +22,7 @@ const Series = ({ series, fromWriterDashboard }) => {
             <SubscribeModal series = {series}></SubscribeModal>
             {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
                 pathname:'/editSeries',
-                state: {series: {series},
-                    title: "hi"}
+                state: {series: {series}}
             }}>
                 Edit
             </NavLink>}
