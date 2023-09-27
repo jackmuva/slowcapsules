@@ -5,8 +5,7 @@ function EditEntryPage(){
     const location = useLocation();
     return(
         <div>
-            <div> { location.state.entry.entry.entryText } </div>
-            <Editor></Editor>
+            <Editor entry = {location.state.entry.entry}></Editor>
         </div>
     );
 }

@@ -23,8 +23,11 @@ public class Entry {
 
     //TODO: Look into using LOB for a blob or clob
     //https://www.baeldung.com/jpa-annotation-postgresql-text-type
-    @Column(name = "entry_text", columnDefinition="TEXT")
-    private String entryText;
+    @Column(name = "entry_json", columnDefinition="TEXT")
+    private String entryJson;
+
+    @Column(name = "entry_html", columnDefinition="TEXT")
+    private String entryHtml;
 
     @Column(name = "order_num")
     private Integer orderNum;

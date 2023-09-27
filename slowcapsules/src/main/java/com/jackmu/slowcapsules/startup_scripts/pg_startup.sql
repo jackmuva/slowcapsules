@@ -15,26 +15,26 @@ VALUES (2, '2022-02-01', 5, 'matt', 'summary-2', 'data science', 'title-2', 2, '
 INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, title, cadence, email)
 VALUES (3, '2022-03-01', 2, 'john', 'summary-3', 'sports', 'title-3', 7, 'email_3');
 
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, title, email)
-VALUES(1, 'a', 1, 1, 'title 1', 'email_1');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(2, 'b', 1, 2, 'title 2', 'email_1');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(3, 'c', 1, 3, 'title  3', 'email_1');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(4, 'd', 2, 1, 'title 4', 'email_2');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(5, 'e', 2, 2, 'title 5', 'email_2');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(6, 'f', 2, 3, 'title 6','email_2');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(7, 'g', 2, 4, 'title 7','email_2');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(8, 'h', 2, 5, 'title 8','email_2');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(9, 'i', 3, 1, 'title 9','email_3');
-INSERT INTO entry(entry_id, entry_text, series_id, order_num, email)
-VALUES(10, 'j', 3, 2, 'title 10','email_3');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, title, email)
+VALUES(1, 'a','a', 1, 1, 'title 1', 'email_1');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(2, 'b','a', 1, 2, 'title 2', 'email_1');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(3, 'c','a', 1, 3, 'title  3', 'email_1');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(4, 'd','a', 2, 1, 'title 4', 'email_2');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(5, 'e','a', 2, 2, 'title 5', 'email_2');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(6, 'f','a', 2, 3, 'title 6','email_2');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(7, 'g','a', 2, 4, 'title 7','email_2');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(8, 'h','a', 2, 5, 'title 8','email_2');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(9, 'i','a', 3, 1, 'title 9','email_3');
+INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
+VALUES(10, 'j','a', 3, 2, 'title 10','email_3');
 
 INSERT INTO writer(writer_id, email, pen_name)
 VALUES(1, 'email_4', 'jack');

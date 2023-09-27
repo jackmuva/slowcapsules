@@ -3,22 +3,12 @@ import React, {useEffect, useRef} from "react";
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
 import edjsHTML from 'editorjs-html';
+import EntryApi from "../../api/EntryApi";
 
-const Editor = () => {
+const Editor = ({entry}) => {
     const ejInstance = useRef();
 
-    const DEFAULT_INITIAL_DATA =  {
-        // "time": new Date().getTime(),
-        "blocks": [
-            {
-                "type": "header",
-                "data": {
-                    "text": "This is my awesome editor!",
-                    "level": 1
-                }
-            },
-        ]
-    }
+    const DEFAULT_INITIAL_DATA = JSON.parse(entry.entryJson);
 
     const initEditor = () => {
         const editor = new EditorJS({
@@ -30,8 +20,11 @@ const Editor = () => {
             data: DEFAULT_INITIAL_DATA,
             onChange: async () => {
                 let content = await editor.saver.save();
+                entry.entryJson = JSON.stringify(content);
+                EntryApi.postNewEntry(entry).then(function(data) {
+                    console.log(data)
+                });
 
-                console.log(content);
             },
             tools: {
                 header: Header,
@@ -67,14 +60,15 @@ const Editor = () => {
         const edjsParser = edjsHTML();
         ejInstance.current.save().then((outputData) => {
             const html = edjsParser.parse(outputData);
-            console.log('Article data: ', outputData)
-            console.log('html: ', html);
+            entry.entryHtml = JSON.stringify(html);
+            EntryApi.postNewEntry(entry).then(function(data) {
+                console.log(data)
+            });
+
         }).catch((error) => {
             console.log('Saving failed: ', error)
         });
     };
-
-    console.log(ejInstance);
 
     return (
         <>

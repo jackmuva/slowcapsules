@@ -30,6 +30,15 @@ public class EntryController {
     }
 
     @PreAuthorize("hasRole('USER')")
+    @PutMapping("/update")
+    public ResponseEntity<String> putEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
+        if(entry.getEmail().equals(userDetails.getUsername())) {
+            return new ResponseEntity<>(entryService.saveEntry(entry).toString(), HttpStatus.OK);
+        }
+        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteEntry(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
         if(entryService.fetchEntriesByEntryId(id).get(0).getEmail().equals(userDetails.getUsername())){
