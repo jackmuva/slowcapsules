@@ -3,10 +3,10 @@ import React, {useEffect, useRef, useState} from "react";
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
 import edjsHTML from 'editorjs-html';
-import EntryApi from "../../api/EntryApi";
+import EntryApi from "../../../api/EntryApi";
 import {Redirect} from "react-router-dom";
-import SeriesApi from "../../api/SeriesApi";
-import {NavLink} from "../Navbar/NavbarElements";
+import SeriesApi from "../../../api/SeriesApi";
+import {NavLink} from "../../Navbar/NavbarElements";
 
 const Editor = ({entry}) => {
     const ejInstance = useRef();

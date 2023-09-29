@@ -1,7 +1,6 @@
 import WriterApi from "../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
-import SeriesFilter from "../SeriesPage/SeriesFilter/series-filer";
 import SeriesPage from "../SeriesPage/series-page";
 import {NavLink} from "../Navbar/NavbarElements";
 
@@ -35,13 +34,12 @@ function WriterDashboard (){
     if(series.length === 0){
         return(
             <div>
-                Create your first post
+                Create your first series
             </div>
         );
     }else{
         return(
             <div>
-                {/*<SeriesFilter posts={series} setSearchResults={setSearchResults}/>*/}
                 <NavLink to={{
                     pathname:'/newSeries',
                     state: {writer: {writer}}}}>
