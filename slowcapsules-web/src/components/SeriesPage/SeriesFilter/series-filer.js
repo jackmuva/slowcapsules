@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
-import SeriesApi from "../../api/SeriesApi";
+import SeriesApi from "../../../api/SeriesApi";
 const SeriesFilter = ({ posts, setSearchResults }) => {
     const handleSubmit = (e) => e.preventDefault()
 

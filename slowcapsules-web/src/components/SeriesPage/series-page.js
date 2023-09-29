@@ -1,4 +1,4 @@
-import Series from "../series";
+import Series from "./Series";
 
 const SeriesPage = ({ allSeries, fromWriter }) => {
     if(allSeries.length === 0) {

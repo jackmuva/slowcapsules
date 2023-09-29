@@ -4,6 +4,9 @@ class SeriesApi extends StandardApi{
     postSeries(series){
         return this.postWithAuth('/api/series/new', series).then(response => response.json());
     }
+    getSeriesById(id){
+        return this.get(`/api/series/${id}`).then(response => response.json());
+    }
     deleteSeries(seriesId){
         return this.delete(`/api/series/delete/${seriesId}`).then(response => response.json());
     }

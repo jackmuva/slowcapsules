@@ -1,7 +1,7 @@
 import WriterApi from "../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
-import SeriesFilter from "../SeriesPage/series-filer";
+import SeriesFilter from "../SeriesPage/SeriesFilter/series-filer";
 import SeriesPage from "../SeriesPage/series-page";
 import {NavLink} from "../Navbar/NavbarElements";
 

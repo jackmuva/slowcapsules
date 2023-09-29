@@ -11,13 +11,15 @@ import java.util.List;
 
 @Repository
 public interface SeriesRepository extends JpaRepository<Series, Long> {
-    List<Series> findByOrderByDatetimeDesc();
-    List<Series> findByPenNameIgnoreCaseAndPublishedIsTrue(String penName);
+    List<Series> findByPublishedIsTrueOrderByDatetimeDesc();
+    List<Series> findByPenNameIgnoreCaseAndPublished(String penName, Boolean publish);
+    List<Series> findByPenNameIgnoreCase(String penName);
     List<Series> findAllByTagsIsContainingIgnoreCaseAndPublishedIsTrue(String tag);
-    List<Series> findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublishedIsTrue(
+    List<Series> findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublished(
             String penName,
             String tag,
             String summary,
-            String title);
+            String title,
+            Boolean published);
     List<Series> findBySeriesId(Long id);
 }

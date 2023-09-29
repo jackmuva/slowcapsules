@@ -21,20 +21,20 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchNewest(){
-        return seriesRepository.findByOrderByDatetimeDesc();
+        return seriesRepository.findByPublishedIsTrueOrderByDatetimeDesc();
     }
 
     public List<Series> fetchByWriter(String penName){
-        return seriesRepository.findByPenNameIgnoreCaseAndPublishedIsTrue(penName);
+        return seriesRepository.findByPenNameIgnoreCase(penName);
     }
 
     public List<Series> fetchByTag(String tag){
         return seriesRepository.findAllByTagsIsContainingIgnoreCaseAndPublishedIsTrue(tag);
     }
 
-    public List<Series> fetchByKeyword(String keyword){
-        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublishedIsTrue(
-                keyword, keyword, keyword, keyword);
+    public List<Series> fetchByKeyword(String keyword, Boolean published){
+        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublished(
+                keyword, keyword, keyword, keyword, published);
     }
 
     public List<Series> fetchBySeriesId(Long id){

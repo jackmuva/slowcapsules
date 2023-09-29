@@ -43,7 +43,7 @@ public class SeriesController {
     }
 
     @GetMapping("/writer/{writer}")
-    public List<Series> getSeriesByWriter(@PathVariable String writer){
+    public List<Series> getPublishedSeriesByWriter(@PathVariable String writer){
         return seriesService.fetchByWriter(writer);
     }
 
@@ -53,8 +53,13 @@ public class SeriesController {
     }
 
     @GetMapping("/search/{keyword}")
-    public List<Series> searchSeries(@PathVariable String keyword){
-        return seriesService.fetchByKeyword(keyword);
+    public List<Series> searchPublishedSeries(@PathVariable String keyword){
+        return seriesService.fetchByKeyword(keyword, Boolean.TRUE);
+    }
+
+    @GetMapping("/{id}")
+    public List<Series> getSeriesById(@PathVariable Long id){
+        return seriesService.fetchBySeriesId(id);
     }
 
 }

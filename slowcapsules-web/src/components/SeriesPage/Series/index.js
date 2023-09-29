@@ -1,6 +1,6 @@
 import "./series.css";
-import SubscribeModal from "../SubscribeModal";
-import {NavLink} from "../Navbar/NavbarElements";
+import SubscribeModal from "../../SubscribeModal";
+import {NavLink} from "../../Navbar/NavbarElements";
 import React from "react";
 
 const Series = ({ series, fromWriterDashboard }) => {
