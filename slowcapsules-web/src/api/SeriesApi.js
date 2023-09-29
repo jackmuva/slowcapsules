@@ -2,7 +2,7 @@ import StandardApi from "./StandardApi";
 
 class SeriesApi extends StandardApi{
     postSeries(series){
-        return this.post('/api/series/new', series).then(response => response.json());
+        return this.postWithAuth('/api/series/new', series).then(response => response.json());
     }
     deleteSeries(seriesId){
         return this.delete(`/api/series/delete/${seriesId}`).then(response => response.json());
