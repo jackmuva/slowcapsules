@@ -25,16 +25,16 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByWriter(String penName){
-        return seriesRepository.findByPenNameIgnoreCase(penName);
+        return seriesRepository.findByPenNameIgnoreCaseAndPublishedIsTrue(penName);
     }
 
     public List<Series> fetchByTag(String tag){
-        return seriesRepository.findAllByTagsIsContainingIgnoreCase(tag);
+        return seriesRepository.findAllByTagsIsContainingIgnoreCaseAndPublishedIsTrue(tag);
     }
 
     public List<Series> fetchByKeyword(String keyword){
-        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCase(keyword,
-                keyword, keyword, keyword);
+        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublishedIsTrue(
+                keyword, keyword, keyword, keyword);
     }
 
     public List<Series> fetchBySeriesId(Long id){

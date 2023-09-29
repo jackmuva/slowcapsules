@@ -45,4 +45,7 @@ public class Series {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "published")
+    private Boolean published;
 }

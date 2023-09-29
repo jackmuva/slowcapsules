@@ -1,8 +1,9 @@
 import WriterApi from "../../api/WriterApi";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
-import SeriesFilter from "../main-page/series-filer";
-import SeriesPage from "../main-page/series-page";
+import SeriesFilter from "../SeriesPage/series-filer";
+import SeriesPage from "../SeriesPage/series-page";
+import {NavLink} from "../Navbar/NavbarElements";
 
 
 function WriterDashboard (){
@@ -40,7 +41,12 @@ function WriterDashboard (){
     }else{
         return(
             <div>
-                <SeriesFilter posts={series} setSearchResults={setSearchResults}/>
+                {/*<SeriesFilter posts={series} setSearchResults={setSearchResults}/>*/}
+                <NavLink to={{
+                    pathname:'/newSeries',
+                    state: {writer: {writer}}}}>
+                    New Series
+                </NavLink>
                 <SeriesPage allSeries = {searchResults} fromWriter = {true}></SeriesPage>
             </div>
         );

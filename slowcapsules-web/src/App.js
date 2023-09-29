@@ -2,15 +2,16 @@ import './App.css';
 import Header from "./components/Header/header";
 import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SeriesPage from "./components/main-page/series-page";
+import SeriesPage from "./components/SeriesPage/series-page";
 import SeriesApi from "./api/SeriesApi";
 import Navbar from "./components/Navbar";
-import SeriesFilter from "./components/main-page/series-filer";
+import SeriesFilter from "./components/SeriesPage/series-filer";
 import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import WriterDashboard from "./components/WriterDashboard";
 import EditSeriesPage from "./components/EditSeriesPage";
 import EditEntryPage from "./components/EditEntryPage";
+import NewSeriesPage from "./components/NewSeriesPage";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -33,6 +34,9 @@ function App() {
           <Header subtitle = "Write and Subscribe to Email Series"/>
             <Navbar/>
             <Switch>
+                <Route path = "/newSeries">
+                    <NewSeriesPage></NewSeriesPage>
+                </Route>
                 <Route path = "/editEntry">
                     <EditEntryPage></EditEntryPage>
                 </Route>
