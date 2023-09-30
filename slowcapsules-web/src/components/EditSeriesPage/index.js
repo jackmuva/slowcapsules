@@ -19,32 +19,44 @@ function EditSeriesPage(){
         setSeries(location.state.series.series);
     }, []);
 
+    const createEntry = () => {
+        let maxCadence = 1;
+        if(entries.length > 0){
+            maxCadence = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum + 1;
+        }
+
+        let entry = {
+            seriesId: location.state.series.series.seriesId,
+            entryJson: "",
+            entryHtml: "",
+            orderNum: maxCadence,
+            title: "New Entry",
+            email: location.state.series.series.email
+        }
+        EntryApi.postNewEntry(entry).then(function () {});
+        setEntries([...entries, entry]);
+    };
+
 
     if(entries.length === 0){
         return (
             <div>
-                <NavLink to={{
-                    pathname:'/newEntry',
-                    state: {series: {series}}}}>
-                    New Entry
-                </NavLink>
+                <button onClick={() => createEntry()} type="submit" className="btn">Create New Entry</button>
                 <div>No entries yet</div>
             </div>);
     } else{
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <NavLink to={{
-                        pathname:'/newEntry',
-                        state: {series: {series}}}}>
-                        New Entry
-                    </NavLink>
                     <Entry entry = {entry}></Entry>
                 </div>);
         }
         );
         return(
-            <div> { entryItems }</div>
+            <div>
+                <button onClick={() => createEntry()} type="submit" className="btn">Create New Entry</button>
+                { entryItems }
+            </div>
         );
     }
 }

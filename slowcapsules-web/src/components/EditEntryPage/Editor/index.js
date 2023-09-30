@@ -4,7 +4,6 @@ import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
 import edjsHTML from 'editorjs-html';
 import EntryApi from "../../../api/EntryApi";
-import {Redirect} from "react-router-dom";
 import SeriesApi from "../../../api/SeriesApi";
 import {NavLink} from "../../Navbar/NavbarElements";
 
@@ -24,10 +23,7 @@ const Editor = ({entry}) => {
             onChange: async () => {
                 let content = await editor.saver.save();
                 entry.entryJson = JSON.stringify(content);
-                EntryApi.postNewEntry(entry).then(function (data) {
-                    console.log(data)
-                });
-
+                EntryApi.postNewEntry(entry).then(function (data) {});
             },
             tools: {
                 header: Header,
@@ -49,6 +45,13 @@ const Editor = ({entry}) => {
 
     // This will run only once
     useEffect(() => {
+        const fetchSeries = async () => {
+            const rsp = SeriesApi.getSeriesById(entry.seriesId);
+            const ser = await rsp;
+            setSeries(ser[0]);
+        }
+        fetchSeries();
+
         if (ejInstance.current === null) {
             initEditor();
         }
@@ -64,19 +67,11 @@ const Editor = ({entry}) => {
         ejInstance.current.save().then((outputData) => {
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
-            EntryApi.postNewEntry(entry).then(function (data) {
-                console.log(data)
-            });
+            EntryApi.postNewEntry(entry).then(function () {});
 
         }).catch((error) => {
             console.log('Saving failed: ', error)
         });
-        const fetchSeries = async () => {
-            const rsp = SeriesApi.getSeriesById(entry.seriesId);
-            const ser = await rsp;
-            setSeries(ser[0]);
-        }
-        fetchSeries();
     };
 
     return (
