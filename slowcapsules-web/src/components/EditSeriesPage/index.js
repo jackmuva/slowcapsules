@@ -20,16 +20,16 @@ function EditSeriesPage(){
     }, []);
 
     const createEntry = () => {
-        let maxCadence = 1;
+        let maxOrder = 1;
         if(entries.length > 0){
-            maxCadence = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum + 1;
+            maxOrder = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum + 1;
         }
 
         let entry = {
             seriesId: location.state.series.series.seriesId,
             entryJson: "",
             entryHtml: "",
-            orderNum: maxCadence,
+            orderNum: maxOrder,
             title: "New Entry",
             email: location.state.series.series.email
         }
@@ -37,7 +37,10 @@ function EditSeriesPage(){
         setEntries([...entries, entry]);
     };
 
-
+    let maxOrder = 1;
+    if(entries.length > 0){
+        maxOrder = entries.sort(function(a, b){return a.orderNum - b.orderNum})[entries.length - 1].orderNum;
+    }
     if(entries.length === 0){
         return (
             <div>
@@ -48,7 +51,7 @@ function EditSeriesPage(){
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <Entry entry = {entry}></Entry>
+                    <Entry entry = {entry} maxEntry = {maxOrder}></Entry>
                 </div>);
         }
         );

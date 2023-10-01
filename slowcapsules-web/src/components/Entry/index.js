@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 import "./entry.css";
 
-const Entry = ({ entry }) => {
+const Entry = ({ entry, maxEntry}) => {
     const [editable, setEditable] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -17,14 +17,11 @@ const Entry = ({ entry }) => {
 
         entry.orderNum = orderNum;
         entry.title = title;
-        console.log(title);
 
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
         } else {
-            console.log('hit');
             EntryApi.postNewEntry(entry).then(() => {});
-            setErrorMessage('Saved');
             toggleEditable();
         }
     }
@@ -53,11 +50,11 @@ const Entry = ({ entry }) => {
             <div className="form-body">
                 <div className="order">
                     <label className="form__label" htmlFor="order">Order </label>
-                    <input type="number" id="order" min="1" value={entry.orderNum}/>
+                    <input type="number" id="order" min="1" max = {maxEntry} defaultValue={entry.orderNum}/>
                 </div>
                 <div className="title">
                     <label className="form__label" htmlFor="title">Title </label>
-                    <input type="title" id="title" className="form__input" placeholder={entry.title}/>
+                    <input type="title" id="title" className="form__input" defaultValue={entry.title}/>
                 </div>
             </div>
             </div>
