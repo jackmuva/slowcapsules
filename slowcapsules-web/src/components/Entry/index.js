@@ -4,57 +4,26 @@ import EntryApi from "../../api/EntryApi";
 import "./entry.css";
 
 const Entry = ({ entry }) => {
-    const [ent, setEnt] = useState({
-        seriesId: null,
-        entryJson: null,
-        entryHtml: null,
-        orderNum: null,
-        title: null,
-        email: null
-    });
     const [editable, setEditable] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
-    useEffect(() => {
-        setEnt({
-            ...ent,
-            seriesId: entry.seriesId,
-            entryJson: entry.entryJson,
-            entryHtml: entry.entryHtml,
-            orderNum: entry.orderNum,
-            title: entry.title,
-            email: entry.email
-        }
-    );
-    }, []);
     const toggleEditable = () => {
         setEditable(!editable);
     }
 
     const handleSubmit = () => {
-        let editedEntry = {
-            seriesId: ent.seriesId,
-            entryJson: ent.entryJson,
-            entryHtml: ent.entryHtml,
-            orderNum: null,
-            title: null,
-            email: ent.email
-        }
-
         let orderNum = document.getElementById("order").value;
         let title = document.getElementById("title").value;
 
-        editedEntry.orderNum = orderNum;
-        editedEntry.title = title;
+        entry.orderNum = orderNum;
+        entry.title = title;
         console.log(title);
 
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
         } else {
             console.log('hit');
-            setEnt(editedEntry);
-            console.log(ent);
-            EntryApi.postNewEntry(ent).then(() => {});
+            EntryApi.postNewEntry(entry).then(() => {});
             setErrorMessage('Saved');
             toggleEditable();
         }
@@ -77,7 +46,6 @@ const Entry = ({ entry }) => {
             </div>
         );
     } else {
-        console.log(ent.orderNum);
         return (<div className="entryCard">
             {errorMessage && <div className="error"> {errorMessage} </div>}
             <button onClick={() => handleSubmit()} type="submit" className="btn">Save</button>
@@ -85,7 +53,7 @@ const Entry = ({ entry }) => {
             <div className="form-body">
                 <div className="order">
                     <label className="form__label" htmlFor="order">Order </label>
-                    <input type="number" id="order" min="1" value={ent.orderNum}/>
+                    <input type="number" id="order" min="1" value={entry.orderNum}/>
                 </div>
                 <div className="title">
                     <label className="form__label" htmlFor="title">Title </label>
