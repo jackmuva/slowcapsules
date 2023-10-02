@@ -5,7 +5,7 @@ import React, {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 
 const Series = ({ series, fromWriterDashboard }) => {
-    const [published, setPublished] = useState(null);
+    // const [published, setPublished] = useState(null);
     const writerBool = fromWriterDashboard
 
     function getDateTime() {
@@ -36,12 +36,10 @@ const Series = ({ series, fromWriterDashboard }) => {
     };
 
     const handleChange = (e) => {
-        // console.log(e.target.checked);
-        console.log(!e.target.checked);
         series.datetime = getDateTime();
-        series.published = !e.target.checked
-        // SeriesApi.postSeries(series).then(() => {});
-        setPublished(series.published);
+        series.published = e.target.checked;
+        SeriesApi.postSeries(series).then(() => {});
+        // setPublished(series.published);
     };
 
     return (
@@ -70,7 +68,7 @@ const Series = ({ series, fromWriterDashboard }) => {
                 <>
                     <div>Publish</div>
                     <label className="switch">
-                        <input type="checkbox" onChange={(e) => handleChange(e)} checked = {series.published}/>
+                        <input type="checkbox" onChange={(e) => handleChange(e)} defaultChecked = {series.published}/>
                         <span className="slider round"></span>
                     </label>
                 </>
