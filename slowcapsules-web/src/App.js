@@ -31,8 +31,7 @@ function App() {
   return (
       <Router>
         <div className="container">
-          <Header subtitle = "Write and Subscribe to Email Series"/>
-            <Navbar/>
+          <Header/>
             <Switch>
                 <Route path = "/newSeries">
                     <NewSeriesPage></NewSeriesPage>
