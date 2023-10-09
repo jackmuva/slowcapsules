@@ -1,6 +1,6 @@
 import "./series.css";
 import SubscribeModal from "../../SubscribeModal";
-import {NavLink} from "../../Navbar/NavbarElements";
+import {NavLink} from 'react-router-dom';
 import React, {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 
@@ -43,36 +43,40 @@ const Series = ({ series, fromWriterDashboard }) => {
     };
 
     return (
-        <div className = "seriesCard">
-            <div className = "row mt-2">
-                <h2 className = "col-md-12"> {series.title}</h2>
+        <div class="box grid grid-cols-5 bg-amber-50 border p-6 rounded-lg overflow-hidden">
+            <div class="box col-span-4 p-6">
+                <div>
+                    <h2> {series.title}</h2>
+                </div>
+                <div >
+                    <h5> Written By: {series.penName}</h5>
+                </div>
+                <div>
+                    <p> Summary: {series.summary}</p>
+                    <p> Total Entries: {series.numEntries} </p>
+                    <p> Cadence: Every {series.cadence} days</p>
+                    <p> Tags: {series.tags} </p>
+                </div>
             </div>
-            <div className = "row">
-                <h5 className = "col-md-12"> Written By: {series.penName}</h5>
+            <div class = "box">
+                {!writerBool && <SubscribeModal series = {series}></SubscribeModal>}
+                {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
+                    pathname:'/editSeries',
+                    state: {series: {series}}
+                }}>
+                    Edit
+                </NavLink>}
+                {
+                    writerBool &&
+                    <>
+                        <div>Publish</div>
+                        <label className="switch">
+                            <input type="checkbox" onChange={(e) => handleChange(e)} defaultChecked = {series.published}/>
+                            <span className="slider round"></span>
+                        </label>
+                    </>
+                }
             </div>
-            <div className = "col-md-5">
-                <p> Summary: {series.summary}</p>
-                <p> Total Entries: {series.numEntries} </p>
-                <p> Cadence: Every {series.cadence} days</p>
-                <p> Tags: {series.tags} </p>
-            </div>
-            {!writerBool && <SubscribeModal series = {series}></SubscribeModal>}
-            {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
-                pathname:'/editSeries',
-                state: {series: {series}}
-            }}>
-                Edit
-            </NavLink>}
-            {
-                writerBool &&
-                <>
-                    <div>Publish</div>
-                    <label className="switch">
-                        <input type="checkbox" onChange={(e) => handleChange(e)} defaultChecked = {series.published}/>
-                        <span className="slider round"></span>
-                    </label>
-                </>
-            }
         </div>
     );
 };

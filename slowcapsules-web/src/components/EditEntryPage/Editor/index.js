@@ -5,7 +5,7 @@ import ImageTool from '@editorjs/image';
 import edjsHTML from 'editorjs-html';
 import EntryApi from "../../../api/EntryApi";
 import SeriesApi from "../../../api/SeriesApi";
-import {NavLink} from "../../Navbar/NavbarElements";
+import {NavLink} from 'react-router-dom';
 
 const Editor = ({entry}) => {
     const ejInstance = useRef();

@@ -9,7 +9,7 @@ const SeriesPage = ({ allSeries, fromWriter }) => {
             <Series series={series} fromWriterDashboard={fromWriter}/>
         );
         return (
-            <div>
+            <div class = "grid grid-cols-1">
                 {arraySeriesItems}
             </div>
         );

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SeriesPage from "./components/SeriesPage/series-page";
 import SeriesApi from "./api/SeriesApi";
-import Navbar from "./components/Navbar";
 import SeriesFilter from "./components/SeriesPage/SeriesFilter/series-filer";
 import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";

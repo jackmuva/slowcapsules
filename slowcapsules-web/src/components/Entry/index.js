@@ -1,4 +1,4 @@
-import {NavLink} from "../Navbar/NavbarElements";
+import {NavLink} from 'react-router-dom';
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 import "./entry.css";

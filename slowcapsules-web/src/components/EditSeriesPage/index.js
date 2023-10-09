@@ -2,7 +2,6 @@ import {useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 import Entry from "../Entry";
-import {NavLink} from "../Navbar/NavbarElements";
 
 function EditSeriesPage(){
     const [entries, setEntries] = useState([]);

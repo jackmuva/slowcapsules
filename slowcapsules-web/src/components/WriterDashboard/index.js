@@ -2,7 +2,7 @@ import WriterApi from "../../api/WriterApi";
 import React, {useEffect, useState} from "react";
 import SeriesApi from "../../api/SeriesApi";
 import SeriesPage from "../SeriesPage/series-page";
-import {NavLink} from "../Navbar/NavbarElements";
+import {NavLink} from 'react-router-dom';
 
 
 function WriterDashboard (){
