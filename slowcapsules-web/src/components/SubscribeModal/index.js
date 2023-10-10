@@ -7,7 +7,6 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
-import Stack from '@mui/material/Stack';
 import SubscriptionApi from "../../api/SubscriptionApi";
 
 function SubscribeModal(props) {
@@ -52,18 +51,18 @@ function SubscribeModal(props) {
             <IconButton onClick={handleClickOpen}>
                 <EditIcon color="primary" />
             </IconButton>
-            <Dialog open={open} onClose={handleClose}>
-                <DialogTitle>Subscribe</DialogTitle>
-                <DialogContent>
-                    <Stack spacing={2} mt={1}>
+            <Dialog class = "flex flex-col md:flex-row rounded-l-xl p-10" open={open} onClose={handleClose}>
+                <DialogTitle class = "max-w-s font-serif text-xl font-small text-center mx-6 mt-6">Subscribe to Email Series</DialogTitle>
+                <DialogContent class = "flex flex-col mx-5">
                         <TextField label="Email" name="subscriberEmail" autoFocus
                                    variant="standard" value={subscription.subscriberEmail}
                                    onChange={handleChange}/>
-                    </Stack>
                 </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSave}>Save</Button>
+                <DialogActions class = "text-center mb-6">
+                    <button class = "my-1 mx-2 p-1 rounded-md text-zinc-800 hover:text-cyan-400"
+                            onClick={handleSave}>Save</button>
+                    <button class = "m-2 p-1"
+                        onClick={handleClose}>Cancel</button>
                 </DialogActions>
             </Dialog>
         </div>
