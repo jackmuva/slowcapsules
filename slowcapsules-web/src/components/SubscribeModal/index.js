@@ -3,9 +3,6 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import EditIcon from '@mui/icons-material/Edit';
 import TextField from '@mui/material/TextField';
 import SubscriptionApi from "../../api/SubscriptionApi";
 
@@ -48,9 +45,9 @@ function SubscribeModal(props) {
 
     return(
         <div>
-            <IconButton onClick={handleClickOpen}>
-                <EditIcon color="primary" />
-            </IconButton>
+            <button class = "mt-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800" onClick={handleClickOpen}>
+                Subscribe
+            </button>
             <Dialog class = "flex flex-col md:flex-row rounded-l-xl p-10" open={open} onClose={handleClose}>
                 <DialogTitle class = "max-w-s font-serif text-xl font-small text-center mx-6 mt-6">Subscribe to Email Series</DialogTitle>
                 <DialogContent class = "flex flex-col mx-5">

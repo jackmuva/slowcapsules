@@ -1,4 +1,3 @@
-import "./series.css";
 import SubscribeModal from "../../SubscribeModal";
 import {NavLink} from 'react-router-dom';
 import React, {useState} from "react";
@@ -43,22 +42,21 @@ const Series = ({ series, fromWriterDashboard }) => {
     };
 
     return (
-        <div class="box grid grid-cols-5 bg-amber-50 border p-6 rounded-lg overflow-hidden">
-            <div class="box col-span-4 p-6">
-                <div>
-                    <h2> {series.title}</h2>
+        <div class="grid grid-cols-4 border-b-2 border-stone-200">
+            <div class="p-1 m-0 col-span-3">
+                <div class = "flex-auto">
+                    <h2 class="mb-0 font-serif text-3xl font-bold"> {series.title}</h2>
+                    <h3 class="ml-3 my-0 font-serif text-base"> Written By: {series.penName}</h3>
+                    <h3 class="font-serif text-base overflow-auto">Summary: {series.summary}</h3>
                 </div>
-                <div >
-                    <h5> Written By: {series.penName}</h5>
-                </div>
-                <div>
-                    <p> Summary: {series.summary}</p>
-                    <p> Total Entries: {series.numEntries} </p>
-                    <p> Cadence: Every {series.cadence} days</p>
-                    <p> Tags: {series.tags} </p>
+                <div class="flex">
+                    <p class="mr-3 font-serif text-xs"> Total Entries: <strong>{series.numEntries}</strong> </p>
+                    <p class="mr-3 font-serif text-xs"> Cadence: <strong>Every {series.cadence} days</strong></p>
+                    {series.tags !== '' &&
+                        <p class="mr-3 font-serif text-xs"> Tags: {series.tags} </p>}
                 </div>
             </div>
-            <div class = "box">
+            <div class="col-span-1">
                 {!writerBool && <SubscribeModal series = {series}></SubscribeModal>}
                 {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
                     pathname:'/editSeries',
