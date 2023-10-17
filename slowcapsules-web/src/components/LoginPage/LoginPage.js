@@ -44,7 +44,7 @@ function LoginPage ({setWriter}) {
     else {
         return (
             <div class="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
-                md:flex-row md:space-y-0 md:m-12">
+                md:flex-row md:space-y-0 md:mx-52">
                 <div className="form" class="p-6 md:p-20">
                     <h2 class="font-serif test-4xl font-bold mb-2">Log In</h2>
                     <p class="mb-2 max-2-sm font-sans font-light text-gray-600">
@@ -55,7 +55,7 @@ function LoginPage ({setWriter}) {
                     <input type="password" id="password" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Password"
                            onChange={(e) => handleInputChange(e)}/>
-                    {errorMessage && <div className="error"> {errorMessage} </div>}
+                    {errorMessage && <div class="text-red-700 my-2"> {errorMessage} </div>}
                     <div className="footer">
                         <button class="w-full md:w-auto h-1 flex justify-center items-center p-6 space-x-4 font-sans font-bold text-white rounded-md shadow-lg px-9 bg-cyan-700 shadow-cyan-100 hover:bg-opacity-90 shadow-sm hover:shadow-lg border transition hover:-translate-y-0.5 duration-150"
                                 onClick={() => handleSubmit()} type="submit">Login</button>
