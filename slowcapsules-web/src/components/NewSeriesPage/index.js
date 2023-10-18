@@ -72,19 +72,19 @@ function NewSeriesPage() {
                     </p>
                     <input type="text" id="title" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Title"/>
-                    <input type="text" id="summary" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
+                    <textarea rows="4" id="summary" class="block w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Summary"/>
                     <input type="text" id="tags" class="h-1 w-full p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                            placeholder="Any keyword you'd want your series to be searchable for (separate words with a comma)"/>
                     <div>
-                        <p className="mb-2 max-2 text-4xl font-sans">
+                        <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                             Specify number of days that subscribers will wait between emails
                         </p>
                         <input type="number" id="cadence"
                                className="h-1 p-6 mb-2 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                                min="1" max="30"/>
                     </div>
-                    {errorMessage && <div className="error"> {errorMessage} </div>}
+                    {errorMessage && <div class="text-red-700 my-2"> {errorMessage} </div>}
                     <div>
                         <button class="w-full md:w-auto h-1 flex justify-center items-center p-6 space-x-4 font-sans font-bold text-white rounded-md shadow-lg px-9 bg-cyan-700 shadow-cyan-100 hover:bg-opacity-90 shadow-sm hover:shadow-lg border transition hover:-translate-y-0.5 duration-150"
                                 onClick={() => handleSubmit()} type="submit">
