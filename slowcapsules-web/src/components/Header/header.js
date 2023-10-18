@@ -6,8 +6,8 @@ const Header = () =>(
                 <span className="text-3xl font-semibold text-blue-200">Turtle Capsule</span>
             </div>
             <ul className="flex overflow-x-hidden mr-10 font-semibold">
-                <li className="mr-6 p-1 border-b-2 border-yellow-500">
-                    <a className="cursor-default text-blue-200" href="/">Home</a>
+                <li className="mr-6 p-1">
+                    <a className="text-white hover:text-blue-300" href="/">Home</a>
                 </li>
                 {sessionStorage.getItem("jwt") == null && <li className="mr-6 p-1">
                     <a className="text-white hover:text-blue-300" href="/signup">Sign Up</a>
