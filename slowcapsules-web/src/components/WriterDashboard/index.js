@@ -40,11 +40,14 @@ function WriterDashboard (){
     }else{
         return(
             <div>
-                <NavLink to={{
-                    pathname:'/newSeries',
-                    state: {writer: {writer}}}}>
-                    New Series
-                </NavLink>
+                <div class = "m-4">
+                    <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
+                             to={{
+                        pathname:'/newSeries',
+                        state: {writer: {writer}}}}>
+                        Create New Series
+                    </NavLink>
+                </div>
                 <SeriesPage allSeries = {searchResults} fromWriter = {true}></SeriesPage>
             </div>
         );
