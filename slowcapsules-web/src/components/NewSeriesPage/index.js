@@ -63,28 +63,14 @@ function NewSeriesPage() {
         return <Redirect to='/writerDashboard'/>
     } else {
         return (
-            <div className="form">
-                <div className="form-body">
-                    <div className="title">
-                        <label className="form__label" htmlFor="title"> Title </label>
-                        <input type="text" id="title" className="form__input" placeholder="Title"/>
-                    </div>
-                    <div className="summary">
-                        <label className="form__label" htmlFor="summary"> Summary </label>
-                        <input className="form__input" type="text" id="summary" placeholder="Summary"/>
-                    </div>
-                    <div className="tags">
-                        <label className="form__label" htmlFor="tags"> Tags </label>
-                        <input className="form__input" type="text" id="tags"
+            <div>
+                    <input type="text" id="title" className="form__input" placeholder="Title"/>
+                   <input className="form__input" type="text" id="summary" placeholder="Summary"/>
+                    <input className="form__input" type="text" id="tags"
                                placeholder="Any keyword you'd want your series to be searchable for separated by a comma"/>
-                    </div>
-                    <div className="cadence">
-                        <label htmlFor="cadence">Cadence</label>
-                        <input type="number" id="cadence" min="1" max="30"/>
-                    </div>
-                </div>
+                    <input type="number" id="cadence" min="1" max="30"/>
                 {errorMessage && <div className="error"> {errorMessage} </div>}
-                <div className="footer">
+                <div>
                     <button onClick={() => handleSubmit()} type="submit" className="btn">Create</button>
                 </div>
             </div>
