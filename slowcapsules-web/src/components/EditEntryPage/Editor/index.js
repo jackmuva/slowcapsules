@@ -23,7 +23,8 @@ const Editor = ({entry}) => {
             onChange: async () => {
                 let content = await editor.saver.save();
                 entry.entryJson = JSON.stringify(content);
-                EntryApi.postNewEntry(entry).then(function (data) {});
+                // EntryApi.postNewEntry(entry).then(function (data) {});
+                EntryApi.updateEntry(entry).then(function (data){});
             },
             tools: {
                 header: Header,
@@ -67,7 +68,7 @@ const Editor = ({entry}) => {
         ejInstance.current.save().then((outputData) => {
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
-            EntryApi.postNewEntry(entry).then(function () {});
+            EntryApi.updateEntry(entry).then(function () {});
 
         }).catch((error) => {
             console.log('Saving failed: ', error)

@@ -26,7 +26,7 @@ function EditSeriesPage(){
 
         let entry = {
             seriesId: location.state.series.series.seriesId,
-            entryJson: "",
+            entryJson: "{\"blocks\":[{\"type\":\"paragraph\",\"data\":{\"text\":\"Start Writing\"}}],\"version\":\"2.28.0\"}",
             entryHtml: "",
             orderNum: maxOrder,
             title: "New Entry",

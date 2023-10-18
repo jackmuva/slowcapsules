@@ -5,7 +5,6 @@ class EntryApi extends StandardApi{
         return this.postWithAuth('/api/entry/new', entry).then(response => response.json());
     }
 
-    //TODO: Figure out why this is giving me a CORS error
     updateEntry(entry){
         return this.putWithAuth('/api/entry/update', entry).then(response => response.json());
     }
