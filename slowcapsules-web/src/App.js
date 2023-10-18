@@ -29,7 +29,7 @@ function App() {
 
   return (
       <Router>
-        <div className="container">
+        <div class="max-w-full">
           <Header/>
             <Switch>
                 <Route path = "/newSeries">
