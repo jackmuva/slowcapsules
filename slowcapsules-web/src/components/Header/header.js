@@ -3,7 +3,7 @@ const Header = () =>(
         <header className="flex justify-between items-center sticky top-0 z-10 py-4 bg-blue-900">
             <div className="flex-shrink-0 ml-6 cursor-pointer">
                 <i className="fas fa-wind fa-2x text-yellow-500"></i>
-                <span className="text-3xl font-semibold text-blue-200">Turtle Capsule</span>
+                <a className="text-3xl font-semibold text-blue-200" href="/">Ola Train</a>
             </div>
             <ul className="flex overflow-x-hidden mr-10 font-semibold">
                 <li className="mr-6 p-1">

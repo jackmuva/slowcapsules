@@ -9,7 +9,7 @@ const SeriesPage = ({ allSeries, fromWriter }) => {
             <Series series={series} fromWriterDashboard={fromWriter}/>
         );
         return (
-            <div class = "flex items-center bg-yellow-50">
+            <div class = "flex items-center md:mx-52">
                 <div class = "flex flex-col my-3 space-y-0 mx-6 min-w-full">
                     {arraySeriesItems}
                 </div>

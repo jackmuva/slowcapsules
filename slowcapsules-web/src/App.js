@@ -29,7 +29,7 @@ function App() {
 
   return (
       <Router>
-        <div class="max-w-full">
+        <div class="max-w-full bg-zinc-50">
           <Header/>
             <Switch>
                 <Route path = "/newSeries">

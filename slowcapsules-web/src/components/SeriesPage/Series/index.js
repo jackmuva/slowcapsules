@@ -56,24 +56,25 @@ const Series = ({ series, fromWriterDashboard }) => {
                         <p class="mr-3 font-serif text-xs"> Tags: {series.tags} </p>}
                 </div>
             </div>
-            <div class="col-span-1">
+            <div class="col-span-1 text-center">
                 {!writerBool && <SubscribeModal series = {series}></SubscribeModal>}
-                {writerBool && sessionStorage.getItem("jwt") !== null && <NavLink to={{
-                    pathname:'/editSeries',
-                    state: {series: {series}}
-                }}>
-                    Edit
-                </NavLink>}
-                {
-                    writerBool &&
-                    <>
-                        <div>Publish</div>
-                        <label className="switch">
-                            <input type="checkbox" onChange={(e) => handleChange(e)} defaultChecked = {series.published}/>
-                            <span className="slider round"></span>
+
+                {writerBool && sessionStorage.getItem("jwt") !== null &&
+                    <button class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800">
+                        <NavLink to={{
+                            pathname:'/editSeries',
+                            state: {series: {series}}}}>Edit
+                        </NavLink>
+                    </button>}
+                {writerBool &&
+                    <div class="m-2">
+                        <label class="relative inline-flex items-center cursor-pointer">
+                            <input type="checkbox" class="sr-only peer"
+                                   onChange={(e) => handleChange(e)} defaultChecked = {series.published}/>
+                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                            <span class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Publish</span>
                         </label>
-                    </>
-                }
+                    </div>}
             </div>
         </div>
     );
