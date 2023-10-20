@@ -1,7 +1,6 @@
 import {NavLink} from 'react-router-dom';
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
-import "./entry.css";
 
 const Entry = ({ entry, maxEntry}) => {
     const [editable, setEditable] = useState(false);
@@ -28,43 +27,48 @@ const Entry = ({ entry, maxEntry}) => {
 
     if(!editable) {
         return (
-            <div className="entryCard">
-                <button onClick={() => toggleEditable()} type="submit" className="btn">Change title and order</button>
-                <div className="col-md-5">
-                    <p> Order Number: {entry.orderNum} </p>
-                    <p> Entry Title: {entry.title} </p>
+            <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
+                <div className="p-1 m-0 col-span-3">
+                    <h2 class="mb-0 font-serif text-2xl font-bold">{entry.title}</h2>
+                    <h3 class="ml-3 my-0 font-serif text-base"> Order: {entry.orderNum}</h3>
                 </div>
-                {sessionStorage.getItem("jwt") !== null && <NavLink to={{
-                    pathname: '/editEntry',
-                    state: {entry: {entry}}
-                }}>
-                    Edit Content
-                </NavLink>}
+                {/*TODO: See if I can display entry content*/}
+                <div class="col-span-1 text-center flex flex-col">
+                    <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">Change title and order</button>
+                    {sessionStorage.getItem("jwt") !== null &&
+                        <NavLink class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800"
+                                 to={{pathname: '/editEntry', state: {entry: {entry}}}}>
+                            Edit Content
+                        </NavLink>
+                    }
+                </div>
             </div>
         );
     } else {
-        return (<div className="entryCard">
-            {errorMessage && <div className="error"> {errorMessage} </div>}
-            <button onClick={() => handleSubmit()} type="submit" className="btn">Save</button>
-            <div className="form">
-            <div className="form-body">
-                <div className="order">
-                    <label className="form__label" htmlFor="order">Order </label>
-                    <input type="number" id="order" min="1" max = {maxEntry} defaultValue={entry.orderNum}/>
+        return (
+            <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
+                <div className="p-1 m-0 col-span-3">
+                    <div>
+                        <input id="title" className="text-2xl mb-0 border border-gray-300 rounded-md placeholder:font-serif placeholder:font-light"
+                               defaultValue={entry.title}/>
+                    </div>
+                    <div class="inline-flex">
+                        <h3 className="ml-3 my-0 font-serif text-base"> Order: </h3>
+                        <input type="number" id="order" min="1" max = {maxEntry}
+                               class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-serif placeholder:font-light"
+                               defaultValue={entry.orderNum}/>
+                    </div>
+                    {errorMessage && <div className="error"> {errorMessage} </div>}
                 </div>
-                <div className="title">
-                    <label className="form__label" htmlFor="title">Title </label>
-                    <input type="title" id="title" className="form__input" defaultValue={entry.title}/>
+                {/*TODO: See if I can display entry content*/}
+                <div className="col-span-1 text-center flex flex-col">
+                    <button onClick={() => handleSubmit()} type="submit"
+                            className="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">Change
+                        Save
+                    </button>
                 </div>
             </div>
-            </div>
-            {sessionStorage.getItem("jwt") !== null && <NavLink to={{
-                pathname: '/editEntry',
-                state: {entry: {entry}}
-            }}>
-                Edit Content
-            </NavLink>}
-        </div>);
+        );
     }
 }
 export default Entry;

@@ -56,8 +56,13 @@ function EditSeriesPage(){
         );
         return(
             <div>
-                <button onClick={() => createEntry()} type="submit" className="btn">Create New Entry</button>
-                { entryItems }
+                <button onClick={() => createEntry()} type="submit"
+                        class="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
+                    Create New Entry
+                </button>
+                <div className="flex flex-col md:mx-52 flex flex-col my-3 space-y-0 mx-6">
+                    { entryItems }
+                </div>
             </div>
         );
     }
