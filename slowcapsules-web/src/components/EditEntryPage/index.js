@@ -84,16 +84,17 @@ function EditEntryPage(){
     };
 
     return (
-        <>
+        <div class="flex flex-col md:mx-52 shadow-2xl rounded-2xl">
             <div id='editorjs'></div>
-            <button onClick={() => handleSubmit()} type="submit" className="btn">Save Entry</button>
-            <NavLink to={{
-                pathname:'/editSeries',
-                state: {series: {series}}
-            }}>
+            <button onClick={() => handleSubmit()} type="submit"
+                    class="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
+                Save Entry
+            </button>
+            <NavLink class="m-4 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800"
+                to={{pathname:'/editSeries', state: {series: {series}}}}>
                 Return to Entries
             </NavLink>
-        </>
+        </div>
     );
 }
 export default EditEntryPage;
