@@ -23,7 +23,6 @@ const Editor = ({entry}) => {
             onChange: async () => {
                 let content = await editor.saver.save();
                 entry.entryJson = JSON.stringify(content);
-                // EntryApi.postNewEntry(entry).then(function (data) {});
                 EntryApi.updateEntry(entry).then(function (data){});
             },
             tools: {

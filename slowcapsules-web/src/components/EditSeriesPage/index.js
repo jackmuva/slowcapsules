@@ -5,7 +5,6 @@ import Entry from "../Entry";
 
 function EditSeriesPage(){
     const [entries, setEntries] = useState([]);
-    const [series, setSeries] = useState(null);
     const location = useLocation();
 
     useEffect(() =>{
@@ -15,8 +14,7 @@ function EditSeriesPage(){
             setEntries(entryRes);
         }
         fetchEntries();
-        setSeries(location.state.series.series);
-    }, []);
+    }, [entries]);
 
     const createEntry = () => {
         let maxOrder = 1;
@@ -43,8 +41,13 @@ function EditSeriesPage(){
     if(entries.length === 0){
         return (
             <div>
-                <button onClick={() => createEntry()} type="submit" className="btn">Create New Entry</button>
-                <div>No entries yet</div>
+                <button onClick={() => createEntry()} type="submit"
+                        className="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
+                    Create New Entry
+                </button>
+                <div class="flex flex-col md:mx-52 flex flex-col my-3 space-y-0 mx-6 text-center">
+                    No entries yet
+                </div>
             </div>);
     } else{
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {

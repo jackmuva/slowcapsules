@@ -14,13 +14,15 @@ const Entry = ({ entry, maxEntry}) => {
         let orderNum = document.getElementById("order").value;
         let title = document.getElementById("title").value;
 
+        console.log(entry);
         entry.orderNum = orderNum;
         entry.title = title;
+        console.log(entry)
 
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
         } else {
-            EntryApi.postNewEntry(entry).then(() => {});
+            EntryApi.updateEntry(entry).then(() => {});
             toggleEditable();
         }
     }
@@ -63,8 +65,8 @@ const Entry = ({ entry, maxEntry}) => {
                 {/*TODO: See if I can display entry content*/}
                 <div className="col-span-1 text-center flex flex-col">
                     <button onClick={() => handleSubmit()} type="submit"
-                            className="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">Change
-                        Save
+                            className="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">
+                        Save Change
                     </button>
                 </div>
             </div>
