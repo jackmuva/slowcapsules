@@ -30,16 +30,12 @@ public class WriterController {
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteWriter(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long id){
-        LOGGER.info("User username is: " + userDetails.getUsername());
         if(writerService.fetchWriterByWriterId(id).isEmpty()){
-            LOGGER.info("No writer with that id");
             return new ResponseEntity<>("No writer with that id", HttpStatus.BAD_REQUEST);
         }
         else if(!userDetails.getUsername().equals(writerService.fetchWriterByWriterId(id).get(0).getEmail())){
-            LOGGER.info("Do not have permission to that id");
             return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
         }
-        LOGGER.info("Writer deleted");
         writerService.deleteWriter(id);
         return new ResponseEntity<>("Writer deleted", HttpStatus.OK);
     }

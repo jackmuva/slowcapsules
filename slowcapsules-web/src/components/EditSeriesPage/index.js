@@ -14,7 +14,7 @@ function EditSeriesPage(){
             setEntries(entryRes);
         }
         fetchEntries();
-    }, [entries]);
+    }, []);
 
     const createEntry = () => {
         let maxOrder = 1;
@@ -32,6 +32,7 @@ function EditSeriesPage(){
         }
         EntryApi.postNewEntry(entry).then(function () {});
         setEntries([...entries, entry]);
+        // setNewEntry(entry);
     };
 
     let maxOrder = 1;

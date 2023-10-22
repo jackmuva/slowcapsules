@@ -16,25 +16,25 @@ INSERT INTO series(series_id, datetime, num_entries, pen_name, summary, tags, ti
 VALUES (3, '2022-03-01', 2, 'john', 'summary-3', 'sports', 'title-3', 7, 'email_3', true);
 
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, title, email)
-VALUES(1, 'a','a', 1, 1, 'title 1', 'email_1');
+VALUES(1, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 1, 1, 'title 1', 'email_1');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(2, 'b','a', 1, 2, 'title 2', 'email_1');
+VALUES(2, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 1, 2, 'title 2', 'email_1');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(3, 'c','a', 1, 3, 'title  3', 'email_1');
+VALUES(3, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 1, 3, 'title  3', 'email_1');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(4, 'd','a', 2, 1, 'title 4', 'email_2');
+VALUES(4, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 2, 1, 'title 4', 'email_2');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(5, 'e','a', 2, 2, 'title 5', 'email_2');
+VALUES(5, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 2, 2, 'title 5', 'email_2');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(6, 'f','a', 2, 3, 'title 6','email_2');
+VALUES(6, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 2, 3, 'title 6','email_2');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(7, 'g','a', 2, 4, 'title 7','email_2');
+VALUES(7, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 2, 4, 'title 7','email_2');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(8, 'h','a', 2, 5, 'title 8','email_2');
+VALUES(8, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 2, 5, 'title 8','email_2');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(9, 'i','a', 3, 1, 'title 9','email_3');
+VALUES(9, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 3, 1, 'title 9','email_3');
 INSERT INTO entry(entry_id, entry_json, entry_html, series_id, order_num, email)
-VALUES(10, 'j','a', 3, 2, 'title 10','email_3');
+VALUES(10, '{"time":1696011276845,"blocks":[{"id":"03xufJ2tRC","type":"paragraph","data":{"text":"The third"}}],"version":"2.28.0"}','["<p>The third</p>"]', 3, 2, 'title 10','email_3');
 
 INSERT INTO writer(writer_id, email, pen_name)
 VALUES(1, 'email_4', 'jack');

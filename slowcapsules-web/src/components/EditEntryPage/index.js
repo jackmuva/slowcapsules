@@ -9,15 +9,11 @@ import edjsHTML from "editorjs-html";
 
 function EditEntryPage(){
     const location = useLocation();
-
-    // return(
-    //     <Editor entry = {location.state.entry.entry}></Editor>
-    // );
     let entry;
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
     const [series, setSeries] = useState(null);
-    // const DEFAULT_INITIAL_DATA = JSON.parse(entry.entryJson);
+    let [globalEntry, setGlobalEntry] = useState(null);
 
     const initEditor = () => {
         const editor = new EditorJS({
@@ -25,12 +21,21 @@ function EditEntryPage(){
             onReady: () => {
                 ejInstance.current = editor;
             },
-            autofocus: true,
+            // autofocus: true,
             data: DEFAULT_INITIAL_DATA,
             onChange: async () => {
                 let content = await editor.saver.save();
                 entry.entryJson = JSON.stringify(content);
                 EntryApi.updateEntry(entry).then(function (data){});
+
+                const edjsParser = edjsHTML();
+                ejInstance.current.save().then((outputData) => {
+                    const html = edjsParser.parse(outputData);
+                    entry.entryHtml = JSON.stringify(html);
+                    EntryApi.updateEntry(entry).then(function () {});
+                }).catch((error) => {
+                    console.log('Saving failed: ', error)
+                });
             },
             tools: {
                 header: Header,
@@ -69,31 +74,36 @@ function EditEntryPage(){
             ejInstance?.current?.destroy();
             ejInstance.current = null;
         };
+        setGlobalEntry(entry);
     }, []);
 
-    const handleSubmit = () => {
-        const edjsParser = edjsHTML();
-        ejInstance.current.save().then((outputData) => {
-            const html = edjsParser.parse(outputData);
-            entry.entryHtml = JSON.stringify(html);
-            EntryApi.updateEntry(entry).then(function () {});
-
-        }).catch((error) => {
-            console.log('Saving failed: ', error)
-        });
-    };
+    // const handleSubmit = () => {
+    //     const edjsParser = edjsHTML();
+    //     ejInstance.current.save().then((outputData) => {
+    //         const html = edjsParser.parse(outputData);
+    //         console.log(entry);
+    //         globalEntry.entryHtml = JSON.stringify(html);
+    //         EntryApi.updateEntry(globalEntry).then(function () {});
+    //     }).catch((error) => {
+    //         console.log('Saving failed: ', error)
+    //     });
+    // };
 
     return (
-        <div class="flex flex-col md:mx-52 shadow-2xl rounded-2xl">
-            <div id='editorjs'></div>
-            <button onClick={() => handleSubmit()} type="submit"
-                    class="m-4 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800">
-                Save Entry
-            </button>
-            <NavLink class="m-4 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800"
-                to={{pathname:'/editSeries', state: {series: {series}}}}>
-                Return to Entries
-            </NavLink>
+        <div>
+            <div className="flex sticky top-2 flex-col">
+                {/*<button onClick={() => handleSubmit()} type="submit"*/}
+                {/*        className="m-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit">*/}
+                {/*    Save Entry*/}
+                {/*</button>*/}
+                <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
+                         to={{pathname: '/editSeries', state: {series: {series}}}}>
+                    Return to Entries
+                </NavLink>
+            </div>
+            <div className="flex flex-col items-center">
+                <div class="md:w-1/2 shadow-2xl rounded-2xl" id='editorjs'></div>
+            </div>
         </div>
     );
 }
