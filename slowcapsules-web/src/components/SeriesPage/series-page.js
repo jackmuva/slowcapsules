@@ -1,6 +1,7 @@
 import Series from "./Series";
 
 const SeriesPage = ({ allSeries, fromWriter }) => {
+
     if(allSeries.length === 0) {
         return <div> No series at this time </div>;
     }

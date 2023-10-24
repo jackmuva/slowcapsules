@@ -24,7 +24,9 @@ export default class StandardApi {
     deleteWithAuth(url){
         return fetch(apiUrl.concat(url), {
             method: 'DELETE',
-            'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+            headers:{
+                'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+            }
         });
     }
 

@@ -8,7 +8,7 @@ class SeriesApi extends StandardApi{
         return this.get(`/api/series/${id}`).then(response => response.json());
     }
     deleteSeries(seriesId){
-        return this.delete(`/api/series/delete/${seriesId}`).then(response => response.json());
+        return this.deleteWithAuth(`/api/series/delete/${seriesId}`).then(response => response.json());
     }
     getNewestSeries(){
         return this.get('/api/series/getNewest').then(response => response.json());

@@ -3,8 +3,7 @@ import {NavLink} from 'react-router-dom';
 import React, {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 
-const Series = ({ series, fromWriterDashboard }) => {
-    // const [published, setPublished] = useState(null);
+const Series = ({ series, fromWriterDashboard, setUpdate }) => {
     const writerBool = fromWriterDashboard
 
     function getDateTime() {
@@ -38,7 +37,10 @@ const Series = ({ series, fromWriterDashboard }) => {
         series.datetime = getDateTime();
         series.published = e.target.checked;
         SeriesApi.postSeries(series).then(() => {});
-        // setPublished(series.published);
+    };
+
+    const deleteSeries = () => {
+        SeriesApi.deleteSeries(series.seriesId).then(() => {});
     };
 
     return (
@@ -75,6 +77,15 @@ const Series = ({ series, fromWriterDashboard }) => {
                             <span class="ml-1 text-sm font-medium text-gray-900 dark:text-gray-300">Publish</span>
                         </label>
                     </div>}
+                {writerBool &&
+                    <button onClick={() => {
+                        deleteSeries();
+                        setUpdate();
+                    }} type="submit"
+                            className="px-2 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-800">
+                        Delete Series
+                    </button>
+                }
             </div>
         </div>
     );

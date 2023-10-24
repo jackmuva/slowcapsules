@@ -8,7 +8,6 @@ import {NavLink} from 'react-router-dom';
 function WriterDashboard (){
     const [writer, setWriter] = useState([]);
     const [series, setSeries] = useState([]);
-    const [searchResults, setSearchResults] = useState([]);
 
     useEffect(() => {
         const fetchWriter = async() => {
@@ -24,7 +23,6 @@ function WriterDashboard (){
             const rsp = SeriesApi.getSeriesByWriter(name);
             const wrSeries = await rsp;
             setSeries(wrSeries);
-            setSearchResults(wrSeries);
         }
         if(writer.length !== 0){
             fetchSeries(writer[0].penName)
@@ -48,7 +46,7 @@ function WriterDashboard (){
                         Create New Series
                     </NavLink>
                 </div>
-                <SeriesPage allSeries = {searchResults} fromWriter = {true}></SeriesPage>
+                <SeriesPage allSeries = {series} fromWriter = {true}></SeriesPage>
             </div>
         );
     }

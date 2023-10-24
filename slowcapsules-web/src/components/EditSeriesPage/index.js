@@ -32,7 +32,6 @@ function EditSeriesPage(){
         }
         EntryApi.postNewEntry(entry).then(function () {});
         setEntries([...entries, entry]);
-        // setNewEntry(entry);
     };
 
     let maxOrder = 1;
