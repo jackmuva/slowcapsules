@@ -6,6 +6,7 @@ import Entry from "../Entry";
 function EditSeriesPage(){
     const [entries, setEntries] = useState([]);
     const location = useLocation();
+    console.log(location.state)
 
     useEffect(() =>{
         const fetchEntries = async() => {
@@ -31,6 +32,7 @@ function EditSeriesPage(){
             email: location.state.series.series.email
         }
         EntryApi.postNewEntry(entry).then(function () {});
+        // TODO: We need to retrieve the entries again so that the new entry has an entryId
         setEntries([...entries, entry]);
     };
 

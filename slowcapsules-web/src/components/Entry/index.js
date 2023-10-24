@@ -14,10 +14,8 @@ const Entry = ({ entry, maxEntry}) => {
         let orderNum = document.getElementById("order").value;
         let title = document.getElementById("title").value;
 
-        console.log(entry);
         entry.orderNum = orderNum;
         entry.title = title;
-        console.log(entry)
 
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
@@ -47,7 +45,7 @@ const Entry = ({ entry, maxEntry}) => {
                     }
                     <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
                         <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
-                            Delete Series
+                            Delete Entry
                         </NavLink>
                     </button>
                 </div>

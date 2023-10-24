@@ -24,9 +24,14 @@ const DeleteConfirmationPage = () => {
         }
     };
 
-    if(errorMessage === "Deleted Successfully" && (type === "series" || type === "entry")){
-        return <Redirect to='/writerDashboard'/>
-    }else if(errorMessage === "Deleted Successfully" && type === "writer"){
+    if(errorMessage === "Deleted Successfully" && type === "series"){
+        return <Redirect to='/writerDashboard' />
+    } else if (errorMessage === "Deleted Successfully" && type === "entry"){
+        return <Redirect to={{
+            pathname: "/editSeries",
+            state: {series:{ series: {seriesId: obj.entry.entryId, email: obj.entry.email} }}
+        }} />
+    } else if(errorMessage === "Deleted Successfully" && type === "writer"){
         return <Redirect to='/'/>
     }
     return(
