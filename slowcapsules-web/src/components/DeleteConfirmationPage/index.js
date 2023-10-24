@@ -49,7 +49,7 @@ const DeleteConfirmationPage = () => {
                 </div>
             </div>
             <div>
-                <img src="images/pug-mug.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
+                <img src="images/malu.png" className="h-full hidden md:block rounded-r-2xl" alt=""/>
             </div>
         </div>
     );
