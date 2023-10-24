@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import React, {useState} from "react";
 import SeriesApi from "../../../api/SeriesApi";
 
-const Series = ({ series, fromWriterDashboard, setUpdate }) => {
+const Series = ({ series, fromWriterDashboard }) => {
     const writerBool = fromWriterDashboard
 
     function getDateTime() {
@@ -39,10 +39,6 @@ const Series = ({ series, fromWriterDashboard, setUpdate }) => {
         SeriesApi.postSeries(series).then(() => {});
     };
 
-    const deleteSeries = () => {
-        SeriesApi.deleteSeries(series.seriesId).then(() => {});
-    };
-
     return (
         <div class="grid grid-cols-4 border-b-2 border-stone-200">
             <div class="p-1 m-0 col-span-3">
@@ -63,9 +59,8 @@ const Series = ({ series, fromWriterDashboard, setUpdate }) => {
 
                 {writerBool && sessionStorage.getItem("jwt") !== null &&
                     <button class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800">
-                        <NavLink to={{
-                            pathname:'/editSeries',
-                            state: {series: {series}}}}>Edit
+                        <NavLink to={{pathname:'/editSeries', state: {series: {series}}}}>
+                            Edit
                         </NavLink>
                     </button>}
                 {writerBool &&
@@ -78,12 +73,10 @@ const Series = ({ series, fromWriterDashboard, setUpdate }) => {
                         </label>
                     </div>}
                 {writerBool &&
-                    <button onClick={() => {
-                        deleteSeries();
-                        setUpdate();
-                    }} type="submit"
-                            className="px-2 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-800">
-                        Delete Series
+                    <button className="mb-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                        <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'series', obj: { series }}}}>
+                            Delete Series
+                        </NavLink>
                     </button>
                 }
             </div>

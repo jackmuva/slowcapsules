@@ -13,7 +13,6 @@ function EditEntryPage(){
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
     const [series, setSeries] = useState(null);
-    let [globalEntry, setGlobalEntry] = useState(null);
 
     const initEditor = () => {
         const editor = new EditorJS({
@@ -74,28 +73,11 @@ function EditEntryPage(){
             ejInstance?.current?.destroy();
             ejInstance.current = null;
         };
-        setGlobalEntry(entry);
     }, []);
-
-    // const handleSubmit = () => {
-    //     const edjsParser = edjsHTML();
-    //     ejInstance.current.save().then((outputData) => {
-    //         const html = edjsParser.parse(outputData);
-    //         console.log(entry);
-    //         globalEntry.entryHtml = JSON.stringify(html);
-    //         EntryApi.updateEntry(globalEntry).then(function () {});
-    //     }).catch((error) => {
-    //         console.log('Saving failed: ', error)
-    //     });
-    // };
 
     return (
         <div>
             <div className="flex sticky top-2 flex-col">
-                {/*<button onClick={() => handleSubmit()} type="submit"*/}
-                {/*        className="m-2 px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit">*/}
-                {/*    Save Entry*/}
-                {/*</button>*/}
                 <NavLink class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
                          to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries

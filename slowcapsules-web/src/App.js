@@ -11,6 +11,7 @@ import WriterDashboard from "./components/WriterDashboard";
 import EditSeriesPage from "./components/EditSeriesPage";
 import EditEntryPage from "./components/EditEntryPage";
 import NewSeriesPage from "./components/NewSeriesPage";
+import DeleteConfirmationPage from "./components/DeleteConfirmationPage";
 
 function App() {
     const [allSeries, setAllSeries] = useState([]);
@@ -32,6 +33,9 @@ function App() {
         <div class="max-w-full bg-zinc-50">
           <Header/>
             <Switch>
+                <Route path = "/deleteConfirmation">
+                    <DeleteConfirmationPage></DeleteConfirmationPage>
+                </Route>
                 <Route path = "/newSeries">
                     <NewSeriesPage></NewSeriesPage>
                 </Route>

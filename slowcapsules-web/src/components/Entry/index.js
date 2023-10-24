@@ -36,13 +36,20 @@ const Entry = ({ entry, maxEntry}) => {
                 </div>
                 {/*TODO: See if I can display entry content*/}
                 <div class="col-span-1 text-center flex flex-col">
-                    <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">Change title and order</button>
+                    <button onClick={() => toggleEditable()} type="submit" class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-green-800 hover:bg-green-950">
+                        Change title and order
+                    </button>
                     {sessionStorage.getItem("jwt") !== null &&
                         <NavLink class="mt-2 px-4 py-1 rounded-md text-slate-50 bg-blue-600 hover:bg-blue-800"
                                  to={{pathname: '/editEntry', state: {entry: {entry}}}}>
                             Edit Content
                         </NavLink>
                     }
+                    <button className="my-2 px-4 py-1 rounded-md text-slate-50 bg-red-700 hover:bg-red-900">
+                        <NavLink to={{pathname: '/deleteConfirmation', state: {type: 'entry', obj: { entry }}}}>
+                            Delete Series
+                        </NavLink>
+                    </button>
                 </div>
             </div>
         );
