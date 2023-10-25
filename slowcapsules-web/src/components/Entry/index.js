@@ -33,8 +33,8 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         return (
             <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
                 <div className="p-1 m-0 col-span-3">
-                    <h2 class="mb-0 font-serif text-2xl font-bold">{entry.title}</h2>
-                    <h3 class="ml-3 my-0 font-serif text-base"> Order: {entry.orderNum}</h3>
+                    <h2 class="mb-0 font-sans text-2xl font-bold">{entry.title}</h2>
+                    <h3 class="ml-3 my-0 font-sans text-base"> Order: {entry.orderNum}</h3>
                 </div>
                 {/*TODO: See if I can display entry content*/}
                 <div class="col-span-1 text-center flex flex-col">
@@ -60,13 +60,13 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
             <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
                 <div className="p-1 m-0 col-span-3">
                     <div>
-                        <input id="title" className="text-2xl mb-0 border border-gray-300 rounded-md placeholder:font-serif placeholder:font-light"
+                        <input id="title" className="text-2xl mb-0 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                                defaultValue={entry.title}/>
                     </div>
                     <div class="inline-flex">
-                        <h3 className="ml-3 my-0 font-serif text-base"> Order: </h3>
+                        <h3 className="ml-3 my-0 font-sans text-base"> Order: </h3>
                         <input type="number" id="order" min="1" max = {maxEntry}
-                               class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-serif placeholder:font-light"
+                               class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
                                defaultValue={entry.orderNum}/>
                     </div>
                     {errorMessage && <div className="error"> {errorMessage} </div>}

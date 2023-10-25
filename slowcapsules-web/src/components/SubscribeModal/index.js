@@ -49,7 +49,7 @@ function SubscribeModal(props) {
                 Subscribe
             </button>
             <Dialog class = "flex flex-col md:flex-row rounded-l-xl p-10" open={open} onClose={handleClose}>
-                <DialogTitle class = "max-w-s font-serif text-xl font-small text-center mx-6 mt-6">Subscribe to Email Series</DialogTitle>
+                <DialogTitle class = "max-w-s font-sans text-xl font-small text-center mx-6 mt-6">Subscribe to Email Series</DialogTitle>
                 <DialogContent class = "flex flex-col mx-5">
                         <TextField label="Email" name="subscriberEmail" autoFocus
                                    variant="standard" value={subscription.subscriberEmail}

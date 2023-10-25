@@ -4,7 +4,7 @@ const AboutPage = () => {
     return(
         <div class="flex justify-center items-center w-screen">
             <div className="flex flex-col m-6 px-6 pt-4 pb-8 space-y-2 bg-white shadow-2xl rounded-2xl md:mx-52 w-1/2">
-                <h2 className="font-serif test-4xl font-bold mb-0 mt-4">
+                <h2 className="font-sans test-4xl font-bold mb-0 mt-4">
                     Welcome to OlaTrain
                 </h2>
                 <p class="ml-8 mb-4 max-2-sm font-sans">
@@ -20,7 +20,7 @@ const AboutPage = () => {
                     in your email. If you are looking to write an email series, sign up for an account!
                 </p>
 
-                <h2 className="font-serif text-2xl font-bold mb-0">
+                <h2 className="font-sans text-2xl font-bold mb-0">
                     Main Idea behind OlaTrain
                 </h2>
                 <p className="ml-8 mb-8 max-2-sm font-sans">

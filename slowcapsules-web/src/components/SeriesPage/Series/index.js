@@ -43,15 +43,15 @@ const Series = ({ series, fromWriterDashboard }) => {
         <div class="grid grid-cols-4 border-b-2 border-stone-200">
             <div class="p-1 m-0 col-span-3">
                 <div class = "flex-auto">
-                    <h2 class="mb-0 font-serif text-3xl font-bold"> {series.title}</h2>
-                    <h3 class="ml-3 my-0 font-serif text-base"> Written By: {series.penName}</h3>
-                    <h3 class="font-serif text-base overflow-auto">Summary: {series.summary}</h3>
+                    <h2 class="mb-0 font-sans text-3xl font-bold"> {series.title}</h2>
+                    <h3 class="ml-3 my-0 font-sans text-base"> Written By: {series.penName}</h3>
+                    <h3 class="font-sans text-base overflow-auto">Summary: {series.summary}</h3>
                 </div>
                 <div class="flex">
-                    <p class="mr-3 font-serif text-xs"> Total Entries: <strong>{series.numEntries}</strong> </p>
-                    <p class="mr-3 font-serif text-xs"> Cadence: <strong>Every {series.cadence} days</strong></p>
+                    <p class="mr-3 font-sans text-xs"> Total Entries: <strong>{series.numEntries}</strong> </p>
+                    <p class="mr-3 font-sans text-xs"> Cadence: <strong>Every {series.cadence} days</strong></p>
                     {series.tags !== '' &&
-                        <p class="mr-3 font-serif text-xs"> Tags: {series.tags} </p>}
+                        <p class="mr-3 font-sans text-xs"> Tags: {series.tags} </p>}
                 </div>
             </div>
             <div class="col-span-1 text-center">

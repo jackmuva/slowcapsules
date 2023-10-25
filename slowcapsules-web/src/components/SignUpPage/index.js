@@ -59,7 +59,7 @@ function SignUpPage () {
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52">
                 <div className="p-6 md:p-20">
-                    <h2 className="font-serif test-4xl font-bold mb-2">Sign Up</h2>
+                    <h2 className="font-sans test-4xl font-bold mb-2">Sign Up</h2>
                     <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                         Sign up to publish email series and share with other readers
                     </p>

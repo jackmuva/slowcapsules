@@ -66,7 +66,7 @@ function NewSeriesPage() {
             <div className="flex flex-col m-6 space-y-10 bg-white shadow-2xl rounded-2xl
                 md:flex-row md:space-y-0 md:mx-52 w-fit">
                 <div className="p-6 md:p-20">
-                    <h2 className="font-serif text-4xl font-bold mb-2">Create a new email series</h2>
+                    <h2 className="font-sans text-4xl font-bold mb-2">Create a new email series</h2>
                     <p className="mb-2 max-2-sm font-sans font-light text-gray-600">
                         After creating, you will be able to add entries, edit this information, and publish from the writer home page
                     </p>

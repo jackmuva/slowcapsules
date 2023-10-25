@@ -1,9 +1,16 @@
 import Series from "./Series";
+import React from "react";
 
 const SeriesPage = ({ allSeries, fromWriter }) => {
 
     if(allSeries.length === 0) {
-        return <div> No series at this time </div>;
+        return (
+            <div className="flex items-center md:mx-52">
+                <div className="flex flex-col my-3 space-y-0 mx-6 min-w-full text-center items-center">
+                    <h3 className="my-8 font-sans text-3xl"> No Series Yet </h3>
+                </div>
+            </div>
+        );
     }
     else {
         const arraySeriesItems = allSeries.map(series =>
