@@ -10,6 +10,11 @@ function SignUpPage () {
     const [confirmPassword,setConfirmPassword] = useState(null);
     const [errorMessage, setErrorMessage] = useState(null);
 
+    function validateEmail(email) {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+
     const handleInputChange = (e) => {
         const {id , value} = e.target;
         if(id === "username"){
@@ -28,14 +33,16 @@ function SignUpPage () {
 
     const handleSubmit = () => {
         if(password !== confirmPassword){
-            setErrorMessage("Password does not match")
+            setErrorMessage("Password does not match");
+        } else if (!validateEmail(email)){
+            setErrorMessage("Please enter a valid email");
         }
         else{
             let user = {
                 username: username,
                 email: email,
                 password: password
-            }
+            };
             AuthorizationApi.postNewUser(user);
 
             let writer = {
