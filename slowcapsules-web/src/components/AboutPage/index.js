@@ -10,7 +10,7 @@ const AboutPage = () => {
                 <p class="ml-8 mb-4 max-2-sm font-sans">
                     OlaTrain is a platform for readers and writers to read and subscribe to email series.
                     We look at email series as a set number of emails that writers do not need to consistently add to.
-                    Writers can write out their emails, choose how often readers will receive them (i.e. every 2 days,
+                    Writers can write out their emails and choose how often readers will receive them (i.e. every 2 days,
                     every week, every month, etc).
                     <br/><br/>
                     Readers after subscribing will receive the series in its entirety, from the first entry to
