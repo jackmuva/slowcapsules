@@ -5,8 +5,7 @@ import SeriesApi from "../../api/SeriesApi";
 
 function NewSeriesPage() {
     const location = useLocation();
-    const [errorMessage, setErrorMessage] = useState(null);
-    console.log(location.state.writer.writer[0])
+    const [errorMessage, setErrorMessage] = useState(null)
     function getDateTime() {
         let now     = new Date();
         let year    = now.getFullYear();
@@ -54,8 +53,9 @@ function NewSeriesPage() {
         if (series.title === '' || series.summary === '' || series.cadence === '') {
             setErrorMessage('Title, Summary, and Cadence may not be blank');
         } else {
-            SeriesApi.postSeries(series).then(() => {});
-            setErrorMessage('Created Successfully');
+            SeriesApi.postSeries(series).then(() => {
+                setErrorMessage('Created Successfully');
+            });
         }
     }
 

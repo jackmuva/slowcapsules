@@ -20,21 +20,22 @@ public class SeriesController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
-    public ResponseEntity<String> postSeries(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Series series){
+    public ResponseEntity postSeries(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Series series){
         if(series.getEmail().equals(userDetails.getUsername())){
-            return new ResponseEntity<>(seriesService.saveSeries(series).toString(), HttpStatus.OK);
+            seriesService.saveSeries(series);
+            return new ResponseEntity(HttpStatus.OK);
         }
         return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete/{seriesId}")
     @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<String> deleteSeries(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long seriesId){
+    public ResponseEntity deleteSeries(@AuthenticationPrincipal UserDetails userDetails, @PathVariable Long seriesId){
         if(seriesService.fetchBySeriesId(seriesId).get(0).getEmail().equals(userDetails.getUsername())){
             seriesService.deleteSeries(seriesId);
-            return new ResponseEntity<>("Series Deleted", HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity<>("Do not have permission to that series", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getNewest")
