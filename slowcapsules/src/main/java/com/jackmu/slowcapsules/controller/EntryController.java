@@ -22,11 +22,11 @@ public class EntryController {
 
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/new")
-    public ResponseEntity<String> postEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
+    public ResponseEntity<Entry> postEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
         if(entry.getEmail().equals(userDetails.getUsername())) {
-            return new ResponseEntity<>(entryService.saveEntry(entry).toString(), HttpStatus.OK);
+            return new ResponseEntity<>(entryService.saveEntry(entry), HttpStatus.OK);
         }
-        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @PreAuthorize("hasRole('USER')")
@@ -35,8 +35,7 @@ public class EntryController {
         if(entry.getEmail().equals(userDetails.getUsername())) {
             return new ResponseEntity<>(entryService.updateEntry(entry), HttpStatus.OK);
         }
-        return null;
-//        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @PreAuthorize("hasRole('USER')")

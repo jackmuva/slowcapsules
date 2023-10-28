@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class EntryServiceImpl implements EntryService{
     @Autowired
     private EntryRepository entryRepository;
-    private static final Logger LOGGER = Logger.getLogger(EntryServiceImpl.class.getName());
 
     public Entry saveEntry(Entry entry){
         return entryRepository.save(entry);
@@ -42,7 +41,6 @@ public class EntryServiceImpl implements EntryService{
     protected void changeOtherEntryOrders(Entry entry){
         Integer oldOrderNum = fetchEntriesByEntryId(entry.getEntryId()).get(0).getOrderNum();
         Integer newOrderNum = entry.getOrderNum();
-        LOGGER.info(oldOrderNum.toString() + " => " + newOrderNum.toString());
         if(oldOrderNum > newOrderNum){
             pushBackOtherEntryOrders(entry, newOrderNum, oldOrderNum);
         } else {
@@ -51,8 +49,7 @@ public class EntryServiceImpl implements EntryService{
     }
 
     protected void pushBackOtherEntryOrders(Entry entry, Integer newOrderNum, Integer oldOrderNum){
-        List<Entry> allEntries = fetchEntriesBySeriesId(entry.getEntryId());
-
+        List<Entry> allEntries = fetchEntriesBySeriesId(entry.getSeriesId());
         for(Entry ent:allEntries){
             if(ent.getOrderNum() >= newOrderNum && ent.getOrderNum() <= oldOrderNum){
                 ent.setOrderNum(ent.getOrderNum() + 1);
@@ -63,7 +60,7 @@ public class EntryServiceImpl implements EntryService{
     }
 
     protected void moveUpOtherEntryOrders(Entry entry, Integer newOrderNum, Integer oldOrderNum){
-        List<Entry> allEntries = fetchEntriesBySeriesId(entry.getEntryId());
+        List<Entry> allEntries = fetchEntriesBySeriesId(entry.getSeriesId());
 
         for(Entry ent:allEntries){
             if(ent.getOrderNum() <= newOrderNum && ent.getOrderNum() >= oldOrderNum){

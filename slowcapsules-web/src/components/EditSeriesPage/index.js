@@ -32,9 +32,12 @@ function EditSeriesPage(){
             title: "New Entry",
             email: location.state.series.series.email
         }
-        EntryApi.postNewEntry(entry).then(function () {});
+        EntryApi.postNewEntry(entry).then((data) => {
+            setEntries([...entries, entry]);
+            setEdited(true);
+        });
         // TODO: We need to retrieve the entries again so that the new entry has an entryId
-        setEntries([...entries, entry]);
+
     };
 
     let maxOrder = 1;
