@@ -53,7 +53,6 @@ public class EntryServiceImpl implements EntryService{
         for(Entry ent:allEntries){
             if(ent.getOrderNum() >= newOrderNum && ent.getOrderNum() <= oldOrderNum){
                 ent.setOrderNum(ent.getOrderNum() + 1);
-                LOGGER.info(ent.toString());
                 entryRepository.save(ent);
             }
         }
