@@ -83,8 +83,10 @@ function EditEntryPage(){
                     Return to Entries
                 </NavLink>
             </div>
-            <div className="flex flex-col items-center">
-                <div class="md:w-1/2 shadow-2xl rounded-2xl" id='editorjs'></div>
+            <div className="flex items-center justify-center">
+                <div class="p-6 flex-col w-1/2 shadow-2xl rounded-2xl">
+                    <div id='editorjs'></div>
+                </div>
             </div>
         </div>
     );

@@ -1,14 +1,11 @@
 import {Redirect, useLocation} from "react-router-dom";
 import {useState} from "react";
-import AuthorizationApi from "../../api/AuthorizationApi";
-import WriterApi from "../../api/WriterApi";
 import SeriesApi from "../../api/SeriesApi";
 import EntryApi from "../../api/EntryApi";
 
 const DeleteConfirmationPage = () => {
     const [errorMessage, setErrorMessage] = useState(null);
     const location = useLocation();
-    console.log(location.state);
     const type = location.state.type;
     const obj = location.state.obj;
 
@@ -29,7 +26,7 @@ const DeleteConfirmationPage = () => {
     } else if (errorMessage === "Deleted Successfully" && type === "entry"){
         return <Redirect to={{
             pathname: "/editSeries",
-            state: {series:{ series: {seriesId: obj.entry.entryId, email: obj.entry.email} }}
+            state: {series:{ series: {seriesId: obj.entry.seriesId, email: obj.entry.email} }}
         }} />
     } else if(errorMessage === "Deleted Successfully" && type === "writer"){
         return <Redirect to='/'/>
