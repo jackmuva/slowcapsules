@@ -15,6 +15,7 @@ function EditSeriesPage(){
             setEntries(entryRes);
         }
         fetchEntries();
+        setEdited(false);
     }, [edited]);
 
     const createEntry = () => {

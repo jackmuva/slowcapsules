@@ -40,7 +40,7 @@ public class EntryServiceImpl implements EntryService{
         Integer oldOrderNum = fetchEntriesByEntryId(entry.getEntryId()).get(0).getOrderNum();
         Integer newOrderNum = entry.getOrderNum();
 
-        if(oldOrderNum < newOrderNum){
+        if(oldOrderNum > newOrderNum){
             pushBackOtherEntryOrders(entry, newOrderNum, oldOrderNum);
         } else {
             moveUpOtherEntryOrders(entry, newOrderNum, oldOrderNum);
