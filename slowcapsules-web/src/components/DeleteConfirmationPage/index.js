@@ -11,11 +11,13 @@ const DeleteConfirmationPage = () => {
 
     const handleSubmit = () => {
         if(type === "series"){
-            SeriesApi.deleteSeries(obj.series.seriesId).then(() => {});
-            setErrorMessage("Deleted Successfully");
+            SeriesApi.deleteSeries(obj.series.seriesId).then(() => {
+                setErrorMessage("Deleted Successfully");
+            });
         } else if (type === "entry"){
-            EntryApi.deleteEntry(obj.entry.entryId).then(() => {});
-            setErrorMessage("Deleted Successfully");
+            EntryApi.deleteEntry(obj.entry.entryId).then(() => {
+                setErrorMessage("Deleted Successfully");
+            });
         } else if (type === "writer"){
 
         }

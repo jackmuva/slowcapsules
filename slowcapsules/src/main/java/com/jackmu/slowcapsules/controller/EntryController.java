@@ -40,12 +40,12 @@ public class EntryController {
 
     @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteEntry(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
+    public ResponseEntity deleteEntry(@AuthenticationPrincipal UserDetails userDetails,@PathVariable Long id){
         if(entryService.fetchEntriesByEntryId(id).get(0).getEmail().equals(userDetails.getUsername())){
             entryService.deleteEntry(id);
-            return new ResponseEntity<>("Series Deleted", HttpStatus.OK);
+            return new ResponseEntity(HttpStatus.OK);
 }
-        return new ResponseEntity<>("Do not have permission to that entry", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(HttpStatus.BAD_REQUEST);
     }
 
     @GetMapping("/getBySeries/{id}")

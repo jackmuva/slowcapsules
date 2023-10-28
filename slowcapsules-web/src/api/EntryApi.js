@@ -9,7 +9,7 @@ class EntryApi extends StandardApi{
         return this.putWithAuth('/api/entry/update', entry).then(response => response.json());
     }
     deleteEntry(id){
-        return this.deleteWithAuth(`/api/entry/delete/${id}`).then(response => response.json());
+        return this.deleteWithAuth(`/api/entry/delete/${id}`);
     }
     getEntriesBySeriesId(id){
         return this.get(`/api/entry/getBySeries/${id}`).then(response => response.json());
