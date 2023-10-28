@@ -29,26 +29,19 @@ function WriterDashboard (){
         }
     }, [writer])
 
-    if(series.length === 0){
-        return(
-            <div>
-                Create your first series
+    return(
+        <div>
+            <div className="m-4">
+                <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
+                         to={{
+                             pathname: '/newSeries',
+                             state: {writer: {writer}}
+                         }}>
+                    Create New Series
+                </NavLink>
             </div>
-        );
-    }else{
-        return(
-            <div>
-                <div class = "m-4">
-                    <NavLink class="px-2 py-1 rounded-md text-slate-50 bg-orange-700 hover:bg-orange-800"
-                             to={{
-                        pathname:'/newSeries',
-                        state: {writer: {writer}}}}>
-                        Create New Series
-                    </NavLink>
-                </div>
-                <SeriesPage allSeries = {series} fromWriter = {true}></SeriesPage>
-            </div>
-        );
-    }
+            <SeriesPage allSeries={series} fromWriter={true}></SeriesPage>
+        </div>
+    );
 }
 export default WriterDashboard;

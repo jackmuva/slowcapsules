@@ -4,6 +4,10 @@ class SeriesApi extends StandardApi{
     postSeries(series){
         return this.postWithAuth('/api/series/new', series);
     }
+
+    putSeries(series){
+        return this.putWithAuth('/api/series/update', series).then(response => response.json());
+    }
     getSeriesById(id){
         return this.get(`/api/series/${id}`).then(response => response.json());
     }

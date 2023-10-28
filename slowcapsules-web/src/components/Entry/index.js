@@ -1,5 +1,5 @@
 import {NavLink} from 'react-router-dom';
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import EntryApi from "../../api/EntryApi";
 
 const Entry = ({ entry, maxEntry, setEdited}) => {

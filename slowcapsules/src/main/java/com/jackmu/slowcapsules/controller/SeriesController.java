@@ -25,7 +25,16 @@ public class SeriesController {
             seriesService.saveSeries(series);
             return new ResponseEntity(HttpStatus.OK);
         }
-        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @PutMapping("/update")
+    public ResponseEntity<Series> putSeries(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Series series){
+        if(series.getEmail().equals(userDetails.getUsername())){
+            return new ResponseEntity(seriesService.saveSeries(series), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
     @DeleteMapping("/delete/{seriesId}")

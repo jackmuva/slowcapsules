@@ -9,6 +9,25 @@ const DeleteConfirmationPage = () => {
     const type = location.state.type;
     const obj = location.state.obj;
 
+    const decrementSeries = () => {
+
+        getSeriesById(obj.entry.seriesId).then((data) => {
+            let series = data[0];
+            console.log(series);
+            series.numEntries = series.numEntries - 1;
+            const updateSeries = async (ser) => {
+                await SeriesApi.putSeries(ser);
+            }
+            updateSeries(series);
+        });
+    };
+
+    const getSeriesById = async (id) => {
+       const rsp = SeriesApi.getSeriesById(id);
+       const series = await rsp;
+       return series;
+    }
+
     const handleSubmit = () => {
         if(type === "series"){
             SeriesApi.deleteSeries(obj.series.seriesId).then(() => {
@@ -16,6 +35,7 @@ const DeleteConfirmationPage = () => {
             });
         } else if (type === "entry"){
             EntryApi.deleteEntry(obj.entry.entryId).then(() => {
+                decrementSeries();
                 setErrorMessage("Deleted Successfully");
             });
         } else if (type === "writer"){
