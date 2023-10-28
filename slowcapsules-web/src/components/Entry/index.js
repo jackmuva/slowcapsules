@@ -2,7 +2,7 @@ import {NavLink} from 'react-router-dom';
 import React, {useEffect, useState} from "react";
 import EntryApi from "../../api/EntryApi";
 
-const Entry = ({ entry, maxEntry}) => {
+const Entry = ({ entry, maxEntry, setEdited}) => {
     const [editable, setEditable] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
 
@@ -20,8 +20,12 @@ const Entry = ({ entry, maxEntry}) => {
         if(title === '' || orderNum === ''){
             setErrorMessage('Title and Order may not be blank');
         } else {
-            EntryApi.updateEntry(entry).then(() => {});
-            toggleEditable();
+            EntryApi.updateEntry(entry).then((data) => {
+                toggleEditable();
+                setEdited(true);
+            }).catch((err) => {
+                console.log(err);
+            });
         }
     }
 

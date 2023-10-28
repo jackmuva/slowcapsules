@@ -31,11 +31,12 @@ public class EntryController {
 
     @PreAuthorize("hasRole('USER')")
     @PutMapping("/update")
-    public ResponseEntity<String> putEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
+    public ResponseEntity<Entry> putEntry(@AuthenticationPrincipal UserDetails userDetails, @RequestBody Entry entry){
         if(entry.getEmail().equals(userDetails.getUsername())) {
-            return new ResponseEntity<>(entryService.saveEntry(entry).toString(), HttpStatus.OK);
+            return new ResponseEntity<>(entryService.updateEntry(entry), HttpStatus.OK);
         }
-        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
+        return null;
+//        return new ResponseEntity<>("Do not have permission to that id", HttpStatus.BAD_REQUEST);
     }
 
     @PreAuthorize("hasRole('USER')")

@@ -5,8 +5,8 @@ import Entry from "../Entry";
 
 function EditSeriesPage(){
     const [entries, setEntries] = useState([]);
+    const [edited, setEdited] = useState(false);
     const location = useLocation();
-    console.log(location.state)
 
     useEffect(() =>{
         const fetchEntries = async() => {
@@ -15,7 +15,7 @@ function EditSeriesPage(){
             setEntries(entryRes);
         }
         fetchEntries();
-    }, []);
+    }, [edited]);
 
     const createEntry = () => {
         let maxOrder = 1;
@@ -55,7 +55,7 @@ function EditSeriesPage(){
         const entryItems = entries.sort(function(a, b){return a.orderNum - b.orderNum}).map(entry => {
             return (
                 <div>
-                    <Entry entry = {entry} maxEntry = {maxOrder}></Entry>
+                    <Entry entry = {entry} maxEntry = {maxOrder} setEdited = {setEdited}></Entry>
                 </div>);
         }
         );
