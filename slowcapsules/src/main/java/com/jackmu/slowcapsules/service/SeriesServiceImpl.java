@@ -33,8 +33,7 @@ public class SeriesServiceImpl implements SeriesService{
     }
 
     public List<Series> fetchByKeyword(String keyword, Boolean published){
-        return seriesRepository.findAllByPenNameIsContainingIgnoreCaseOrTagsIsContainingIgnoreCaseOrSummaryIsContainingIgnoreCaseOrTitleIsContainingIgnoreCaseAndPublished(
-                keyword, keyword, keyword, keyword, published);
+        return seriesRepository.findAllByKeyword(keyword, keyword, keyword, keyword, published);
     }
 
     public List<Series> fetchBySeriesId(Long id){
