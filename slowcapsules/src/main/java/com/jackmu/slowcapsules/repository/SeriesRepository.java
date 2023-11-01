@@ -1,6 +1,8 @@
 package com.jackmu.slowcapsules.repository;
 
 import com.jackmu.slowcapsules.model.Series;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,7 +14,7 @@ import java.util.List;
 
 @Repository
 public interface SeriesRepository extends JpaRepository<Series, Long> {
-    List<Series> findByPublishedIsTrueOrderByDatetimeDesc();
+    Page<Series> findByPublishedIsTrueOrderByDatetimeDesc(Pageable pageable);
     List<Series> findByPenNameIgnoreCaseAndPublished(String penName, Boolean publish);
     List<Series> findByPenNameIgnoreCase(String penName);
     List<Series> findAllByTagsIsContainingIgnoreCaseAndPublishedIsTrue(String tag);

@@ -3,6 +3,9 @@ package com.jackmu.slowcapsules.controller;
 import com.jackmu.slowcapsules.model.Series;
 import com.jackmu.slowcapsules.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -48,8 +52,14 @@ public class SeriesController {
     }
 
     @GetMapping("/getNewest")
-    public List<Series> getNewestSeries(){
-        return seriesService.fetchNewest();
+    public List<Series> getNewestSeries(@RequestParam(defaultValue = "0") int page){
+        try{
+            Pageable paging = PageRequest.of(page, 1);
+            Page<Series> pageSeries = seriesService.fetchNewest(paging);
+            return pageSeries.getContent();
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @GetMapping("/writer/{writer}")

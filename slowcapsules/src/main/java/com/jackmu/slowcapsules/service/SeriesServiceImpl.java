@@ -3,6 +3,8 @@ package com.jackmu.slowcapsules.service;
 import com.jackmu.slowcapsules.model.Series;
 import com.jackmu.slowcapsules.repository.SeriesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +22,8 @@ public class SeriesServiceImpl implements SeriesService{
         seriesRepository.deleteById(id);
     }
 
-    public List<Series> fetchNewest(){
-        return seriesRepository.findByPublishedIsTrueOrderByDatetimeDesc();
+    public Page<Series> fetchNewest(Pageable pageable){
+        return seriesRepository.findByPublishedIsTrueOrderByDatetimeDesc(pageable);
     }
 
     public List<Series> fetchByWriter(String penName){
