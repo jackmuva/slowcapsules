@@ -1,9 +1,6 @@
 import Header from "./components/Header/header";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import SeriesPage from "./components/SeriesPage/series-page";
-import SeriesApi from "./api/SeriesApi";
-import SeriesFilter from "./components/SeriesPage/SeriesFilter/series-filer";
 import SignUpPage from "./components/SignUpPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import WriterDashboard from "./components/WriterDashboard";
@@ -12,21 +9,10 @@ import EditEntryPage from "./components/EditEntryPage";
 import NewSeriesPage from "./components/NewSeriesPage";
 import DeleteConfirmationPage from "./components/DeleteConfirmationPage";
 import AboutPage from "./components/AboutPage";
+import HomePage from "./components/HomePage";
 
 function App() {
-    const [allSeries, setAllSeries] = useState([]);
-    const [searchResults, setSearchResults] = useState([]);
     const [user, setUser] = useState([]);
-
-    useEffect(() => {
-        const fetchSeries = async () => {
-            const rsp = SeriesApi.getNewestSeries();
-            const series = await rsp;
-            setAllSeries(series);
-            setSearchResults(series);
-        };
-        fetchSeries();
-    }, []);
 
   return (
       <Router>
@@ -58,8 +44,7 @@ function App() {
                     <WriterDashboard></WriterDashboard>
                 </Route>
                 <Route path = "/">
-                    <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
-                    <SeriesPage allSeries = {searchResults}></SeriesPage>
+                    <HomePage></HomePage>
                 </Route>
             </Switch>
         </div>
