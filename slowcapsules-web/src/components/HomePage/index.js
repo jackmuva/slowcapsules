@@ -18,13 +18,15 @@ function HomePage(){
             setSearchResults(series);
         };
         fetchSeries();
-    }, []);
+    }, [pageNum]);
 
     return (
         <div>
             <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
             <SeriesPage allSeries = {searchResults}></SeriesPage>
-            <PaginationBar page = {pageNum} setPage = {setPageNum}></PaginationBar>
+            <div className="flex flex-col w-screen items-center text-center">
+                <PaginationBar page = {pageNum} setPage = {setPageNum}></PaginationBar>
+            </div>
         </div>
     )
 };

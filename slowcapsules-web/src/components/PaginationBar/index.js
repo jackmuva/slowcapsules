@@ -1,29 +1,42 @@
 function PaginationBar({ page, setPage }){
 
+    const increment = () => {
+        setPage(page + 1);
+    }
 
+    const decrement = () => {
+        setPage(page - 1);
+    }
 
     return(
-        <nav aria-label="Page navigation example">
-            <ul className="inline-flex -space-x-px text-sm">
-                <li>
-                    <a href="#"
-                       className="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        Previous
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                       className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        1
-                    </a>
-                </li>
-                <li>
-                    <a href="#"
-                       className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        Next
-                    </a>
-                </li>
-            </ul>
+        <nav class="flex my-4">
+            <div className="inline-flex -space-x-px text-sm">
+                {page !== 0 && <div>
+                    <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                        onClick = {() => decrement()}>
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M7 1 1.3 6.326a.91.91 0 0 0 0 1.348L7 13"/>
+                        </svg>
+                    </button>
+                </div>}
+                <div>
+                    <div className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                        {page + 1}
+                    </div>
+                </div>
+                <div>
+                    <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                            onClick={() => increment()} type="submit">
+                        <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 8 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </nav>
     );
 };
