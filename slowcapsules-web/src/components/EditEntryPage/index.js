@@ -9,10 +9,10 @@ import edjsHTML from "editorjs-html";
 
 function EditEntryPage(){
     const location = useLocation();
-    let entry;
     let DEFAULT_INITIAL_DATA;
     const ejInstance = useRef();
     const [series, setSeries] = useState(null);
+    const [entry, setEntry] = useState(null);
 
     const initEditor = () => {
         const editor = new EditorJS({
@@ -22,20 +22,6 @@ function EditEntryPage(){
             },
             // autofocus: true,
             data: DEFAULT_INITIAL_DATA,
-            onChange: async () => {
-                let content = await editor.saver.save();
-                entry.entryJson = JSON.stringify(content);
-                EntryApi.updateEntry(entry).then(function (data){});
-
-                const edjsParser = edjsHTML();
-                ejInstance.current.save().then((outputData) => {
-                    const html = edjsParser.parse(outputData);
-                    entry.entryHtml = JSON.stringify(html);
-                    EntryApi.updateEntry(entry).then(function () {});
-                }).catch((error) => {
-                    console.log('Saving failed: ', error)
-                });
-            },
             tools: {
                 header: Header,
                 image: {
@@ -56,10 +42,10 @@ function EditEntryPage(){
 
     // This will run only once
     useEffect(() => {
-        entry = location.state.entry.entry;
-        DEFAULT_INITIAL_DATA = JSON.parse(entry.entryJson);
+        setEntry(location.state.entry.entry);
+        DEFAULT_INITIAL_DATA = JSON.parse(location.state.entry.entry.entryJson);
         const fetchSeries = async () => {
-            const rsp = SeriesApi.getSeriesById(entry.seriesId);
+            const rsp = SeriesApi.getSeriesById(location.state.entry.entry.seriesId);
             const ser = await rsp;
             setSeries(ser[0]);
         }
@@ -75,6 +61,21 @@ function EditEntryPage(){
         };
     }, []);
 
+    const handleSubmit = async () => {
+        let content = await ejInstance.current.saver.save();
+        entry.entryJson = JSON.stringify(content);
+        EntryApi.updateEntry(entry).then(function (data){});
+
+        const edjsParser = edjsHTML();
+        ejInstance.current.save().then((outputData) => {
+            const html = edjsParser.parse(outputData);
+            entry.entryHtml = JSON.stringify(html);
+            EntryApi.updateEntry(entry).then(function () {});
+        }).catch((error) => {
+            console.log('Saving failed: ', error)
+        });
+    };
+
     return (
         <div>
             <div className="flex sticky top-2 flex-col">
@@ -82,6 +83,10 @@ function EditEntryPage(){
                          to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries
                 </NavLink>
+                <button class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
+                        type="submit" onClick={() => handleSubmit()}>
+                    Save Entry
+                </button>
             </div>
             <div className="flex items-center justify-center">
                 <div class="p-6 flex-col w-1/2 shadow-2xl rounded-2xl">
