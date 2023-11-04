@@ -83,7 +83,7 @@ function EditEntryPage(){
                          to={{pathname: '/editSeries', state: {series: {series}}}}>
                     Return to Entries
                 </NavLink>
-                <button class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-orange-700 hover:bg-orange-800 max-w-fit"
+                <button class="m-2 px-2 py-1 rounded-md text-center text-slate-50 bg-green-800 hover:bg-green-950 max-w-fit"
                         type="submit" onClick={() => handleSubmit()}>
                     Save Entry
                 </button>
