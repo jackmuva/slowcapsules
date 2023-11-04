@@ -4,34 +4,36 @@ import SeriesApi from "../../../api/SeriesApi";
 import {useEffect, useState} from "react";
 const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum, setSearched }) => {
     const [keyword, setKeyword] = useState("");
-    const handleSubmit = (e) => e.preventDefault()
 
-    const handleSearchChange = (e) => {
-        const filtered = async () => {
-            const rsp = SeriesApi.getSeriesByKeyword(e.target.value, searchPageNum);
-            const series = await rsp;
-            return setSearchResults(series);
-        }
-        if(e.target.value){
-            setKeyword(e.target.value);
+    const filtered = async (searchTerm) => {
+        const rsp = SeriesApi.getSeriesByKeyword(searchTerm, searchPageNum);
+        const series = await rsp;
+        return setSearchResults(series);
+    }
+
+    const handleSubmit = () => {;
+        if(keyword !== ""){
             setSearchPageNum(0);
             setSearched(true);
-            return filtered();
+            return filtered(keyword);
         }
-        if (!e.target.value){
+        if(keyword === ""){
             setSearched(false);
             return setSearchResults(posts)
         }
     }
 
-    useEffect(() => {
-        const filtered = async () => {
-            const rsp = SeriesApi.getSeriesByKeyword(keyword, searchPageNum);
-            const series = await rsp;
-            return setSearchResults(series);
+    const handleSearchChange = (e) => {
+        if(e.target.value){
+            setKeyword(e.target.value);
+        } else {
+            setKeyword("");
         }
+    }
+
+    useEffect(() => {
         if(keyword !== ""){
-            filtered();
+            filtered(keyword);
         }
     }, [searchPageNum]);
 
@@ -46,7 +48,7 @@ const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum
                     id="search"
                     onChange={handleSearchChange}
                 />
-                <button onSubmit={handleSubmit}>
+                <button type="submit" onClick={(e) => handleSubmit(e)}>
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
             </div>
