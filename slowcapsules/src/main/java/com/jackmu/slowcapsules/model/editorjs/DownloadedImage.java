@@ -1,4 +1,4 @@
-package com.jackmu.slowcapsules.model;
+package com.jackmu.slowcapsules.model.editorjs;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

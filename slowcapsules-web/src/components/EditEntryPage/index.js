@@ -4,6 +4,7 @@ import EditorJS from "@editorjs/editorjs";
 import EntryApi from "../../api/EntryApi";
 import Header from "@editorjs/header";
 import ImageTool from "@editorjs/image";
+import LinkTool from "@editorjs/link";
 import SeriesApi from "../../api/SeriesApi";
 import edjsHTML from "editorjs-html";
 
@@ -35,12 +36,25 @@ function EditEntryPage(){
                             'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
                         }
                     }
+                },
+                linkTool: {
+                    class: LinkTool,
+                    config: {
+                        endpoint: 'http://localhost:8090/api/fetchUrl', // Your backend endpoint for url data fetching,
+                        headers: {
+                            'Authorization': 'Bearer ' + sessionStorage.getItem("jwt")
+                        }
+                    }
                 }
             },
         });
     };
 
-    // This will run only once
+    function htmlLinkParser(block){
+        console.log(block);
+        return `<a href = "${block.data.link}"> ${block.data.link} </a>`;
+    }
+
     useEffect(() => {
         setEntry(location.state.entry.entry);
         DEFAULT_INITIAL_DATA = JSON.parse(location.state.entry.entry.entryJson);
@@ -66,7 +80,7 @@ function EditEntryPage(){
         entry.entryJson = JSON.stringify(content);
         EntryApi.updateEntry(entry).then(function (data){});
 
-        const edjsParser = edjsHTML();
+        const edjsParser = edjsHTML({linkTool: htmlLinkParser});
         ejInstance.current.save().then((outputData) => {
             const html = edjsParser.parse(outputData);
             entry.entryHtml = JSON.stringify(html);
