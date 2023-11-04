@@ -1,20 +1,39 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons"
 import SeriesApi from "../../../api/SeriesApi";
-const SeriesFilter = ({ posts, setSearchResults }) => {
+import {useEffect, useState} from "react";
+const SeriesFilter = ({ posts, setSearchResults, searchPageNum, setSearchPageNum, setSearched }) => {
+    const [keyword, setKeyword] = useState("");
     const handleSubmit = (e) => e.preventDefault()
 
     const handleSearchChange = (e) => {
         const filtered = async () => {
-            const rsp = SeriesApi.getSeriesByKeyword(e.target.value);
+            const rsp = SeriesApi.getSeriesByKeyword(e.target.value, searchPageNum);
             const series = await rsp;
             return setSearchResults(series);
         }
         if(e.target.value){
+            setKeyword(e.target.value);
+            setSearchPageNum(0);
+            setSearched(true);
             return filtered();
         }
-        if (!e.target.value) return setSearchResults(posts)
+        if (!e.target.value){
+            setSearched(false);
+            return setSearchResults(posts)
+        }
     }
+
+    useEffect(() => {
+        const filtered = async () => {
+            const rsp = SeriesApi.getSeriesByKeyword(keyword, searchPageNum);
+            const series = await rsp;
+            return setSearchResults(series);
+        }
+        if(keyword !== ""){
+            filtered();
+        }
+    }, [searchPageNum]);
 
     return (
         <div className="mb-1">

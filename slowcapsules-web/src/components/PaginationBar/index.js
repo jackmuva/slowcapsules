@@ -1,17 +1,25 @@
-function PaginationBar({ page, setPage }){
+function PaginationBar({ page, setPage, searchPageNum, setSearchPageNum, searched }){
 
     const increment = () => {
-        setPage(page + 1);
+        if(searched){
+            setSearchPageNum(searchPageNum + 1);
+        } else {
+            setPage(page + 1);
+        }
     }
 
     const decrement = () => {
-        setPage(page - 1);
+        if(searched){
+            setSearchPageNum(searchPageNum - 1);
+        } else {
+            setPage(page - 1);
+        }
     }
 
     return(
         <nav class="flex my-4">
             <div className="inline-flex -space-x-px text-sm">
-                {page !== 0 && <div>
+                {((!searched && page !== 0) || (searched && searchPageNum !== 0)) && <div>
                     <button className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
                         onClick = {() => decrement()}>
                         <svg className="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
@@ -22,8 +30,9 @@ function PaginationBar({ page, setPage }){
                     </button>
                 </div>}
                 <div>
-                    <div className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        {page + 1}
+                    <div className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300">
+                        {!searched && <>{page + 1}</>}
+                        {searched && <>{searchPageNum + 1}</>}
                     </div>
                 </div>
                 <div>

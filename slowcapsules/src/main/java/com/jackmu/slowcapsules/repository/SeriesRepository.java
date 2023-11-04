@@ -22,7 +22,8 @@ public interface SeriesRepository extends JpaRepository<Series, Long> {
             "OR POSITION(LOWER(:tag) in LOWER(tags)) > 0 OR POSITION(LOWER(:summary) in LOWER(summary)) > 0 " +
             "OR POSITION(LOWER(:title) in LOWER(title)) > 0) AND published = :published",
     nativeQuery = true)
-    List<Series> findAllByKeyword(
+    Page<Series> findAllByKeyword(
+            Pageable pageable,
             @Param("penName") String penName,
             @Param("tag") String tag,
             @Param("summary") String summary,

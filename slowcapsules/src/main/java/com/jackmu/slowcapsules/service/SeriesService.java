@@ -19,6 +19,6 @@ public interface SeriesService {
 
     List<Series> fetchByTag(String tag);
 
-    List<Series> fetchByKeyword(String keyword, Boolean published);
+    Page<Series> fetchByKeyword(Pageable pageable, String keyword, Boolean published);
     List<Series> fetchBySeriesId(Long id);
 }

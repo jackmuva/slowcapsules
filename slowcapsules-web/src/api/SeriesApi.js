@@ -24,8 +24,8 @@ class SeriesApi extends StandardApi{
     getSeriesByTag(tag){
         return this.get(`/api/series/tag/${tag}`).then(response => response.json());
     }
-    getSeriesByKeyword(keyword){
-        return this.get(`/api/series/search/${keyword}`).then(response => response.json());
+    getSeriesByKeyword(keyword, page){
+        return this.get(`/api/series/search/${keyword}?page=${page}`).then(response => response.json());
     }
 }
 export default new SeriesApi();

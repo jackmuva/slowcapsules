@@ -8,7 +8,9 @@ import PaginationBar from "../PaginationBar";
 function HomePage(){
     const [allSeries, setAllSeries] = useState([]);
     const [searchResults, setSearchResults] = useState([]);
+    const [searched, setSearched] = useState(false);
     const [pageNum, setPageNum] = useState(0);
+    const [searchPageNum, setSearchPageNum] = useState(0);
 
     useEffect(() => {
         const fetchSeries = async () => {
@@ -22,10 +24,13 @@ function HomePage(){
 
     return (
         <div>
-            <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}/>
+            <SeriesFilter posts={allSeries} setSearchResults={setSearchResults}
+                          searchPageNum={searchPageNum} setSearchPageNum={setSearchPageNum}
+                        setSearched={setSearched}/>
             <SeriesPage allSeries = {searchResults}></SeriesPage>
             <div className="flex flex-col w-screen items-center text-center">
-                <PaginationBar page = {pageNum} setPage = {setPageNum}></PaginationBar>
+                <PaginationBar page = {pageNum} setPage = {setPageNum} searchPageNum={searchPageNum}
+                               setSearchPageNum={setSearchPageNum} searched = {searched}></PaginationBar>
             </div>
         </div>
     )

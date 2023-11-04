@@ -73,8 +73,14 @@ public class SeriesController {
     }
 
     @GetMapping("/search/{keyword}")
-    public List<Series> searchPublishedSeries(@PathVariable String keyword){
-        return seriesService.fetchByKeyword(keyword, Boolean.TRUE);
+    public List<Series> searchPublishedSeries(@PathVariable String keyword, @RequestParam(defaultValue = "0") int page){
+        try{
+            Pageable paging = PageRequest.of(page, 1);
+            Page<Series> pageSeries = seriesService.fetchByKeyword(paging, keyword, Boolean.TRUE);
+            return pageSeries.getContent();
+        } catch (Exception e){
+            return null;
+        }
     }
 
     @GetMapping("/{id}")

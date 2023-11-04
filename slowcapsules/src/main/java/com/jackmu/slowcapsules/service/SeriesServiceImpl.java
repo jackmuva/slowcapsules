@@ -34,8 +34,8 @@ public class SeriesServiceImpl implements SeriesService{
         return seriesRepository.findAllByTagsIsContainingIgnoreCaseAndPublishedIsTrue(tag);
     }
 
-    public List<Series> fetchByKeyword(String keyword, Boolean published){
-        return seriesRepository.findAllByKeyword(keyword, keyword, keyword, keyword, published);
+    public Page<Series> fetchByKeyword(Pageable pageable, String keyword, Boolean published){
+        return seriesRepository.findAllByKeyword(pageable, keyword, keyword, keyword, keyword, published);
     }
 
     public List<Series> fetchBySeriesId(Long id){
