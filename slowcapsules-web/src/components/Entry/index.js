@@ -29,6 +29,15 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
         }
     }
 
+    const createOrderOptions = (maxSize) => {
+        let nums = [];
+        for (let i=1;i<=maxSize;i++) {
+            nums.push(i);
+        }
+        const orderOptions = nums.map(num => <option value = {num}>{num}</option>);
+        return orderOptions;
+    }
+
     if(!editable) {
         return (
             <div className="my-4 grid grid-cols-4 border-b-2 border-stone-200">
@@ -65,9 +74,12 @@ const Entry = ({ entry, maxEntry, setEdited}) => {
                     </div>
                     <div class="inline-flex">
                         <h3 className="ml-3 my-0 font-sans text-base"> Order: </h3>
-                        <input type="number" id="order" min="1" max = {maxEntry}
-                               class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"
-                               defaultValue={entry.orderNum}/>
+                        {/*<input type="number" id="order" min="1" max = {maxEntry}*/}
+                        {/*       class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light"*/}
+                        {/*       defaultValue={entry.orderNum}/>*/}
+                        <select id="order" class="mr-2 px-4 border border-gray-300 rounded-md placeholder:font-sans placeholder:font-light">
+                            { createOrderOptions(maxEntry) }
+                        </select>
                     </div>
                     {errorMessage && <div className="error"> {errorMessage} </div>}
                 </div>
