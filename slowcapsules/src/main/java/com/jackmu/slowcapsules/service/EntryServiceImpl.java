@@ -28,6 +28,8 @@ public class EntryServiceImpl implements EntryService{
     }
 
     public void deleteEntry(Long id){
+        Entry entry = entryRepository.findByEntryId(id).get(0);
+        moveUpOtherEntryOrders(entry);
         entryRepository.deleteByEntryId(id);
     }
 
@@ -63,6 +65,17 @@ public class EntryServiceImpl implements EntryService{
 
         for(Entry ent:allEntries){
             if(ent.getOrderNum() <= newOrderNum && ent.getOrderNum() >= oldOrderNum){
+                ent.setOrderNum(ent.getOrderNum() - 1);
+                entryRepository.save(ent);
+            }
+        }
+    }
+
+    protected void moveUpOtherEntryOrders(Entry entry){
+        List<Entry> allEntries = fetchEntriesBySeriesId(entry.getSeriesId());
+
+        for(Entry ent:allEntries){
+            if(ent.getOrderNum() > entry.getOrderNum()){
                 ent.setOrderNum(ent.getOrderNum() - 1);
                 entryRepository.save(ent);
             }
