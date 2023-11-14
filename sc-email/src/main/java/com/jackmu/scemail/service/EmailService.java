@@ -9,4 +9,8 @@ public interface EmailService {
     public void sendEmails(List<EntryEmailDTO> entryEmailDTOList);
     public void sendLogEmails(List<EntryEmailDTO> entryEmailDTOList);
     public void sendRealEmail(List<EntryEmailDTO> entryEmailDTOList);
+    public void scheduleSendEmails();
+    public void updateSendDate();
+    public void deleteFinishedSeries();
+    public void incrementArticleNum();
 }

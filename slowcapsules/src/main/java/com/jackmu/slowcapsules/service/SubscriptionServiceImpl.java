@@ -1,6 +1,5 @@
 package com.jackmu.slowcapsules.service;
 
-import com.jackmu.slowcapsules.model.EntryEmailDTO;
 import com.jackmu.slowcapsules.model.Subscription;
 import com.jackmu.slowcapsules.repository.SubscriptionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +12,6 @@ import java.util.List;
 public class SubscriptionServiceImpl implements SubscriptionService{
     @Autowired
     private SubscriptionRepository subscriptionRepository;
-    @Autowired
-    private EmailService emailService;
 
     @Override
     public Subscription saveSubscription(Subscription subscription){
@@ -28,31 +25,5 @@ public class SubscriptionServiceImpl implements SubscriptionService{
     @Override
     public List<Subscription> fetchSubscriptions(){
         return subscriptionRepository.findAll();
-    }
-
-    @Override
-    @Scheduled(cron = "0 6 * * *")
-    public void sendEmails(){
-        List<EntryEmailDTO> readyEmails = subscriptionRepository.findEmailsBySendDate();
-        emailService.setLocalMode(true);
-        emailService.sendEmails(readyEmails);
-    }
-
-    @Override
-    @Scheduled(cron = "0 10 * * *")
-    public void updateSendDate(){
-        subscriptionRepository.updateSendDate();
-    }
-
-    @Override
-    @Scheduled(cron = "0 11 * * *")
-    public void deleteFinishedSeries(){
-        subscriptionRepository.deleteFinishedSubscriptions();
-    }
-
-    @Override
-    @Scheduled(cron = "0 13 * * *")
-    public void incrementArticleNum(){
-        subscriptionRepository.incrementArticleNum();
     }
 }

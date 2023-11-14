@@ -1,5 +1,7 @@
 package com.jackmu.scemail.service;
 
+import com.jackmu.scemail.repository.SubscriptionRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -16,6 +18,7 @@ import com.jackmu.scemail.model.EntryEmailDTO;
 public class EmailServiceImpl implements EmailService{
     private Boolean localMode = false;
     private static final Logger LOGGER = Logger.getLogger(EmailServiceImpl.class.getName());
+    private SubscriptionRepository subscriptionRepository;
 
     @Override
     public void setLocalMode(Boolean bool){
@@ -77,5 +80,31 @@ public class EmailServiceImpl implements EmailService{
                 mex.printStackTrace();
             }
         }
+    }
+
+    @Override
+    @Scheduled(cron = "0 6 * * *")
+    public void scheduleSendEmails(){
+        List<EntryEmailDTO> readyEmails = subscriptionRepository.findEmailsBySendDate();
+        setLocalMode(true);
+        sendEmails(readyEmails);
+    }
+
+    @Override
+    @Scheduled(cron = "0 10 * * *")
+    public void updateSendDate(){
+        subscriptionRepository.updateSendDate();
+    }
+
+    @Override
+    @Scheduled(cron = "0 11 * * *")
+    public void deleteFinishedSeries(){
+        subscriptionRepository.deleteFinishedSubscriptions();
+    }
+
+    @Override
+    @Scheduled(cron = "0 13 * * *")
+    public void incrementArticleNum(){
+        subscriptionRepository.incrementArticleNum();
     }
 }
