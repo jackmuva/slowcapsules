@@ -1,6 +1,5 @@
-package com.jackmu.slowcapsules.service;
+package com.jackmu.scemail.service;
 
-import com.jackmu.slowcapsules.model.EntryEmailDTO;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -11,6 +10,7 @@ import javax.mail.Transport;
 
 import java.util.List;
 import java.util.logging.Logger;
+import com.jackmu.scemail.model.EntryEmailDTO;
 
 @Service
 public class EmailServiceImpl implements EmailService{

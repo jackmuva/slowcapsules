@@ -1,6 +1,6 @@
-package com.jackmu.slowcapsules.service;
+package com.jackmu.scemail.service;
 
-import com.jackmu.slowcapsules.model.EntryEmailDTO;
+import com.jackmu.scemail.model.EntryEmailDTO;
 
 import java.util.List;
 

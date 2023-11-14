@@ -1,4 +1,4 @@
-package com.jackmu.slowcapsules.model;
+package com.jackmu.scemail.model;
 
 public class EntryEmailDTOImpl implements EntryEmailDTO{
     private String entryText;
