@@ -31,33 +31,4 @@ public class SubscriptionController {
     public void deleteSubscription(@PathVariable String email, @PathVariable Long seriesId){
         subscriptionService.deleteSubscription(email, seriesId);
     }
-
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/testEmails")
-    public List<Subscription> getEmails(){
-        subscriptionService.sendEmails();
-        return subscriptionService.fetchSubscriptions();
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/updateDate")
-    public List<Subscription> updateDate(){
-        subscriptionService.updateSendDate();
-        return subscriptionService.fetchSubscriptions();
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @PutMapping("/increment")
-    public List<Subscription> increment(){
-        subscriptionService.incrementArticleNum();
-        return subscriptionService.fetchSubscriptions();
-    }
-
-    @PreAuthorize("hasRole('ADMIN')")
-    @DeleteMapping("/finished")
-    public List<Subscription> deleteFinished(){
-        subscriptionService.deleteFinishedSeries();
-        return subscriptionService.fetchSubscriptions();
-    }
 }
