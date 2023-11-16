@@ -1,4 +1,5 @@
-const apiUrl = "http://localhost:5000";
+const apiUrl = "http://slowcapsules.us-east-1.elasticbeanstalk.com";
+// const apiUrl = "http://localhost:5000";
 export default class StandardApi {
 
     json(response){
