@@ -15,8 +15,8 @@ import java.util.Collections;
 
 @RestController
 @RequestMapping("api")
-public class ImageController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImageController.class);
+public class EditorJsController {
+    private static final Logger LOGGER = LoggerFactory.getLogger(EditorJsController.class);
     private static final String S3UPLOADURL = "C://Users/jackm/Documents/slowcapsules/s3/";
     private static final String S3DOWNLOADURL = "http://127.0.0.1:8081/";
 
